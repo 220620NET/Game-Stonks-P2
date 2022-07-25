@@ -73,3 +73,7 @@
 # We invite the rest of the class to play and the game ends at the end of the cohort
 - **We publish the app so they can follow their investments and make changes on their own devices at any time**
 - **Leaderboard, just to make players more competitive**
+
+# Database setup
+![A Database Flowchart 
+bus](https://github.com/220620NET/Game-Stonks-P2/blob/main/flowchart.png)
