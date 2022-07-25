@@ -1,4 +1,10 @@
 # Technology Project: P2
+## Engineers
+- Autumn Sprout (**Discord:** AutumnSprout / AutumnKitten)
+- Kishan Patel (**Discord:** Kishan Patel/  ksp223)
+- Chris Midgett (**Discord:** chris midgett / hordeofrabbits)
+- Kevion Chatfield (**Discord:** Kevion Chatfield / Kevion Chatfield)
+- Elizabeth Kang (**Discord:** Elizabeth Kang / hydrangea)
 
 ## [Trello Workspace](https://trello.com/b/Fqygxqny/gamestonks-snl)
 ## Due Date: 8/19
