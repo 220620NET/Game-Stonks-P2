@@ -76,4 +76,4 @@
 
 # Database setup
 ![A Database Flowchart 
-bus](https://github.com/220620NET/Game-Stonks-P2/blob/main/flowchart.png)
+bus](https://github.com/220620NET/Game-Stonks-P2/blob/main/Flowchart.png)
