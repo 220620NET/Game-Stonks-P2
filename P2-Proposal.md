@@ -32,18 +32,13 @@ Link to backend Repository: [GameStonksSnL-BackEnd](https://github.com/220620NET
 - User has dashboard displaying portfolio, diversity graph, platform
     - **Use D3?**
     - Use APIs to keep these passive and dynamic (see *Crypto-API-Resources.md* and *Financial-News-APIs.md*)
-- User can apply for loan from GameStonks S&L or other players
-    - GS S&L's interest rate stays relatively consistent
-        - GS S&L loans paid back out of final funds at game end
-    - Other players determine their own interest rate
 - Users can see financial news via either email and/or notifications
     - **news feed? News stories? Not everything, just big stuff**
     - **alerts about significant account activity**
     - **breaking news more urgent than notifications**    
     - Users can adjust their investment at any time
-- User can use in-app calculator to divide investments
+- User can use in-app calculator to divide investment
 - Users can see each others' progress via Leaderboard
-
 - User can change theme to Dark Mode
 - User can export/print anything to PDF
 - User can "chat"/communicate with tech support/Admins/bot
@@ -57,7 +52,6 @@ Link to backend Repository: [GameStonksSnL-BackEnd](https://github.com/220620NET
 - Admins can create a new cryptocurrency (like a Chance or Community Chest)
 - Admins can create "fake news" for notifications/emails (a la Plague Inc)
 
-
 ### <b>MVP Goals</b>
 - Budget Calculator
 - General Documentation
@@ -69,7 +63,6 @@ Link to backend Repository: [GameStonksSnL-BackEnd](https://github.com/220620NET
 - Request Money
 - send money
     - **for this and below, users/players can message each other sending money and/or requesting money**
-- JWT Implementation
 - Reset Password
 - notifications
 - Login
@@ -81,14 +74,13 @@ Link to backend Repository: [GameStonksSnL-BackEnd](https://github.com/220620NET
 - Transfer Money Between Accounts
 
 ### <b>Stretch Goals</b>
-- The user 
 - Dark mode
 - Export PDF Reports/Statements
 - Tech Support Chat
 - Email alerts
 - Rewards System
 - Users can add their own newsfeeds/APIs
-- JWT
+- JWT Implementation
     - [JWT.io](https://jwt.io/)
     - [JSON Web Token](https://en.wikipedia.org/wiki/JSON_Web_Token) on Wikipedia
 

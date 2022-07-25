@@ -8,7 +8,7 @@
 
 ## [Trello Workspace](https://trello.com/b/Fqygxqny/gamestonks-snl)
 ## Due Date: 8/19
-In the technology project (p2), you'll work as a small team to create a full stack application in one of the following themes: E-Commerce, Health Care Insurance, Banking, and Social Media. Each theme has a set of required features as well as optional stretch goals. Feel free to customize these themes to suit your fancy!
+- Carefully, meticulously, plan as a group, normalized tables
 
 ## Technology
 - C#
