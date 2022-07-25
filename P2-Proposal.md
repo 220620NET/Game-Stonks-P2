@@ -23,6 +23,12 @@ Link to backend Repository: [GameStonksSnL-BackEnd](https://github.com/220620NET
 - User can see list of crypto currencies, current value, historical value
 - User receives initial investment amoutn of $ XXXX.00 
 - User receives periodical "allowance" like $200 going past Go in Monopology
+- User can complete and submit loan application form
+- Users can track income 
+- Users can track expenses
+- Users can withdraw money from investment account and deposit into savings accounts
+- Users can create additional accounts (for either investment or saving)
+- Users can compare and track their multiple accounts
 - User has dashboard displaying portfolio, diversity graph, platform
     - **Use D3?**
     - Use APIs to keep these passive and dynamic (see *Crypto-API-Resources.md* and *Financial-News-APIs.md*)
@@ -37,12 +43,7 @@ Link to backend Repository: [GameStonksSnL-BackEnd](https://github.com/220620NET
     - Users can adjust their investment at any time
 - User can use in-app calculator to divide investments
 - Users can see each others' progress via Leaderboard
-- User can complete and submit loan application form
-- Users can track income 
-- Users can track expenses
-- Users can withdraw money from investment account and deposit into savings accounts
-- Users can create additional accounts (for either investment or saving)
-- Users can compare and track their multiple accounts
+
 - User can change theme to Dark Mode
 - User can export/print anything to PDF
 - User can "chat"/communicate with tech support/Admins/bot
@@ -50,7 +51,6 @@ Link to backend Repository: [GameStonksSnL-BackEnd](https://github.com/220620NET
     - one idea: keeping money in investments without saving
     - **the more you invest, you get ... something**
     - **keeping 100% if your investment in (instead of moving it to savings), you get ... something**    
-- 
 
 **Admins/Engineers**
 - Admins can view and approve/deny loan applications
