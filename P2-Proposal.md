@@ -3,6 +3,9 @@
 ## <b>Overview</b>
 
 Like Fantasy Football but players invest in cryptocurrencies with the richest player at the end winning the game.
+# We invite the rest of the class to play and the game ends at the end of the cohort
+- **We publish the app so they can follow their investments and make changes on their own devices at any time**
+- **Leaderboard, just to make players more competitive**
 
 Link to backend Repository: [GameStonksSnL-BackEnd](https://github.com/220620NET/Game-Stonks-P2)
 [GameStonks S&L Trello board](https://trello.com/b/Fqygxqny/gamestonks-snl)
@@ -21,11 +24,16 @@ Link to backend Repository: [GameStonksSnL-BackEnd](https://github.com/220620NET
 - User receives initial investment amoutn of $ XXXX.00 
 - User receives periodical "allowance" like $200 going past Go in Monopology
 - User has dashboard displaying portfolio, diversity graph, platform
+    - **Use D3?**
+    - Use APIs to keep these passive and dynamic (see *Crypto-API-Resources.md* and *Financial-News-APIs.md*)
 - User can apply for loan from GameStonks S&L or other players
     - GS S&L's interest rate stays relatively consistent
         - GS S&L loans paid back out of final funds at game end
     - Other players determine their own interest rate
 - Users can see financial news via either email and/or notifications
+    - **news feed? News stories? Not everything, just big stuff**
+    - **alerts about significant account activity**
+    - **breaking news more urgent than notifications**    
     - Users can adjust their investment at any time
 - User can use in-app calculator to divide investments
 - Users can see each others' progress via Leaderboard
@@ -40,6 +48,9 @@ Link to backend Repository: [GameStonksSnL-BackEnd](https://github.com/220620NET
 - User can "chat"/communicate with tech support/Admins/bot
 - User can opt in to reward system
     - one idea: keeping money in investments without saving
+    - **the more you invest, you get ... something**
+    - **keeping 100% if your investment in (instead of moving it to savings), you get ... something**    
+- 
 
 **Admins/Engineers**
 - Admins can view and approve/deny loan applications
@@ -55,11 +66,12 @@ Link to backend Repository: [GameStonksSnL-BackEnd](https://github.com/220620NET
 - Investment Diversity Graph
 - Investment Portfolio
 - Loan Applications
-- Send Money
 - Request Money
+- send money
+    - **for this and below, users/players can message each other sending money and/or requesting money**
 - JWT Implementation
 - Reset Password
-- Notifications
+- notifications
 - Login
 - Register
 - User Profile
@@ -76,6 +88,9 @@ Link to backend Repository: [GameStonksSnL-BackEnd](https://github.com/220620NET
 - Email alerts
 - Rewards System
 - Users can add their own newsfeeds/APIs
+- JWT
+    - [JWT.io](https://jwt.io/)
+    - [JSON Web Token](https://en.wikipedia.org/wiki/JSON_Web_Token) on Wikipedia
 
 ### Product Backlog
 
