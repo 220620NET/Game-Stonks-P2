@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+appsettings.Development.json
+appsettings.json
+connectionString.txt
+
 # User-specific files
 *.rsuser
 *.suo
@@ -56,6 +60,7 @@ dlldata.c
 
 # Benchmark Results
 BenchmarkDotNet.Artifacts/
+
 
 # .NET
 project.lock.json
@@ -452,3 +457,4 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
