@@ -1,2 +1,0 @@
-- [MarketAux](https://www.marketaux.com/)
-- [TheTie](https://www.thetie.io/integrations/)
