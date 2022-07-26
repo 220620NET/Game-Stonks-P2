@@ -22,7 +22,7 @@ CREATE TABLE Accounts (
     user_id INT NOT NULL FOREIGN KEY REFERENCES Users(user_id),
     account_type VARCHAR(50) NOT NULL CHECK (account_type IN ('Savings', 'Investment')),
     account_name VARCHAR(50),
-    account_balance NUMERIC NOT NULL,
+    account_balance DECIMAL(15,15) NOT NULL,
     PRIMARY KEY (account_id)
 );
 
