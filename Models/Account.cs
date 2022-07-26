@@ -51,8 +51,8 @@ public class Account
             else { _accountName = value; }
         }
     }
-    private int _accountBalance;
-    public int AccountBalance
+    private double _accountBalance;
+    public double AccountBalance
     {
         get
         {
