@@ -1,0 +1,12 @@
+C:\Users\unexp\source\repos\Game-Stonks-P2\Game-Stonks-P2\Models\bin\Debug\net6.0\Models.deps.json
+C:\Users\unexp\source\repos\Game-Stonks-P2\Game-Stonks-P2\Models\bin\Debug\net6.0\Models.dll
+C:\Users\unexp\source\repos\Game-Stonks-P2\Game-Stonks-P2\Models\bin\Debug\net6.0\Models.pdb
+C:\Users\unexp\source\repos\Game-Stonks-P2\Game-Stonks-P2\Models\obj\Debug\net6.0\Models.csproj.AssemblyReference.cache
+C:\Users\unexp\source\repos\Game-Stonks-P2\Game-Stonks-P2\Models\obj\Debug\net6.0\Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\unexp\source\repos\Game-Stonks-P2\Game-Stonks-P2\Models\obj\Debug\net6.0\Models.AssemblyInfoInputs.cache
+C:\Users\unexp\source\repos\Game-Stonks-P2\Game-Stonks-P2\Models\obj\Debug\net6.0\Models.AssemblyInfo.cs
+C:\Users\unexp\source\repos\Game-Stonks-P2\Game-Stonks-P2\Models\obj\Debug\net6.0\Models.csproj.CoreCompileInputs.cache
+C:\Users\unexp\source\repos\Game-Stonks-P2\Game-Stonks-P2\Models\obj\Debug\net6.0\Models.dll
+C:\Users\unexp\source\repos\Game-Stonks-P2\Game-Stonks-P2\Models\obj\Debug\net6.0\refint\Models.dll
+C:\Users\unexp\source\repos\Game-Stonks-P2\Game-Stonks-P2\Models\obj\Debug\net6.0\Models.pdb
+C:\Users\unexp\source\repos\Game-Stonks-P2\Game-Stonks-P2\Models\obj\Debug\net6.0\ref\Models.dll
