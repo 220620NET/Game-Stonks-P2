@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DataAccess
+namespace DataAccess.Entities
 {
-    public class Transaction
+    public partial class Transaction
     {
         public int TransactionId { get; set; }
         public int WalletIdFk { get; set; }

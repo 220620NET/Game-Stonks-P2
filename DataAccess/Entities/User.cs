@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DataAccess
+namespace DataAccess.Entities
 {
-    public class User
+    public partial class User
     {
         public User()
         {
