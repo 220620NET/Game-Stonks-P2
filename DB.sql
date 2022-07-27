@@ -30,11 +30,11 @@ CREATE TABLE Wallets (
     PRIMARY KEY (wallet_id)
 );
 
---Still need the table for the bank/crypto setup before this table is ready to be added in db
+--Still need the table for the bank/crypto setup before this table is ready to be added in db--
 CREATE TABLE Transactions (
 	transaction_id INT IDENTITY, 
     wallet_id_fk INT NOT NULL FOREIGN KEY REFERENCES Wallets(wallet_id),
-    ticker_symbol_fk NVARCHAR(10) NOT NULL FOREIGN KEY REFERENCES Currency(currency_symbol), 
+    currency_id_fk INT NOT NULL FOREIGN KEY REFERENCES Currency(currency_id), 
     transaction_type NVARCHAR(4) NOT NULL CHECK (transaction_type IN ('Sell', 'Buy')),
     transaction_value DECIMAL(15,15) NOT NULL,
     transaction_time DATETIME NOT NULL DEFAULT (GETDATE()),
