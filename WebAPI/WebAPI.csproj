@@ -6,4 +6,19 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\models\Models.csproj" />
+    <ProjectReference Include="..\services\Services.csproj" />
+    <ProjectReference Include="..\dataaccess\DataAccess.csproj" />
+    <ProjectReference Include="..\customexceptions\CustomExceptions.csproj" />
+  </ItemGroup>
+
 </Project>
