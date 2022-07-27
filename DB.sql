@@ -34,8 +34,8 @@ CREATE TABLE Wallets (
 CREATE TABLE Transactions (
 	transaction_id INT IDENTITY, 
     wallet_id_fk INT NOT NULL FOREIGN KEY REFERENCES Wallets(wallet_id),
-    ticker_symbol NVARCHAR(25) NOT NULL FOREIGN KEY REFERENCES Currency(currency_id), 
-    transaction_type NVARCHAR(25) NOT NULL CHECK (transaction_type IN ('Sell', 'Buy')),
+    ticker_symbol_fk NVARCHAR(10) NOT NULL FOREIGN KEY REFERENCES Currency(currency_symbol), 
+    transaction_type NVARCHAR(4) NOT NULL CHECK (transaction_type IN ('Sell', 'Buy')),
     transaction_value DECIMAL(15,15) NOT NULL,
     transaction_time DATETIME NOT NULL DEFAULT (GETDATE()),
     PRIMARY KEY (transaction_id)
