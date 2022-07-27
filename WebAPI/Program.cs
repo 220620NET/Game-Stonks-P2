@@ -1,4 +1,4 @@
-using Services;
+
 using CustomExceptions;
 using DataAccess;
 using Models;
@@ -18,7 +18,7 @@ builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =
 });
 
 
-builder.Services.AddDbContext<PokeDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StonkDB")));
+builder.Services.AddDbContext<StonksDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StonkDB")));
 
 
 var app = builder.Build();

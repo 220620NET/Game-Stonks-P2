@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DataAccess
+namespace DataAccess.Entities
 {
-    public class Profile
+    public partial class Profile
     {
         public int ProfileId { get; set; }
         public int UserIdFk { get; set; }
