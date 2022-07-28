@@ -1,4 +1,4 @@
-using CustomExceptions;
+namespace CustomExceptions;
 
 [System.Serializable]
 public class DuplicateRecordException : System.Exception
