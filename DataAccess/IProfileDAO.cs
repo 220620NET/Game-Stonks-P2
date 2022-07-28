@@ -4,10 +4,9 @@ namespace DataAccess;
 
 public interface IProfileDAO
 {
-    List<Profile> GetAllProfiles();
-    Profile GetProfileById(int profile_id);
-    Profile GetProfileByUserId(int user_id);
-    Profile GetProfileByFirstName(string firstname);
-    bool CreateProfile(Profile profile);
-    bool UpdateProfile(Profile profile);
+    Task<List<Profile>> GetAllProfiles();
+    Task<Profile> GetProfileById(int profile_id);
+    Task<Profile> GetProfileByUserId(int user_id);
+    Task<bool> CreateProfile(Profile profile);
+    Task<bool> UpdateProfile(Profile profile);
 }
