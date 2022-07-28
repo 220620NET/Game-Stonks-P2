@@ -4,9 +4,9 @@ namespace DataAccess;
 
 public interface IUserDAO
 {
-    public List<User> GetAllUsers();
-    public User GetUserById(int userID);
-    public User GetUserByUsername(string username);
-    public bool CreateUser(User user);
-    public bool UpdateUser(User user);
+    List<User> GetAllUsers();
+    User GetUserById(int userID);
+    User GetUserByUsername(string username);
+    bool CreateUser(User user);
+    bool UpdateUser(User user);
 }

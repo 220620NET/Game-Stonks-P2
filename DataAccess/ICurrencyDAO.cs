@@ -4,9 +4,9 @@ namespace DataAccess;
 
 public interface ICurrencyDAO
 {
-    public List<Currency> GetAllCurrencies();
-    public Currency GetCurrencyById(int currency_id);
-    public Currency GetCurrencyBySymbol(string symbol);
-    public bool CreateCurrency(Currency currency);
-    public bool UpdateCurrency(Currency currency);
+    List<Currency> GetAllCurrencies();
+    Currency GetCurrencyById(int currency_id);
+    Currency GetCurrencyBySymbol(string symbol);
+    bool CreateCurrency(Currency currency);
+    bool UpdateCurrency(Currency currency);
 }
