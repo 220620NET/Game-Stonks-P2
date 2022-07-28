@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Models;
+using CustomExceptions;
 
 namespace DataAccess;
 
@@ -16,6 +18,10 @@ public class ProfileRepository : IProfileDAO
     public Profile GetProfileById(int profile_id)
     {
 
+    }
+    Profile GetProfileByFirstName(string firstname)
+    {
+        
     }
     public Profile GetProfileByUserId(int user_id)
     {

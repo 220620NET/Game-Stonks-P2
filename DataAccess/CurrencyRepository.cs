@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Models;
+using CustomExceptions;
 
 namespace DataAccess;
 
