@@ -4,9 +4,9 @@ namespace DataAccess;
 
 public interface IWalletDAO
 {
-    List<Wallet> GetAllWallets();
-    bool CreateWallet(Wallet wallet);
-    List<Wallet> GetAllWellsByUserId(int user_id);
-    bool UpdateWallet(Wallet wallet);
+    Task<List<Wallet>> GetAllWallets();
+    Task<List<Wallet>> GetAllWalletsByUserId(int user_id);
+    Task<bool> CreateWallet(Wallet wallet);
+    Task<bool> UpdateWallet(Wallet wallet);
 
 }

@@ -11,28 +11,46 @@ public class ProfileRepository : IProfileDAO
     {
         _context = context;
     }
-    public List<Profile> GetAllProfiles()
+    public async Task<List<Profile>> GetAllProfiles()
     {
-
+        return await _context.Profiles.ToListAsync();
     }
-    public Profile GetProfileById(int profile_id)
+    public async Task<Profile> GetProfileById(int profile_id)
     {
-
+        Profile? foundProfile = await _context.Profiles.FirstOrDefaultAsync(profile => profile.ProfileId == profile_id);
+        if(foundProfile != null) return foundProfile;
+        throw new RecordNotFoundException("Could not find the currency with such profile");
     }
-    Profile GetProfileByFirstName(string firstname)
+    public async Task<Profile> GetProfileByUserId(int user_id)
     {
-        
+        Profile? foundProfile = await _context.Profiles.FirstOrDefaultAsync(profile => profile.UserIdFk == user_id);
+        if(foundProfile != null) return foundProfile;
+        throw new RecordNotFoundException("Could not find the currency with such user id");
     }
-    public Profile GetProfileByUserId(int user_id)
+    public async Task<bool> CreateProfile(Profile profile)
     {
-
+        try
+        {
+            _context.Add(profile);
+            await _context.SaveChangesAsync();
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
+        return true;
     }
-    public bool CreateProfile(Profile profile)
+    public async Task<bool> UpdateProfile(Profile profile)
     {
-
-    }
-    public bool UpdateProfile(Profile profile)
-    {
-
+        try
+        {
+            _context.Update(profile);
+            await _context.SaveChangesAsync();
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
+        return true;
     }
 }

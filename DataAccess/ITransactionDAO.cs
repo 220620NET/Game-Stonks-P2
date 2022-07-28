@@ -2,12 +2,11 @@ using Models;
 
 namespace DataAccess;
 
-public interface Transaction
+public interface ITransactionDAO
 {
-    List<Transaction> GetAllTransactions();
-    List<Transaction> GetAllTransactionsByWalletId(int wallet_id);
-    List<Transaction> GetTransactionsByType(string type);
-    bool CreateTransaction(Transaction transaction);
-    bool UpdateTransaction(Transaction transaction);
+    Task<List<Transaction>> GetAllTransactions();
+    Task<List<Transaction>> GetAllTransactionsByWalletId(int wallet_id);
+    Task<bool> CreateTransaction(Transaction transaction);
+    Task<bool> UpdateTransaction(Transaction transaction);
 
 }

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Models;
 using CustomExceptions;
+using DataAccess;
 
 namespace DataAccess;
 
@@ -12,24 +13,38 @@ public class TransactionRepository : ITransactionDAO
         _context = context;
     }
 
-    public List<Transaction> GetAllTransactions()
+    public async Task<List<Transaction>> GetAllTransactions()
     {
-
+        return await _context.Transactions.ToListAsync();
     }
-    public List<Transaction> GetAllTransactionsByWalletId(int wallet_id)
+    public async Task<List<Transaction>> GetAllTransactionsByWalletId(int wallet_id)
     {
-
+        return await _context.Transactions.ToListAsync();
     }
-    public List<Transaction> GetTransactionsByType(string type)
+    public async Task<bool> CreateTransaction(Transaction transaction)
     {
-
+         try
+        {
+            _context.Add(transaction);
+            await _context.SaveChangesAsync();
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
+        return true;
     }
-    public bool CreateTransaction(Transaction transaction)
+    public async Task<bool> UpdateTransaction(Transaction transaction)
     {
-
-    }
-    public bool UpdateTransaction(Transaction transaction)
-    {
-        
+        try
+        {
+            _context.Update(transaction);
+            await _context.SaveChangesAsync();
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
+        return true;
     }
 }

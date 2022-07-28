@@ -12,24 +12,47 @@ public class CurrencyRepository : ICurrencyDAO
         _context = context;
     }
 
-    public List<Currency> GetAllCurrencies()
+    public async Task<List<Currency>> GetAllCurrencies()
     {
+        return await _context.Currencies.ToListAsync();
+    }
+    public async Task<Currency> GetCurrencyById(int currency_id)
+    {
+        Currency? foundCurrency = await _context.Currencies.FirstOrDefaultAsync(currency => currency.CurrencyId == currency_id);
+        if(foundCurrency != null) return foundCurrency;
+        throw new RecordNotFoundException("Could not find the currency with such id");
 
     }
-    public Currency GetCurrencyById(int currency_id)
+    public async Task<Currency> GetCurrencyBySymbol(string symbol)
     {
-
+        Currency? foundCurrency = await _context.Currencies.FirstOrDefaultAsync(currency => currency.CurrencySymbol == symbol);
+        if(foundCurrency != null) return foundCurrency;
+        throw new RecordNotFoundException("Could not find the currency with such symbol");
     }
-    public Currency GetCurrencyBySymbol(string symbol)
+    public async Task<bool> CreateCurrency(Currency currency)
     {
-
+        try
+        {
+            _context.Add(currency);
+            await _context.SaveChangesAsync();
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
+        return true;
     }
-    public bool CreateCurrency(Currency currency)
+    public async Task<bool> UpdateCurrency(Currency currency)
     {
-
-    }
-    public bool UpdateCurrency(Currency currency)
-    {
-        
+        try
+        {
+            _context.Update(currency);
+            await _context.SaveChangesAsync();
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
+        return true;
     }
 }

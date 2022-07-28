@@ -4,9 +4,9 @@ namespace DataAccess;
 
 public interface IUserDAO
 {
-    List<User> GetAllUsers();
-    User GetUserById(int userID);
-    User GetUserByUsername(string username);
-    bool CreateUser(User user);
-    bool UpdateUser(User user);
+    Task<List<User>> GetAllUsers();
+    Task<User> GetUserById(int userID);
+    Task<User> GetUserByEmail(string email);
+    Task<User> CreateUser(User user);
+    Task<User> UpdateUser(User user);
 }

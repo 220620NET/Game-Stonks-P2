@@ -11,21 +11,27 @@ public class WalletRepository : IWalletDAO
     {
         _context = context;
     }
-    public List<Wallet> GetAllWallets()
+    public async Task<List<Wallet>> GetAllWallets()
     {
-
+        return await _context.Wallets.ToListAsync();
     }
-    public List<Wallet> GetAllWellsByUserId(int user_id)
+    public async Task<List<Wallet>> GetAllWalletsByUserId(int user_id)
     {
-
+        return await _context.Wallets.ToListAsync();
     }
-    public bool CreateWallet(Wallet wallet)
+    public async Task<bool> CreateWallet(Wallet wallet)
     {
+        _context.Add(wallet);
+        await _context.SaveChangesAsync();
 
+        return true;
     }
-    public bool UpdateWallet(Wallet wallet)
+    public async Task<bool> UpdateWallet(Wallet wallet)
     {
+        _context.Update(wallet);
+        await _context.SaveChangesAsync();
 
+        return true;
     }
     
 }

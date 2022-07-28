@@ -12,28 +12,37 @@ public class UserRepository : IUserDAO
         _context = context;
     }
 
-    public List<User> GetAllUsers()
+    public async Task<List<User>> GetAllUsers()
     {
-        return _context.Users.ToList();
+        return await _context.Users.ToListAsync();
     }
     public async Task<User> GetUserById(int userID)
     {
-        User? foundUser = await _context.Users.FirstOrDefault(user => user.UserId == userID);
+        User? foundUser = await _context.Users.FirstOrDefaultAsync(user => user.UserId == userID);
         if(foundUser != null) return foundUser;
 
         throw new RecordNotFoundException("could not find the user with such id");
     }
-    public User GetUserByUsername(string username)
+    public async Task<User> GetUserByEmail(string email)
     {
+        User? foundUser = await _context.Users.FirstOrDefaultAsync(user => user.Email == email);
+        if(foundUser != null) return foundUser;
 
+        throw new RecordNotFoundException("could not find the user with such email");
     }
-    public bool CreateUser(User user)
+    public async Task<User> CreateUser(User user)
     {
+        _context.Add(user);
+        await _context.SaveChangesAsync();
 
+        return user;
     }
-    public bool UpdateUser(User user)
+    public async Task<User> UpdateUser(User user)
     {
-        
+        _context.Update(user);
+        await _context.SaveChangesAsync();
+
+        return user;
     }
 
 }
