@@ -75,4 +75,4 @@
 - **Leaderboard, just to make players more competitive**
 
 # Database setup
-![Database Flowchart](https://github.com/220620NET/Game-Stonks-P2/blob/main/Database.png)
+![Database Flowchart](https://github.com/220620NET/Game-Stonks-P2/blob/main/Database/Chart.png)
