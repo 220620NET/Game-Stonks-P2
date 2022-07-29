@@ -31,28 +31,16 @@ public class CurrencyRepository : ICurrencyDAO
     }
     public async Task<bool> CreateCurrency(Currency currency)
     {
-        try
-        {
-            _context.Add(currency);
-            await _context.SaveChangesAsync();
-        }
-        catch (System.Exception)
-        {
-            throw;
-        }
+        _context.Add(currency);
+        await _context.SaveChangesAsync();
+        _context.ChangeTracker.Clear();
         return true;
     }
     public async Task<bool> UpdateCurrency(Currency currency)
     {
-        try
-        {
-            _context.Update(currency);
-            await _context.SaveChangesAsync();
-        }
-        catch (System.Exception)
-        {
-            throw;
-        }
+        _context.Update(currency);
+        await _context.SaveChangesAsync();
+        _context.ChangeTracker.Clear();
         return true;
     }
 }

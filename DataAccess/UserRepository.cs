@@ -20,29 +20,27 @@ public class UserRepository : IUserDAO
     {
         User? foundUser = await _context.Users.FirstOrDefaultAsync(user => user.UserId == userID);
         if(foundUser != null) return foundUser;
-
         throw new RecordNotFoundException("could not find the user with such id");
     }
     public async Task<User> GetUserByEmail(string email)
     {
         User? foundUser = await _context.Users.FirstOrDefaultAsync(user => user.Email == email);
         if(foundUser != null) return foundUser;
-
         throw new RecordNotFoundException("could not find the user with such email");
     }
-    public async Task<User> CreateUser(User user)
+    public async Task<bool> CreateUser(User user)
     {
         _context.Add(user);
         await _context.SaveChangesAsync();
-
-        return user;
+        _context.ChangeTracker.Clear();
+        return true;
     }
-    public async Task<User> UpdateUser(User user)
+    public async Task<bool> UpdateUser(User user)
     {
         _context.Update(user);
         await _context.SaveChangesAsync();
-
-        return user;
+        _context.ChangeTracker.Clear();
+        return true;
     }
 
 }
