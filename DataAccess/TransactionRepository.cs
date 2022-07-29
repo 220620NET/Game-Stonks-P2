@@ -19,32 +19,20 @@ public class TransactionRepository : ITransactionDAO
     }
     public async Task<List<Transaction>> GetAllTransactionsByWalletId(int wallet_id)
     {
-        return await _context.Transactions.ToListAsync();
+        return await _context.Transactions.AsNoTracking().Where(Transaction => Transaction.WalletIdFk == wallet_id).ToListAsync();
     }
     public async Task<bool> CreateTransaction(Transaction transaction)
     {
-         try
-        {
-            _context.Add(transaction);
-            await _context.SaveChangesAsync();
-        }
-        catch (System.Exception)
-        {
-            throw;
-        }
+        _context.Add(transaction);
+        await _context.SaveChangesAsync();
+        _context.ChangeTracker.Clear();
         return true;
     }
     public async Task<bool> UpdateTransaction(Transaction transaction)
     {
-        try
-        {
-            _context.Update(transaction);
-            await _context.SaveChangesAsync();
-        }
-        catch (System.Exception)
-        {
-            throw;
-        }
+        _context.Update(transaction);
+        await _context.SaveChangesAsync();
+        _context.ChangeTracker.Clear();
         return true;
     }
 }

@@ -29,28 +29,18 @@ public class ProfileRepository : IProfileDAO
     }
     public async Task<bool> CreateProfile(Profile profile)
     {
-        try
-        {
-            _context.Add(profile);
-            await _context.SaveChangesAsync();
-        }
-        catch (System.Exception)
-        {
-            throw;
-        }
+       
+        _context.Add(profile);
+        await _context.SaveChangesAsync();
+        _context.ChangeTracker.Clear();
         return true;
     }
     public async Task<bool> UpdateProfile(Profile profile)
     {
-        try
-        {
-            _context.Update(profile);
-            await _context.SaveChangesAsync();
-        }
-        catch (System.Exception)
-        {
-            throw;
-        }
+
+        _context.Update(profile);
+        await _context.SaveChangesAsync();
+        _context.ChangeTracker.Clear();
         return true;
     }
 }
