@@ -8,11 +8,11 @@
 - USD Coin (USDC)
 - Binance Coin (BNB)
 - Binance USD (BUSD)
-- XRP
+- XRP (xrphalf)
 - Cardano (ADA)
 - Solana (SOL)
 - Dogecoin (DOGE)
-- Polkadot
+- Polkadot (dot)
 
 ## THE ONES WE ARE NOT USING
 ## "Honorable Mention"
