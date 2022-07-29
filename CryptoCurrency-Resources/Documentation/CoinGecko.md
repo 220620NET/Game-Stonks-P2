@@ -1,5 +1,8 @@
 # CoinGecko
 
+## List of all coins
+https://api.coingecko.com/api/v3/coins/list
+
 ## API Documentation
 https://www.coingecko.com/en/api/documentation
 
