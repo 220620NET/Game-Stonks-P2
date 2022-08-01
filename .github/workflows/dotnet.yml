@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore Game-Stonks-P2.sln
+      run: dotnet restore WebAPI/WebAPI.csproj
     - name: Build
-      run: dotnet build --no-restore Game-Stonks-P2.sln
+      run: dotnet build --no-restore WebAPI/WebAPI.csproj
     - name: Test
-      run: dotnet test --no-build --verbosity normal Game-Stonks-P2.sln
+      run: dotnet test --no-build --verbosity normal WebAPI/WebAPI.csproj
