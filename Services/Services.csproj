@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\models\Models.csproj" />
-    <ProjectReference Include="..\dataaccess\DataAccess.csproj" />
-    <ProjectReference Include="..\customexceptions\CustomExceptions.csproj" />
+    <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\Dataaccess\DataAccess.csproj" />
+    <ProjectReference Include="..\CSSustomexceptions\CustomExceptions.csproj" />
   </ItemGroup>
   
   <PropertyGroup>
