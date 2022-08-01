@@ -26,11 +26,11 @@ public class UserServices
     {
         return await _userRepo.GetUserByEmail(email);
     }
-    public async Task<User> CreateUser(User user)
+    public async Task<bool> CreateUser(User user)
     {
         return await _userRepo.CreateUser(user);
     }
-    public async Task<User> UpdateUser(User user)
+    public async Task<bool> UpdateUser(User user)
     {
         return await _userRepo.UpdateUser(user);
     }
