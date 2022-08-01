@@ -42,7 +42,7 @@ app.MapGet("/wallet", (int trainerId, WebAPI.Controllers.WalletController contro
 
 app.MapPost("/wallet", ([FromBody] Wallet wallet, WebAPI.Controllers.WalletController controller) => controller.CreateWallet(wallet));
 
-
+app.MapPut("/wallet", ([FromBody] Wallet wallet, WebAPI.Controllers.WalletController controller) => controller.UpdateWallet(wallet));
 
 
 app.Run();
