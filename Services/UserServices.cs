@@ -13,25 +13,25 @@ public class UserServices
         _userRepo = repo;
     }
 
-    public List<User> GetAllUsers()
+    public async Task<List<User>> GetAllUsers()
     {
-        return _userRepo.GetAllUsers();
+        return await _userRepo.GetAllUsers();
     }
 
-    public User GetUserById(int userID)
+    public async Task<User> GetUserById(int userID)
     {
-        return _userRepo.GetUserById(userID);
+        return await _userRepo.GetUserById(userID);
     }
-    public User GetUserByEmail(string email)
+    public async Task<User> GetUserByEmail(string email)
     {
-        return _userRepo.GetUserByEmail(email);
+        return await _userRepo.GetUserByEmail(email);
     }
-    public User CreateUser(User user)
+    public async Task<User> CreateUser(User user)
     {
-        return _userRepo.CreateUser(user);
+        return await _userRepo.CreateUser(user);
     }
-    public User UpdateUser(User user)
+    public async Task<User> UpdateUser(User user)
     {
-        return _userRepo.UpdateUser(user);
+        return await _userRepo.UpdateUser(user);
     }
 }
