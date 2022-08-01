@@ -40,22 +40,26 @@ public class WalletController
         // }
         // return Results.Ok(wallets);
         Task<List<Wallet>> wallets = _service.GetAllWalletsByUserId(user_id);
-        return wallets.Result.Count > 0 ? Results.Ok(wallets) : Results.NoContent();
+        return wallets.Result.Count > 0 ? Results.Ok(wallets) : Results.BadRequest();
     }
     public IResult CreateWallet(Wallet wallet)
     {
-        try
-        {
-            Task<bool> createdWallet = _service.CreateWallet(wallet);
-        }
-        catch
-        {
-            Results.BadRequest(wallet);
-        }
-        return Results.Ok(wallet);;
+        // try
+        // {
+        //     Task<bool> createdWallet = _service.CreateWallet(wallet);
+        // }
+        // catch
+        // {
+        //     Results.BadRequest(wallet);
+        // }
+        // return Results.Ok(wallet);;
+        Task<bool> createdWallet = _service.CreateWallet(wallet);
+        return createdWallet.Result == true ? Results.Ok(wallet) : Results.BadRequest();
     }
     public IResult UpdateWallet(Wallet wallet)
     {
+        Task<bool> updatedWallet = _service.UpdateWallet(wallet);
+        return updatedWallet.Result == true ? Results.Ok(wallet) : Results.BadRequest();
 
     }
 }
