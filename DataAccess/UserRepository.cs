@@ -12,33 +12,33 @@ public class UserRepository : IUserDAO
         _context = context;
     }
 
-    public List<User> GetAllUsers()
+    public async Task<List<User>> GetAllUsers()
     {
-        return _context.Users.ToListAsync();
+        return await _context.Users.ToListAsync();
     }
-    public User GetUserById(int userID)
+    public async Task<User> GetUserById(int userID)
     {
-        User? foundUser = _context.Users.FirstOrDefaultAsync(user => user.UserId == userID);
+        User? foundUser = await _context.Users.FirstOrDefaultAsync(user => user.UserId == userID);
         if(foundUser != null) return foundUser;
         throw new RecordNotFoundException("could not find the user with such id");
     }
-    public User GetUserByEmail(string email)
+    public async Task<User> GetUserByEmail(string email)
     {
-        User? foundUser = _context.Users.FirstOrDefaultAsync(user => user.Email == email);
+        User? foundUser = await _context.Users.FirstOrDefaultAsync(user => user.Email == email);
         if(foundUser != null) return foundUser;
         throw new RecordNotFoundException("could not find the user with such email");
     }
-    public bool CreateUser(User user)
+    public async Task<bool> CreateUser(User user)
     {
         _context.Add(user);
-        _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
         _context.ChangeTracker.Clear();
         return true;
     }
-    public bool UpdateUser(User user)
+    public async Task<bool> UpdateUser(User user)
     {
         _context.Update(user);
-        _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
         _context.ChangeTracker.Clear();
         return true;
     }
