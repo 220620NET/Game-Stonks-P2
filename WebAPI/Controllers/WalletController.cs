@@ -12,7 +12,7 @@ public class WalletController
     {
         _service = service;
     }
-    public IResult GetAllWallets()
+    public async Task<IResult> GetAllWallets()
     {
         // try
         // {
@@ -23,12 +23,12 @@ public class WalletController
         //     Results.BadRequest();
         // }
         // return Results.Ok(allwallets);
-        var allwallets =  _service.GetAllWallets();
+        var allwallets =  await _service.GetAllWallets();
         return allwallets.Result.Count > 0 ? Results.Ok(allwallets) : Results.NoContent();
 
         
     }
-    public IResult GetAllWalletsByUserId(int user_id)
+    public async Task<IResult> GetAllWalletsByUserId(int user_id)
     {
         // try
         // {
@@ -39,10 +39,10 @@ public class WalletController
         //     Results.BadRequest();
         // }
         // return Results.Ok(wallets);
-        Task<List<Wallet>> wallets = _service.GetAllWalletsByUserId(user_id);
+        Task<List<Wallet>> wallets = await _service.GetAllWalletsByUserId(user_id);
         return wallets.Result.Count > 0 ? Results.Ok(wallets) : Results.BadRequest();
     }
-    public IResult CreateWallet(Wallet wallet)
+    public async Task<IResult> CreateWallet(Wallet wallet)
     {
         // try
         // {
@@ -53,12 +53,12 @@ public class WalletController
         //     Results.BadRequest(wallet);
         // }
         // return Results.Ok(wallet);;
-        Task<bool> createdWallet = _service.CreateWallet(wallet);
+        Task<bool> createdWallet = await _service.CreateWallet(wallet);
         return createdWallet.Result == true ? Results.Ok(wallet) : Results.BadRequest();
     }
-    public IResult UpdateWallet(Wallet wallet)
+    public async Task<IResult> UpdateWallet(Wallet wallet)
     {
-        Task<bool> updatedWallet = _service.UpdateWallet(wallet);
+        Task<bool> updatedWallet = await _service.UpdateWallet(wallet);
         return updatedWallet.Result == true ? Results.Ok(wallet) : Results.BadRequest();
 
     }
