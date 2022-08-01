@@ -2,8 +2,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj" />
-    <ProjectReference Include="..\Dataaccess\DataAccess.csproj" />
-    <ProjectReference Include="..\Customexceptions\CustomExceptions.csproj" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\CustomExceptions\CustomExceptions.csproj" />
   </ItemGroup>
   
   <PropertyGroup>

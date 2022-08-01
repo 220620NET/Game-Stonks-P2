@@ -15,10 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\models\Models.csproj" />
-    <ProjectReference Include="..\services\Services.csproj" />
-    <ProjectReference Include="..\dataaccess\DataAccess.csproj" />
-    <ProjectReference Include="..\customexceptions\CustomExceptions.csproj" />
+    <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\Services\Services.csproj" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\CustomExceptions\CustomExceptions.csproj" />
   </ItemGroup>
 
 </Project>
