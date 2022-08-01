@@ -18,12 +18,14 @@ builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =
     options.SerializerOptions.PropertyNamingPolicy = null;
 });
 
-
+//--------- Data Access------------
 builder.Services.AddDbContext<StonksDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StonkDB")));
 builder.Services.AddScoped<IWalletDAO, WalletRepository>();
 
+//----------Services---------------
 builder.Services.AddScoped<WalletServices>();
 
+//----------Controllers------------
 builder.Services.AddScoped<WebAPI.Controllers.WalletController>();
 
 
