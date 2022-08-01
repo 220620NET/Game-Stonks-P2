@@ -25,7 +25,20 @@ public class WalletController
     }
     public IResult CreateWallet(Wallet wallet)
     {
-
+        if(wallet.UserIdFk <= 0)
+            {
+                return Results.BadRequest("User ID is invalid!");
+            }
+            else if(wallet.WalletId <= 0)
+            {
+                return Results.BadRequest("Wallet ID is invalid!");
+            }
+            else if(wallet.CurrencyIdFk <= 0)
+            {
+                return Results.BadRequest("Currency ID is invalid!");
+            }
+        Wallet createdWallet = _service.CreateWallet(wallet);
+        return Results.Created($"pokemon/{createdWallet.WalletId}", createdWallet);
     }
     public IResult UpdateWallet(Wallet wallet)
     {

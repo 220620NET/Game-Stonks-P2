@@ -1,4 +1,3 @@
-using DataAccess.Entities;
 using DataAccess;
 using Models;
 using CustomExceptions;
@@ -15,18 +14,18 @@ public class WalletServices
     }
     public async Task<List<Wallet>> GetAllWallets()
     {
-        return _repo.GetAllWallets();
+        return await _repo.GetAllWallets();
     }
     public async Task<List<Wallet>> GetAllWalletsByUserId(int user_id)
     {
-        return GetAllWalletsByUserId(user_id);   
+        return await GetAllWalletsByUserId(user_id);   
     }
     public async Task<bool> CreateWallet(Wallet wallet)
     {
-        return CreateWallet(wallet);
+        return await CreateWallet(wallet);
     }
     public async Task<bool> UpdateWallet(Wallet wallet)
     {
-        return UpdateWallet(wallet);
+        return await UpdateWallet(wallet);
     }
 }
