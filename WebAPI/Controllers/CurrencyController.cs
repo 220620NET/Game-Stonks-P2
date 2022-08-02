@@ -20,12 +20,12 @@ public class CurrencyController
     public async Task<IResult> GetCurrencyById(int currency_id)
     {
         var currencies = await _service.GetCurrencyById(currency_id);
-        return currencies.Count > 0 ? Results.Ok(currencies) : Results.BadRequest("No currencies under this currency ID!");
+        return currencies != null ? Results.Ok(currencies) : Results.BadRequest("No currencies under this currency ID!");
     }
     public async Task<IResult> GetCurrencyBySymbol(string symbol)
     {
         var currency = await _service.GetCurrencyBySymbol(symbol);
-        return currency.Count > 0 ? Results.Ok(currency) : Results.BadRequest("No currency with this SYMBOL!");
+        return currency.Count != null ? Results.Ok(currency) : Results.BadRequest("No currency with this SYMBOL!");
     }
     public async Task<IResult> CreateCurrency(Currency currency)
     {
