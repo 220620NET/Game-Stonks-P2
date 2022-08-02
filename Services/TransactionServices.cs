@@ -25,11 +25,22 @@ public class TransactionServices
         }
     }
 
-    public Task<List<Transaction>> GetAllTransactionsByWalletId(int wallet_id)
+    public async Task<List<Transaction>> GetAllTransactionsByWalletId(int wallet_id)
     {
         try
         {
-            return _transactionDAO.GetAllTransactions();
+            return await _transactionDAO.GetAllTransactionsByWalletId(wallet_id);
+        }
+        catch(RecordNotFoundException)
+        {
+            throw new RecordNotFoundException();
+        }
+    }
+    public async Task<List<Transaction>> GetAllTransactionsByCurrencyId(int currency_id)
+    {
+        try
+        {
+            return await _transactionDAO.GetAllTransactionsByCurrencyId(currency_id);
         }
         catch(RecordNotFoundException)
         {
@@ -37,11 +48,11 @@ public class TransactionServices
         }
     }
 
-    public Task<bool> CreateTransaction(Transaction create)
+    public async Task<bool> CreateTransaction(Transaction create)
     {
         try
         {
-            return _transactionDAO.CreateTransaction(create);
+            return await _transactionDAO.CreateTransaction(create);
         }
         catch (ResourceNotFoundException)
         {
@@ -49,11 +60,11 @@ public class TransactionServices
         }
     }
 
-    public Task<bool> UpdateTransaction (Transaction create)
+    public async Task<bool> UpdateTransaction (Transaction create)
     {
         try
         {
-            return _transactionDAO.UpdateTransaction(create);
+            return await _transactionDAO.UpdateTransaction(create);
         }
         catch (ResourceNotFoundException)
         {

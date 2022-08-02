@@ -21,6 +21,10 @@ public class TransactionRepository : ITransactionDAO
     {
         return await _context.Transactions.AsNoTracking().Where(Transaction => Transaction.WalletIdFk == wallet_id).ToListAsync();
     }
+    public async Task<List<Transaction>> GetAllTransactionsByCurrencyId(int currency_id)
+    {
+        return await _context.Transactions.AsNoTracking().Where(Transaction => Transaction.CurrencyIdFk == currency_id).ToListAsync();
+    }
     public async Task<bool> CreateTransaction(Transaction transaction)
     {
         _context.Add(transaction);
