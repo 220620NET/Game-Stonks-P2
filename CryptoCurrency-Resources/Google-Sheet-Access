@@ -1,8 +1,11 @@
-Anyone with this link can view
+Anyone with this link can view the GoogleSheet created for research
 [CryptoCurrencies](https://docs.google.com/spreadsheets/d/1g89Ff73dMfdmnEpg14zOlsZ6aUmj5jrJpAWtjGMAZOk/edit?usp=sharing)
 
 ## Contents
 - **Table Info** - potential column names with some content
+Really, that first page (and only 3-4 of the columns) are all we need
+
+## Research done but not needed:
 - **APIs** - plan details, creds, APIkeyes, links to documentation
 - **API Data Access** - Data available with free plan
 - **API Access (endpoints?)** -- for use with query strings?

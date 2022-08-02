@@ -1,0 +1,52 @@
+{
+  "bitcoin": {
+    "usd": 23894,
+    "usd_24h_change": 0.0430849186432924,
+    "last_updated_at": 1659142252
+  },
+  "tether": {
+    "usd": 1.002,
+    "usd_24h_change": 0.10028642724279863,
+    "last_updated_at": 1659141976
+  },
+  "cardano": {
+    "usd": 0.524023,
+    "usd_24h_change": 0.65079673126839,
+    "last_updated_at": 1659142198
+  },
+  "usd-coin": {
+    "usd": 1.001,
+    "usd_24h_change": 0.15139758070333115,
+    "last_updated_at": 1659142230
+  },
+  "dogecoin": {
+    "usd": 0.069284,
+    "usd_24h_change": -0.45447836123369806,
+    "last_updated_at": 1659142220
+  },
+  "binance-usd": {
+    "usd": 1.002,
+    "usd_24h_change": 0.12069573192389832,
+    "last_updated_at": 1659142237
+  },
+  "binancecoin": {
+    "usd": 295.3,
+    "usd_24h_change": 5.880882371937498,
+    "last_updated_at": 1659142218
+  },
+  "polkadot": {
+    "usd": 8.27,
+    "usd_24h_change": 3.435167122491424,
+    "last_updated_at": 1659142218
+  },
+  "ethereum": {
+    "usd": 1730.68,
+    "usd_24h_change": 0.23252252918753272,
+    "last_updated_at": 1659142240
+  },
+  "solana": {
+    "usd": 42.17,
+    "usd_24h_change": -1.9724875872241614,
+    "last_updated_at": 1659142217
+  }
+}
