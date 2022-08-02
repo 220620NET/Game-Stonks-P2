@@ -1,0 +1,74 @@
+
+binance-usd:
+last_updated_at: 1659461030
+usd: 1.001
+usd_24h_change: 0.5610681564869721
+
+
+binancecoin:
+last_updated_at: 1659461030
+usd: 290.24
+usd_24h_change: 3.5898565444416173
+
+
+bitcoin:
+last_updated_at: 1659460982
+usd: 23423
+usd_24h_change: 1.5987749558015054
+
+
+cardano:
+last_updated_at: 1659461040
+usd: 0.508611
+usd_24h_change: 0.19285857588074173
+
+
+dogecoin:
+last_updated_at: 1659461045
+usd: 0.068354
+usd_24h_change: 0.7597707710849236
+
+
+ethereum:
+last_updated_at: 1659461014
+usd: 1673.73
+usd_24h_change: 2.2836734723360856
+
+
+polkadot:
+last_updated_at: 1659461017
+usd: 8.16
+usd_24h_change: -0.6494453335468452
+
+
+solana:
+last_updated_at: 1659461009
+usd: 42.24
+usd_24h_change: 1.5426308002261315
+
+
+
+tether:
+last_updated_at: 1659460852
+usd: 1.001
+usd_24h_change: -0.17311223983144916
+
+
+usd-coin:
+last_updated_at: 1659460996
+usd: 1.001
+usd_24h_change: 0.26709418878647584
+
+
+
+
+
+
+Add this for Epoch Timestamp to DateTime (GMT adjustment) in google sheets cell
+
+=A1/86400+DATE(1970,1,1)+time(5,30,0)
+
+=1500598288 / 86400 + DATE(1970, 1, 1)
+To convert a whole column of numbers, just use ARRAYFORMULA:
+
+=ARRAYFORMULA(A:A / 86400 + DATE(1970, 1, 1))
