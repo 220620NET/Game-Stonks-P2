@@ -43,7 +43,7 @@ public class TransactionController
     {
         try
         {
-            List<Transaction> ListTransactions = await _Services.GetAllTransactionByCurrencyId(currency_id);
+            List<Transaction> ListTransactions = await _Services.GetAllTransactionsByCurrencyId(currency_id);
             return Results.Accepted("/transaction/currency/{ListTransaction}", currency_id);
         }
         catch (ResourceNotFoundException)
