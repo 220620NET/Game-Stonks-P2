@@ -65,13 +65,13 @@ app.MapGet("/transaction/currency/{ID}", (int ID, TransactionController controll
 //-----------Transaction-----------
 app.MapGet("/Currency", async (CurrencyController controller) => await controller.GetAllCurrencies());
 
-app.MapGet("/Currency/{ID}", async (int ID, CurrencyController controller) => controller.GetCurrencyById(ID));
+app.MapGet("/Currency/{ID}", async (int ID, CurrencyController controller) => await controller.GetCurrencyById(ID));
 
-app.MapGet("/Currency/{Symbol}", async (string symbol, CurrencyController controller) => controller.GetCurrencyBySymbol(symbol));
+app.MapGet("/Currency/{Symbol}", async (string symbol, CurrencyController controller) => await controller.GetCurrencyBySymbol(symbol));
 
-app.MapPost("/submit/Currency", async (Currency currency, CurrencyController controller) => controller.CreateCurrency(currency));
+app.MapPost("/submit/Currency", async (Currency currency, CurrencyController controller) => await controller.CreateCurrency(currency));
 
-app.MapPut("/update/Currrency", async (Currency currency, CurrencyController controller) => controller.UpdateCurrency(currency));
+app.MapPut("/update/Currrency", async (Currency currency, CurrencyController controller) => await controller.UpdateCurrency(currency));
 
 
 
