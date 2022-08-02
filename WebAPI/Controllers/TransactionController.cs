@@ -3,7 +3,7 @@ using CustomExceptions;
 using DataAccess;
 using Models;
 
-namespace WebAPI.Controller;
+namespace WebAPI.Controllers;
 public class TransactionController
 {
     private readonly TransactionServices _Services;
