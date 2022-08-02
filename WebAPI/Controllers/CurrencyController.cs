@@ -20,7 +20,7 @@ public class CurrencyController
     public async Task<IResult> GetCurrencyById(int currency_id)
     {
         var currencies = await _service.GetCurrencyById(currency_id);
-        return currencies.Count > 0 ? Results.Ok(currencies) : Results.BadRequest("No currencies under this user ID!");
+        return currencies.Count > 0 ? Results.Ok(currencies) : Results.BadRequest("No currencies under this currency ID!");
     }
     public async Task<IResult> GetCurrencyBySymbol(string symbol)
     {
