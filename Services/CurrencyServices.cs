@@ -20,7 +20,7 @@ public class CurrencyServices
         }
         catch (RecordNotFoundException)
         {   
-            throw;
+            throw new RecordNotFoundException();
         }
     }
     public async Task<Currency> GetCurrencyById(int currency_id)
@@ -31,7 +31,7 @@ public class CurrencyServices
         }
         catch (RecordNotFoundException)
         {
-            throw;
+            throw new RecordNotFoundException();
         }
     }
     public async Task<Currency> GetCurrencyBySymbol(string symbol)
@@ -42,7 +42,7 @@ public class CurrencyServices
         }
         catch (InvalidInputException)
         {
-            throw;
+            throw new InvalidInputException();
         }
     }
     public async Task<bool> CreateCurrency(Currency currency)
@@ -53,7 +53,7 @@ public class CurrencyServices
         }
         catch (InvalidInputException)
         {
-            throw;
+            throw new InvalidInputException();
         }
     }
     public async Task<bool> UpdateCurrency(Currency currency)
@@ -64,7 +64,7 @@ public class CurrencyServices
         }
         catch (InvalidInputException)
         { 
-            throw;
+            throw new InvalidInputException();
         }
     }
 }

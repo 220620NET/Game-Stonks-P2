@@ -20,7 +20,7 @@ public class WalletServices
         }
         catch (RecordNotFoundException)
         {   
-            throw;
+            throw new RecordNotFoundException();
         }
     }
     public async Task<List<Wallet>> GetAllWalletsByUserId(int user_id)
@@ -31,7 +31,7 @@ public class WalletServices
         }
         catch (RecordNotFoundException)
         {
-            throw;
+            throw new RecordNotFoundException();
         }
     }
     public async Task<bool> CreateWallet(Wallet wallet)
@@ -42,7 +42,7 @@ public class WalletServices
         }
         catch (InvalidInputException)
         {
-            throw;
+            throw new InvalidInputException();
         }
     }
     public async Task<bool> UpdateWallet(Wallet wallet)
@@ -53,7 +53,7 @@ public class WalletServices
         }
         catch (InvalidInputException)
         { 
-            throw;
+            throw new InvalidInputException();
         }
     }
 }
