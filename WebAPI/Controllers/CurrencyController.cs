@@ -25,7 +25,7 @@ public class CurrencyController
     public async Task<IResult> GetCurrencyBySymbol(string symbol)
     {
         var currency = await _service.GetCurrencyBySymbol(symbol);
-        return currency.Count != null ? Results.Ok(currency) : Results.BadRequest("No currency with this SYMBOL!");
+        return currency != null ? Results.Ok(currency) : Results.BadRequest("No currency with this SYMBOL!");
     }
     public async Task<IResult> CreateCurrency(Currency currency)
     {
