@@ -24,8 +24,8 @@ builder.Services.AddScoped<IWalletDAO, WalletRepository>();
 builder.Services.AddScoped<ITransactionDAO, TransactionRepository>();
 
 //----------Services---------------
-builder.Services.AddScoped<WalletServices>();
-builder.Services.AddScoped<TransactionServices>();
+builder.Services.AddTransient<WalletServices>();
+builder.Services.AddTransient<TransactionServices>();
 
 //----------Controllers------------
 builder.Services.AddScoped<WalletController>();
@@ -54,10 +54,13 @@ app.MapPut("/wallet", async ([FromBody] Wallet wallet,WalletController controlle
 //-----------Transaction-----------
 app.MapGet("/transaction", async (TransactionController controller) => await controller.GetAllTransactions());
 
+app.MapPost("/submit/transaction", (Transaction newTransaction, TransactionController controller) => controller.CreateTransaction(newTransaction));
 
+app.MapPut("/update/ticket", (Transaction newTransaction, TransactionController controller) => controller.UpdateTransaction(newTransaction));
 
+app.MapGet("/transaction/wallet/{ID}", (int ID, TransactionController controller) => controller.GetAllTransactionsByWalletId(ID));
 
-
+app.MapGet("/transaction/currency/{ID}", (int ID, TransactionController controller) => controller.GetAllTransactionsByWalletId(ID));
 
 
 app.Run();
