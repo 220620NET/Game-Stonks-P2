@@ -43,13 +43,13 @@ app.UseSwaggerUI();
 
 
 //------------Wallet---------------
-app.MapGet("/wallet", (WalletController controller) => controller.GetAllWallets());
+app.MapGet("/wallet", async (WalletController controller) => await controller.GetAllWallets());
 
-app.MapGet("/wallet", (int user_id, WalletController controller) => controller.GetAllWalletsByUserId((int) user_id));
+app.MapGet("/wallet", async (int user_id, WalletController controller) => await controller.GetAllWalletsByUserId((int) user_id));
 
-app.MapPost("/wallet", ([FromBody] Wallet wallet, WalletController controller) => controller.CreateWallet(wallet));
+app.MapPost("/wallet", async ([FromBody] Wallet wallet, WalletController controller) => await controller.CreateWallet(wallet));
 
-app.MapPut("/wallet", ([FromBody] Wallet wallet,WalletController controller) => controller.UpdateWallet(wallet));
+app.MapPut("/wallet", async ([FromBody] Wallet wallet,WalletController controller) => await controller.UpdateWallet(wallet));
 
 //-----------Transaction-----------
 app.MapGet("/transaction", async (TransactionController controller) => await controller.GetAllTransactions());
