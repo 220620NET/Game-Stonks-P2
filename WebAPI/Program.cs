@@ -45,11 +45,11 @@ app.UseSwaggerUI();
 //------------Wallet---------------
 app.MapGet("/wallet", async (WalletController controller) => await controller.GetAllWallets());
 
-app.MapGet("/wallet", async (int user_id, WalletController controller) => await controller.GetAllWalletsByUserId((int) user_id));
+app.MapGet("/wallet/user/{ID}", async (int user_id, WalletController controller) => await controller.GetAllWalletsByUserId((int) user_id));
 
-app.MapPost("/wallet", async ([FromBody] Wallet wallet, WalletController controller) => await controller.CreateWallet(wallet));
+app.MapPost("/submit/wallet", async ([FromBody] Wallet wallet, WalletController controller) => await controller.CreateWallet(wallet));
 
-app.MapPut("/wallet", async ([FromBody] Wallet wallet,WalletController controller) => await controller.UpdateWallet(wallet));
+app.MapPut("/update/wallet", async ([FromBody] Wallet wallet,WalletController controller) => await controller.UpdateWallet(wallet));
 
 //-----------Transaction-----------
 app.MapGet("/transaction", async (TransactionController controller) => await controller.GetAllTransactions());
@@ -61,6 +61,18 @@ app.MapPut("/update/ticket", (Transaction newTransaction, TransactionController 
 app.MapGet("/transaction/wallet/{ID}", (int ID, TransactionController controller) => controller.GetAllTransactionsByWalletId(ID));
 
 app.MapGet("/transaction/currency/{ID}", (int ID, TransactionController controller) => controller.GetAllTransactionsByWalletId(ID));
+
+//-----------Transaction-----------
+app.MapGet("/Currency", async (CurrencyController controller) => await controller.GetAllCurrencies());
+
+app.MapGet("/Currency/{ID}", async (int ID, CurrencyController controller) => controller.GetCurrencyById(ID));
+
+app.MapGet("/Currency/{Symbol}", async (string symbol, CurrencyController controller) => controller.GetCurrencyBySymbol(symbol));
+
+app.MapPost("/submit/Currency", async (Currency currency, CurrencyController controller) => controller.CreateCurrency(currency));
+
+app.MapPut("/update/Currrency", async (Currency currency, CurrencyController controller) => controller.UpdateCurrency(currency));
+
 
 
 app.Run();
