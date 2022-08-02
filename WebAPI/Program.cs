@@ -45,7 +45,7 @@ app.UseSwaggerUI();
 //------------Wallet---------------
 app.MapGet("/wallet", (WalletController controller) => controller.GetAllWallets());
 
-app.MapGet("/wallet", (int trainerId, WalletController controller) => controller.GetAllWalletsByUserId((int) trainerId));
+app.MapGet("/wallet", (int user_id, WalletController controller) => controller.GetAllWalletsByUserId((int) user_id));
 
 app.MapPost("/wallet", ([FromBody] Wallet wallet, WalletController controller) => controller.CreateWallet(wallet));
 

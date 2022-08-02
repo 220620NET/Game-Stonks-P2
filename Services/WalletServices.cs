@@ -14,18 +14,46 @@ public class WalletServices
     }
     public async Task<List<Wallet>> GetAllWallets()
     {
-        return await _repo.GetAllWallets();
+        try
+        {
+            return await _repo.GetAllWallets();
+        }
+        catch (RecordNotFoundException)
+        {   
+            throw;
+        }
     }
     public async Task<List<Wallet>> GetAllWalletsByUserId(int user_id)
     {
-        return await GetAllWalletsByUserId(user_id);   
+        try
+        {
+            return await GetAllWalletsByUserId(user_id);   
+        }
+        catch (RecordNotFoundException)
+        {
+            throw;
+        }
     }
     public async Task<bool> CreateWallet(Wallet wallet)
     {
-        return await CreateWallet(wallet);
+        try
+        {
+            return await CreateWallet(wallet);
+        }
+        catch (InvalidInputException)
+        {
+            throw;
+        }
     }
     public async Task<bool> UpdateWallet(Wallet wallet)
     {
-        return await UpdateWallet(wallet);
+        try
+        {
+            return await UpdateWallet(wallet);
+        }
+        catch (InvalidInputException)
+        { 
+            throw;
+        }
     }
 }
