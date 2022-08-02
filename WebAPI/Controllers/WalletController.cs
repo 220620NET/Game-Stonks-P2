@@ -14,52 +14,23 @@ public class WalletController
     }
     public async Task<IResult> GetAllWallets()
     {
-        // try
-        // {
-        //     Task<List<Wallet>> allwallet =  _service.GetAllWallets();
-        // }
-        // catch
-        // {
-        //     Results.BadRequest();
-        // }
-        // return Results.Ok(allwallets);
         var allwallets =  await _service.GetAllWallets();
-        return allwallets.Count > 0 ? Results.Ok(allwallets) : Results.NoContent();
-
-        
+        return allwallets.Count > 0 ? Results.Ok(allwallets) : Results.BadRequest("No wallet to get!");   
     }
     public async Task<IResult> GetAllWalletsByUserId(int user_id)
     {
-        // try
-        // {
-        //     Task<List<Wallet>> wallets = _service.GetAllWalletsByUserId(user_id);
-        // }
-        // catch
-        // {
-        //     Results.BadRequest();
-        // }
-        // return Results.Ok(wallets);
         var wallets = await _service.GetAllWalletsByUserId(user_id);
-        return wallets.Count > 0 ? Results.Ok(wallets) : Results.BadRequest();
+        return wallets.Count > 0 ? Results.Ok(wallets) : Results.BadRequest("No wallets under this user ID!");
     }
     public async Task<IResult> CreateWallet(Wallet wallet)
     {
-        // try
-        // {
-        //     Task<bool> createdWallet = _service.CreateWallet(wallet);
-        // }
-        // catch
-        // {
-        //     Results.BadRequest(wallet);
-        // }
-        // return Results.Ok(wallet);;
         var createdWallet = await _service.CreateWallet(wallet);
-        return createdWallet == true ? Results.Ok(wallet) : Results.BadRequest();
+        return createdWallet == true ? Results.Ok(wallet) : Results.BadRequest("Invalid wallet input!");
     }
     public async Task<IResult> UpdateWallet(Wallet wallet)
     {
         var updatedWallet = await _service.UpdateWallet(wallet);
-        return updatedWallet == true ? Results.Ok(wallet) : Results.BadRequest();
+        return updatedWallet == true ? Results.Ok(wallet) : Results.BadRequest("Invalid wallet update input!");
 
     }
 }
