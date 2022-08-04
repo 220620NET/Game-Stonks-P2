@@ -15,23 +15,57 @@ public class UserServices
 
     public async Task<List<User>> GetAllUsers()
     {
-        return await _userRepo.GetAllUsers();
+        try 
+        {
+            return await _userRepo.GetAllUsers();     
+        }
+        catch(RecordNotFoundException)
+        {
+            throw new RecordNotFoundException();
+        }
     }
-
     public async Task<User> GetUserById(int userID)
     {
-        return await _userRepo.GetUserById(userID);
+        try
+        {
+            return await _userRepo.GetUserById(userID);
+        }
+        catch(RecordNotFoundException)
+        {
+            throw new RecordNotFoundException();
+        }
     }
     public async Task<User> GetUserByEmail(string email)
     {
-        return await _userRepo.GetUserByEmail(email);
+        try
+        {
+            return await _userRepo.GetUserByEmail(email);
+        }
+        catch(RecordNotFoundException)
+        {
+            throw new RecordNotFoundException();
+        }
     }
-    public async Task<bool> CreateUser(User user)
+    public async Task<User> CreateUser(User user)
     {
-        return await _userRepo.CreateUser(user);
+        try
+        {
+            return await _userRepo.CreateUser(user);
+        }
+        catch(RecordNotFoundException)
+        {
+            throw new RecordNotFoundException();
+        }
     }
     public async Task<bool> UpdateUser(User user)
     {
-        return await _userRepo.UpdateUser(user);
+        try
+        {
+            return await _userRepo.UpdateUser(user);
+        }
+        catch(RecordNotFoundException)
+        {
+            throw new RecordNotFoundException();
+        }
     }
 }

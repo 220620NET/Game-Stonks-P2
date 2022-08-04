@@ -22,15 +22,18 @@ builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =
 builder.Services.AddDbContext<StonksDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StonkDB")));
 builder.Services.AddScoped<IWalletDAO, WalletRepository>();
 builder.Services.AddScoped<ITransactionDAO, TransactionRepository>();
+builder.Services.AddScoped<IUserDAO, UserRepository>();
 
 //----------Services---------------
 builder.Services.AddTransient<WalletServices>();
 builder.Services.AddTransient<TransactionServices>();
+builder.Services.AddTransient<UserServices>();
+builder.Services.AddTransient<AuthServices>();
 
 //----------Controllers------------
 builder.Services.AddScoped<WalletController>();
 builder.Services.AddScoped<TransactionController>();
-
+builder.Services.AddScoped<UserController>();
 
 //------------Swagger--------------
 builder.Services.AddEndpointsApiExplorer();
@@ -41,6 +44,10 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+//------------Auth-----------------
+app.MapPost("/register", (User user, AuthController controller) =>controller.Register(user));
+
+app.MapPost("/login", (User user, AuthController controller) => controller.Login(user));
 
 //------------Wallet---------------
 app.MapGet("/wallet", async (WalletController controller) => await controller.GetAllWallets());
@@ -73,6 +80,15 @@ app.MapPost("/submit/Currency", async (Currency currency, CurrencyController con
 
 app.MapPut("/update/Currrency", async (Currency currency, CurrencyController controller) => await controller.UpdateCurrency(currency));
 
+//------------User-------------
+app.MapGet("/user", async (UserController controller) =>await controller.GetAllUsers());
 
+app.MapGet("/user/id/{id}", async (int id, UserController controller) =>await controller.GetUserById(id));
+
+app.MapGet("/user/email/{email}", async (string email, UserController controller) =>await controller.GetUserByEmail(email));
+
+app.MapPost("/create/User", async (User user, UserController controller) => await controller.CreateUser(user));
+
+app.MapPut("/update/User", async (User user, UserController controller) => await controller.UpdateUser(user));
 
 app.Run();
