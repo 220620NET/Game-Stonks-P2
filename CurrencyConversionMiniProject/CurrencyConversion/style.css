@@ -1,7 +1,7 @@
 .background_image {
     background-attachment: fixed;
     background-position: center;
-    background-image: url(image1.jpg);
+    background-image: url(image1.png);
     background-size: cover;
 }
 
