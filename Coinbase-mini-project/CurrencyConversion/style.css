@@ -25,7 +25,7 @@
     font-size: 18px;
 }
 
-#cryto {
+#crypto {
     font-size: 18px;
 }
 
@@ -36,3 +36,28 @@
 .label2 {
     font-size: 18px;
 }
+
+#greybttn {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+#header1 {
+    color: #2e2ebe;
+}
+
+#header1 > #result-crypt{
+    color: black;
+}
+
+#header2 {
+    color: #2e2ebe;
+}
+
+#header2 > #result-amount {
+color:black;
+}
+
+#header2 > #result-fiat {
+    color:black;
+    }
