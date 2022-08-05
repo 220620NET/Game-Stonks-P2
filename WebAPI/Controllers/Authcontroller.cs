@@ -1,45 +1,44 @@
-using Models;
 using Services;
+using Models;
 using CustomExceptions;
 
 namespace WebAPI.Controllers;
-
 public class AuthController
 {
-    private readonly AuthServices _service;
-    public AuthController(AuthServices service)
+    private readonly AuthService _service;
+    public AuthController(AuthService service)
     {
         _service = service;
     }
 
-    public IResult Register(User user)
+    public async Task<IResult> Register(User userRegister)
     {
-        if(user.UserId == null)
+        if (userRegister.Name == null)
         {
-            return Results.BadRequest("UserId cannot be null");
+            return Results.BadRequest("Name cannot be null");
         }
         try
         {
-            _service.Register(user);
-            return Results.Created("Register", user);
+            await _service.Register(userRegister);
+            return Results.Created("/register", userRegister);
         }
-        catch(DuplicateRecordException)
+        catch (DuplicateRecordException)
         {
-            return Results.Conflict("This UserId already exists");
+            return Results.Conflict("User with this name already exists");
         }
     }
 
-    public IResult Login(User user)
+        public async Task<IResult> Login(User findUser)
     {
-        if(user.UserId == null)
+        if (findUser.Name == null)
         {
-            return Results.BadRequest("UserId cannot be null");
+            return Results.BadRequest("Name cannot be null");
         }
         try
         {
-            return Results.Ok(_service.Login(user.UserId, user.Password));
+            return Results.Ok(await _service.LogIn(findUser));
         }
-        catch(InvalidCredentialException)
+        catch (InvalidCredentialException)
         {
             return Results.NoContent();
         }
