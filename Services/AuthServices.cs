@@ -4,13 +4,37 @@ using CustomExceptions;
 
 namespace Services;
 
-public class AuthServices
+public class AuthServices 
 {
     private readonly IUserDAO _user;
 
     public AuthServices(IUserDAO userDao)
     {
         _user = userDao;
+    }
+    // public async Task<User> Register(User findUser)
+    // {
+    //     try
+    //     {
+    //         await _userdao.GetUserByEmail(findUser.Email);
+    //         throw new DuplicateRecordException();
+    //     }
+    //     catch
+    //     {
+    //         return _userdao.CreateUser(findUser);
+    //     }
+    // }
+    public async Task<User> LogIn(User loginUser)
+    {
+        try
+        {
+            User foundUser = await _user.GetUserByEmail(loginUser.Email);
+            return foundUser;
+        }
+        catch(RecordNotFoundException)
+        {
+            throw new InvalidCredentialException();
+        }
     }
     public async Task<User> Login(int userID, string Password)
     {
