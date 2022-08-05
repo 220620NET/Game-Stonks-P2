@@ -12,15 +12,15 @@ public class AuthController
         _service = service;
     }
 
-    public IResult Register(User user)
+    public async Task<IResult> Register(User user)
     {
-        if(user.UserId == null)
+        if(user.Email == null)
         {
             return Results.BadRequest("UserId cannot be null");
         }
         try
         {
-            _service.Register(user);
+            await _service.Register(user);
             return Results.Created("Register", user);
         }
         catch(DuplicateRecordException)
@@ -29,15 +29,15 @@ public class AuthController
         }
     }
 
-    public IResult Login(User user)
+    public async Task<IResult> Login(User user)
     {
-        if(user.UserId == null)
+        if(user.Email == null)
         {
             return Results.BadRequest("UserId cannot be null");
         }
         try
         {
-            return Results.Ok(_service.Login(user.UserId, user.Password));
+            return Results.Ok(await _service.Login(user.UserId, user.Password));
         }
         catch(InvalidCredentialException)
         {
