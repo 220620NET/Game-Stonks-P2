@@ -28,12 +28,12 @@ public class UserRepository : IUserDAO
         if(foundUser != null) return foundUser;
         throw new RecordNotFoundException("could not find the user with such email");
     }
-    public async Task<bool> CreateUser(User user)
+    public async Task<User> CreateUser(User user)
     {
         _context.Add(user);
         await _context.SaveChangesAsync();
         _context.ChangeTracker.Clear();
-        return true;
+        return user;
     }
     public async Task<bool> UpdateUser(User user)
     {
