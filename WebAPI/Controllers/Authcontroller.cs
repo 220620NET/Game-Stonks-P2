@@ -5,15 +5,15 @@ using CustomExceptions;
 namespace WebAPI.Controllers;
 public class AuthController
 {
-    private readonly AuthService _service;
-    public AuthController(AuthService service)
+    private readonly AuthServices _service;
+    public AuthController(AuthServices service)
     {
         _service = service;
     }
 
     public async Task<IResult> Register(User userRegister)
     {
-        if (userRegister.Name == null)
+        if (userRegister.Email == null)
         {
             return Results.BadRequest("Name cannot be null");
         }
@@ -30,7 +30,7 @@ public class AuthController
 
         public async Task<IResult> Login(User findUser)
     {
-        if (findUser.Name == null)
+        if (findUser.Email == null)
         {
             return Results.BadRequest("Name cannot be null");
         }

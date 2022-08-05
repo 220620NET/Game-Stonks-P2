@@ -30,7 +30,7 @@ public class ProfileController
     {
         try
         {
-            List<Profile> listedProfile = await _services.GetProfileById(profile_id);
+            var listedProfile = await _services.GetProfileById(profile_id);
             return Results.Accepted("/profile/wallet/{listedProfile}", profile_id);
         }
         catch (ResourceNotFoundException)
@@ -43,7 +43,7 @@ public class ProfileController
     {
         try
         {
-            List<Profile> listedProfiles = await _services.GetProfileByUserId(user_id);
+            var listedProfiles = await _services.GetProfileByUserId(user_id);
             return Results.Accepted("/profile/currency/{ListTransaction}", user_id);
         }
         catch (ResourceNotFoundException)
