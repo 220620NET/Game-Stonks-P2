@@ -45,9 +45,9 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 //------------Auth-----------------
-app.MapPost("/register", (User user, AuthController controller) =>controller.Register(user));
+app.MapPost("/register", async (User user, AuthController controller) =>await controller.Register(user));
 
-app.MapPost("/login", (User user, AuthController controller) => controller.Login(user));
+app.MapPost("/login", async (User user, AuthController controller) => await controller.Login(user));
 
 //------------Wallet---------------
 app.MapGet("/wallet", async (WalletController controller) => await controller.GetAllWallets());
