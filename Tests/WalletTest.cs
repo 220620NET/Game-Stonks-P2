@@ -7,6 +7,24 @@ using DataAccess;
 
 namespace Tests;
 
+public static class fakeDb{
+    public static List<Wallet> Wallets = new List<Wallet>()
+    {
+        new Wallet{
+            WalletId = 1,
+            UserIdFk = 1, 
+            CurrencyIdFk = 1,
+            AmountCurrency = 10
+        },
+        new Wallet{
+            WalletId = 2,
+            UserIdFk = 2, 
+            CurrencyIdFk = 1,
+            AmountCurrency = 90
+        }
+    };
+
+}
 public class WalletTesting
 {
     [Fact]
@@ -14,9 +32,7 @@ public class WalletTesting
     {
         var mockedRepo = new Mock<IWalletDAO>();
 
-
         mockedRepo.Setup( repo =>  repo.GetAllWallets()).Throws(new ResourceNotFoundException());
-
 
         WalletServices service = new WalletServices(mockedRepo.Object);
 
@@ -24,39 +40,15 @@ public class WalletTesting
 
     }
     [Fact]
-    public void WrongWalletId()
+    public Task WrongWalletId()
     {
-        var walletRepo = new Mock<IWaletDAO>();
-        var userRepo = new Mock<IUserDAO>();
-        var currencyRepo = new Mock<ICurrencyDAO>();
+        var mockedRepo = new Mock<IWalletDAO>();
+        
+        mockedRepo.Setup( repo => repo.GetAllWalletsByUserId(3)).Throws(new RecordNotFoundException());
 
-       
-        User newUser = new User{
-            UserId = 1,
-            Email = "kishanp575@gmail.com",
-            Password = "password"
-        };
-        Currency newCurrency = new Currency{
-            CurrencyId = 1,
-            CurrencySymbol = "BTC",
-            CurrencyCurrentPrice = 10,
-            CurrencyTime = DateTime.Now
-        };
-        Wallet newWallet = new Wallet{
-            WalletId = 1,
-            UserIdFk = 1, 
-            CurrencyIdFk = 1,
-            AmountCurrency = 10
-        };
+        WalletServices service = new WalletServices(mockedRepo.Object);
 
-        userRepo.Setup( repo => repo.createUser(newUser)).Returns(newUser);
-        currencyRepo.Setup( userRepo => repo.CreateCurrency(newCurrency)).Returns(newCurrency);
-        walletRepo.Setup( repo => repo.CreateWallet(newWallet)).Returns(newWallet);
-        walletRepo.Setup( userRepo => repo.GetAllWalletsByUserId(2)).Returns(new RecordNotFoundException());
-
-        WalletServies service = new WalletServies(walletRepo.Object);
-
-        Assert.ThrowsAsync<RecordNotFoundException>(async () => await service.GetAllWalletsByUserId(2));
-    
+        Assert.ThrowsAsync<RecordNotFoundException>(async () => await service.GetAllWalletsByUserId(3));
+        Assert.fail();
     }
 }
