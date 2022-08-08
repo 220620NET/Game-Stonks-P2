@@ -20,20 +20,29 @@ builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =
 
 //--------- Data Access------------
 builder.Services.AddDbContext<StonksDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StonkDB")));
+//added the line below for testing
+builder.Services.AddSingleton<ConnectionFactory>(ctx => ConnectionFactory.GetInstance(builder.Configuration.GetConnectionString("StonkDB")));
 builder.Services.AddScoped<IWalletDAO, WalletRepository>();
 builder.Services.AddScoped<ITransactionDAO, TransactionRepository>();
 builder.Services.AddScoped<IUserDAO, UserRepository>();
+builder.Services.AddScoped<ICurrencyDAO, CurrencyRepository>();
+builder.Services.AddScoped<IProfileDAO, ProfileRepository>();
 
 //----------Services---------------
 builder.Services.AddTransient<WalletServices>();
 builder.Services.AddTransient<TransactionServices>();
 builder.Services.AddTransient<UserServices>();
 builder.Services.AddTransient<AuthServices>();
+builder.Services.AddTransient<CurrencyServices>();
+builder.Services.AddTransient<ProfileServices>();
 
 //----------Controllers------------
 builder.Services.AddScoped<WalletController>();
 builder.Services.AddScoped<TransactionController>();
 builder.Services.AddScoped<UserController>();
+builder.Services.AddScoped<AuthController>();
+builder.Services.AddScoped<CurrencyController>();
+builder.Services.AddScoped<ProfileController>();
 
 //------------Swagger--------------
 builder.Services.AddEndpointsApiExplorer();
@@ -44,9 +53,19 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+<<<<<<< HEAD
 //------------Auth-----------------
 app.MapPost("/register", async (User user, AuthController controller) =>await controller.Register(user));
 
+=======
+
+app.MapGet("/", () => "Hey Gamestonks!\nYou're doing fine!");
+
+
+//------------Auth-----------------
+app.MapPost("/register", async (User user, AuthController controller) => await controller.Register(user));
+
+>>>>>>> 6bce6674c81d8fe74d6d98c6ad1969f88cda1dee
 app.MapPost("/login", async (User user, AuthController controller) => await controller.Login(user));
 
 //------------Wallet---------------
@@ -69,7 +88,7 @@ app.MapGet("/transaction/wallet/{ID}", (int ID, TransactionController controller
 
 app.MapGet("/transaction/currency/{ID}", (int ID, TransactionController controller) => controller.GetAllTransactionsByWalletId(ID));
 
-//-----------Transaction-----------
+//-----------currency-----------
 app.MapGet("/Currency", async (CurrencyController controller) => await controller.GetAllCurrencies());
 
 app.MapGet("/Currency/{ID}", async (int ID, CurrencyController controller) => await controller.GetCurrencyById(ID));
@@ -90,5 +109,10 @@ app.MapGet("/user/email/{email}", async (string email, UserController controller
 app.MapPost("/create/User", async (User user, UserController controller) => await controller.CreateUser(user));
 
 app.MapPut("/update/User", async (User user, UserController controller) => await controller.UpdateUser(user));
+
+//------------profile-----------
+
+
+
 
 app.Run();
