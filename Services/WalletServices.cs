@@ -27,7 +27,7 @@ public class WalletServices
     {
         try
         {
-            return await GetAllWalletsByUserId(user_id);   
+            return await _repo.GetAllWalletsByUserId(user_id);   
         }
         catch (RecordNotFoundException)
         {
@@ -38,7 +38,7 @@ public class WalletServices
     {
         try
         {
-            return await CreateWallet(wallet);
+            return await _repo.CreateWallet(wallet);
         }
         catch (InvalidInputException)
         {
@@ -49,7 +49,7 @@ public class WalletServices
     {
         try
         {
-            return await UpdateWallet(wallet);
+            return await _repo.UpdateWallet(wallet);
         }
         catch (InvalidInputException)
         { 
