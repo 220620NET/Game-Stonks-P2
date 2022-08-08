@@ -53,11 +53,11 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-<<<<<<< HEAD
+
 //------------Auth-----------------
 app.MapPost("/register", async (User user, AuthController controller) =>await controller.Register(user));
 
-=======
+
 
 app.MapGet("/", () => "Hey Gamestonks!\nYou're doing fine!");
 
@@ -65,7 +65,6 @@ app.MapGet("/", () => "Hey Gamestonks!\nYou're doing fine!");
 //------------Auth-----------------
 app.MapPost("/register", async (User user, AuthController controller) => await controller.Register(user));
 
->>>>>>> 6bce6674c81d8fe74d6d98c6ad1969f88cda1dee
 app.MapPost("/login", async (User user, AuthController controller) => await controller.Login(user));
 
 //------------Wallet---------------
