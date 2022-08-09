@@ -17,6 +17,12 @@ public class TransactionRepository : ITransactionDAO
     {
         return await _context.Transactions.ToListAsync();
     }
+    public async Task<Transaction> GetTransactionById(int id)
+    {
+        Transaction? foundTransaction = await _context.Transactions.FirstOrDefaultAsync(transaction => transaction.TransactionId == id);
+        if(foundTransaction != null) return foundTransaction;
+        throw new RecordNotFoundException();
+    }
     public async Task<List<Transaction>> GetAllTransactionsByWalletId(int wallet_id)
     {
         return await _context.Transactions.AsNoTracking().Where(Transaction => Transaction.WalletIdFk == wallet_id).ToListAsync();

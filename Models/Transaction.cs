@@ -10,7 +10,7 @@ namespace Models
         public int CurrencyIdFk { get; set; }
         public string TransactionType { get; set; } = null!;
         public decimal TransactionValue { get; set; }
-        public DateTime TransactionTime { get; set; }
+        public DateTime? TransactionTime { get; set; }
 
         public virtual Currency CurrencyIdFkNavigation { get; set; } = null!;
         public virtual Wallet WalletIdFkNavigation { get; set; } = null!;
