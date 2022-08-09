@@ -21,7 +21,6 @@ public class ProfileTest
         ProfileServices service = new ProfileServices(mockedRepo.Object);
 
         Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.GetAllProfiles());
-
     }
 
     [Fact]
