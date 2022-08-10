@@ -55,10 +55,6 @@ app.UseSwaggerUI();
 
 
 //------------Auth-----------------
-app.MapPost("/register", async (User user, AuthController controller) =>await controller.Register(user));
-
-
-
 app.MapGet("/", () => "Hey Gamestonks!\nYou're doing fine!");
 
 
