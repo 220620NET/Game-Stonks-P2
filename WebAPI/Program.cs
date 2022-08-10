@@ -1,27 +1,23 @@
-
-using CustomExceptions;
 using DataAccess;
 using Models;
 using Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Controllers;
 
-
-
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
-{
-    options.SerializerOptions.PropertyNamingPolicy = null;
-});
+// builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
+// {
+//     options.SerializerOptions.PropertyNamingPolicy = null;
+// });
 
-//--------- Data Access------------
-builder.Services.AddDbContext<StonksDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StonkDB")));
+
+// builder.Services.AddDbContext<StonksDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StonkDB")));
 //added the line below for testing
 builder.Services.AddSingleton<ConnectionFactory>(ctx => ConnectionFactory.GetInstance(builder.Configuration.GetConnectionString("StonkDB")));
+
+//--------- Data Access------------
 builder.Services.AddScoped<IWalletDAO, WalletRepository>();
 builder.Services.AddScoped<ITransactionDAO, TransactionRepository>();
 builder.Services.AddScoped<IUserDAO, UserRepository>();
@@ -55,11 +51,11 @@ app.UseSwaggerUI();
 
 
 //------------Auth-----------------
-app.MapPost("/register", async (User user, AuthController controller) =>await controller.Register(user));
+// app.MapPost("/register", async (User user, AuthController controller) =>await controller.Register(user));
 
 
 
-app.MapGet("/", () => "Hey Gamestonks!\nYou're doing fine!");
+// app.MapGet("/", () => "Hey Gamestonks!\nYou're doing fine!");
 
 
 //------------Auth-----------------
