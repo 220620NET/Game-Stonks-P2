@@ -9,38 +9,71 @@ namespace Tests;
 
 /*
     TESTS REQUIRED
-        - GetAllUsers
-        - GetUserById
-        - GetUserByEmail
-        - UpdateUser
+        - GetAllUsers       = Pass
+        - GetUserById       = Pass
+        - GetUserByEmail    = Pass
+        - UpdateUser        = Pass
+        - GetAllUsers       = ResourceNotFoundException
+        - GetUserById       = RecordNotFoundException
+        - GetUserByEmail    = Pass
+        - UpdateUser        = InvalidInputException        
 */
 
 /*
     USERS HAVE (from User Model)
         - UserId
         - Email
-        - Profiles
-        - Wallets
 */
 
 public class UserTesting
 {
 
-    // Do all of these tests fail? Succeed? Both? 
+    // GetAllUsers = Pass
 
-    // GetAllUsers
+    [Fact]
+    public void GetAllUsers()
+    {
+        // WHERE does it get the mock information from? How does it get .... "all users"?
+        var mockedRepo = new Mock<IUserDAO>();
+        mockedRepo.Setup( repo =>  repo.GetAllUsers()).Throws(new ResourceNotFoundException());
+        UserServices service = new UserServices(mockedRepo.Object);
+        Assert.ThrowsAsync(async () => await service.GetAllUsers());
+    }
+
+    // GetAllUsers = Fail
 
     [Fact]
     public void NoUserToGet()
     {
-        // WHERE does it get the mock information from?
+        // WHERE does it get the mock information from? What tells the test 
         var mockedRepo = new Mock<IUserDAO>();
         mockedRepo.Setup( repo =>  repo.GetAllUsers()).Throws(new ResourceNotFoundException());
         UserServices service = new UserServices(mockedRepo.Object);
         Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.GetAllUsers());
+    }    
+
+    // GetUserById = Pass
+    
+    [Fact]
+    public async Task GetUserById()
+    {
+        var UserRepo = new Mock<IUserDAO>();
+        User newUser = new User
+
+        {
+            UserId = 2,                     // has correct userId
+            Email = "autumn@gmail.com",     // email valid
+        };
+
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        // This next line needs to change
+        UserRepo.Setup( repo => repo.GetUserById(2)).ThrowsAsync(new RecordNotFoundException());
+        UserServices service = new UserServices(UserRepo.Object);
+        Assert.ThrowsAsync(() => service.GetUserById(2));  
     }
 
-    // GetUserById
+
+    // GetUserById = Fail
     
     [Fact]
     public async Task WrongUserId()
@@ -48,13 +81,9 @@ public class UserTesting
         var UserRepo = new Mock<IUserDAO>();
         User newUser = new User
 
-        // I can't tell from Models what should go here
-
         {
-            UserId = a123,              // shouldn't have letter
-            Email = autumn@gmail.snot,  // "snot not valid
-            Prilfes = 1,                // this should be profles, right? What table? What datatype?
-            Wallets = 10                // What table? What datatype?
+            UserId = 8,                     // shouldn't have letter
+            Email = "autumn@gmail.com",     // "snot not valid
         };
 
         UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
@@ -64,37 +93,33 @@ public class UserTesting
     }
 
 
-    // GetUserByEmail
+    // UpdateUser = Pass
     [Fact]
-    public async Task InvalidCreateUser()
+    public async Task SucceedToUpdateUser()
     {
         // Given
         var UserRepo = new Mock<IUserDAO>();
 
         User newUser = new User{
             UserId = 1,
-            Email = 1, 
-            Prilfes = 1,    // this should be profles, right?
-            Wallets = 10    // so this should be number of wallets, right?
+            Email = "autumn@gmail.com", 
         };
 
-        User falseUser = new User{
+        User toUpdate = new User{
             UserId = 1,
-            Email = 1, 
-            Prilfes = 1,    // this should be profles, right?
-            Wallets = 10
+            Email = "booger@snot.com", 
         };
     
-        // When
+        // If
         UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
-        UserRepo.Setup( repo =>  repo.CreateUser(falseUser)).ThrowsAsync(new InvalidInputException());
+        UserRepo.Setup( repo =>  repo.CreateUser(toUpdate)).ThrowsAsync(new InvalidInputException());
         // Then
         UserServices service = new UserServices(UserRepo.Object);
-        Assert.ThrowsAsync<InvalidInputException>(() => service.CreateUser(falseUser));  
+        Assert.ThrowsAsync<InvalidInputException>(() => service.CreateUser(newUser));  
     }
 
 
-    // UpdateUser
+    // UpdateUser = Fail
     [Fact]
     public async Task FailToUpdateUser()
     {
@@ -103,16 +128,12 @@ public class UserTesting
 
         User newUser = new User{
             UserId = 1,
-            Email = 1, 
-            Prilfes = 1,    // this should be profles, right?
-            Wallets = 10
+            Email = "autumn@gmail.com", 
         };
 
         User toUpdate = new User{
             UserId = 1,
-            Email = 1, 
-            Prilfes = 1,    // this should be profles, right?
-            Wallets = 10
+            Email = "incorrect@wrong.com", 
         };
     
         // If
@@ -122,4 +143,47 @@ public class UserTesting
         UserServices service = new UserServices(UserRepo.Object);
         Assert.ThrowsAsync<InvalidInputException>(() => service.CreateUser(toUpdate));  
     }
+
+
+    // GetUserByEmail = Pass
+    
+    [Fact]
+    public async Task GetUserByEmail()
+    {
+        var UserRepo = new Mock<IUserDAO>();
+        User newUser = new User
+
+        // I can't tell from Models what should go here
+
+        {
+            UserId = 2,                 // correct userId
+            Email = autumn@gmail.com,   // email valid
+        };
+
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        // UserRepo.Setup( repo => repo.GetUserByEmail("autumn@gmail.com")).ThrowsAsync(new RecordNotFoundException());
+        UserServices service = new UserServices(UserRepo.Object);
+        Assert.Equal(newUser.GetUserByEmail("autumn@gmail.com"));  
+    }
+
+
+    // GetUserById = Fail
+    
+    [Fact]
+    public async Task WrongOrNoUserEmail()
+    {
+        var UserRepo = new Mock<IUserDAO>();
+        User newUser = new User
+
+        {
+            UserId = 123,              
+            Email = autumn@gmail.wrong,  // "wrong" not valid
+        };
+
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo => repo.GetUserByEmail("autumn@gmail.com")).ThrowsAsync(new RecordNotFoundException());
+        UserServices service = new UserServices(UserRepo.Object);
+        Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetUserByEmail("autumn@gmail.wrong"));  
+    }    
+
 }

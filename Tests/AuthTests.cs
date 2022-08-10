@@ -14,25 +14,23 @@ UserIdspace Tests;
             - wrong/nonexistent email       --> Record Not Found
             - wrong/nonexistent password    --> Invalid Credential
             - wrong/nonexistent Id          --> Record Not Found
-        - Register/Create User
+        - Register/Create User*w
             - existing Id                   --> Duplicate Record
-            - Something else goes wrong    --> Invalid Input
+            - Something else goes wrong     --> Invalid Input
+        - LogIn User                        --> Successfully
+        - Register/Create User              --> Successfully            
 */
 
 /*
     USERS HAVE (from User Model)
         - UserId
         - Email
-        - Profiles
-        - Wallets
 */
 
 public class AuthServicesTesting
 {
 
-    // NEED LogIn success test and LogIn failure test
-    
-    // Successful registration 
+    // Registration = Success
     [Fact]
     public async Task CreatingNonExistentUser()
     {
@@ -41,16 +39,14 @@ public class AuthServicesTesting
 ƒ
         User userToAdd = new User{
             UserId = 123,
-            Email = 2,
-            Wallets = 100,
-            Profiles = 4
+            Email = "correct@gmail.com",
+            Password = "itsokay"
         };
 
         User userToReturn = new User{
             UserId = 123,
-            Email = 2,
-            Wallets = 100,
-            Profiles = 4
+            Email = "correct@gmail.com",
+            Password = "itsokay"
         };
 
         mockedRepo.Setup(repo => repo.GetUserById(userToAdd.UserId)).Throws(new RecordNotFoundException());
@@ -71,7 +67,7 @@ public class AuthServicesTesting
         Assert.Equal(returneduser.UserId, userToAdd.UserId);
     }
 
-    // Registration failure
+    // Registration = failure
     [Fact]
     public void AttemptingToRegisterExistingUser()
     {
@@ -81,18 +77,14 @@ public class AuthServicesTesting
         DateTime now = DateTime.Now;
 
         User userToAdd = new User{
-            UserId = "test  user",
-            Email = 2,
-            Wallets = 100,
-            Profiles = now
+            UserId = "test user",
+            Email = "barbara@gordon.com",
         };
 
         User userToReturn = new User{
             Id = 1,
-            UserId = "test  user",
-            Email = 2,
-            Wallets = 100,
-            Profiles = now
+            UserId = "test user",
+            Email = "barbara@gordon.com",
         };
 
         mockedRepo.Setup(repo => repo.GetUserById(userToAdd.UserId)).ReturnsAsync(userToReturn);
@@ -104,4 +96,81 @@ public class AuthServicesTesting
         
         mockedRepo.Verify(repo => repo.GetUserById(userToAdd.UserId), Times.Once());
     }
+
+    // LogIn User Fail -- wrong password
+    [Fact]
+    public async Task InvalidCreateUser()
+    {
+        // Given
+        var UserRepo = new Mock<IUserDAO>();
+
+        User newUser = new User{
+            UserId = 1,
+            Email = "ed@nigma.com", 
+        };
+
+        User falseUser = new User{
+            UserId = 1,
+            Email = "oswald@cobblepot.com", 
+        };
+    
+        // When
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(falseUser)).ThrowsAsync(new InvalidInputException());
+        // Then
+        UserServices service = new UserServices(UserRepo.Object);
+        Assert.ThrowsAsync<InvalidInputException>(() => service.CreateUser(falseUser));  
+    }
+
+
+    // LogIn User Fail -- username doesn't exist
+    [Fact]
+    public async Task InvalidCreateUser()
+    {
+        // Given
+        var UserRepo = new Mock<IUserDAO>();
+
+        User newUser = new User{
+            UserId = 1,
+            Email = "boy@wonder.com", 
+        };
+
+        User falseUser = new User{
+            UserId = 1,
+            Email = null, 
+        };
+    
+        // When
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(falseUser)).ThrowsAsync(new InvalidInputException());
+        // Then
+        UserServices service = new UserServices(UserRepo.Object);
+        Assert.ThrowsAsync<InvalidInputException>(() => service.CreateUser(falseUser));  
+    }
+
+    // LogIn User -- Success
+    [Fact]
+    public async Task InvalidCreateUser()
+    {
+        // Given
+        var UserRepo = new Mock<IUserDAO>();
+
+        User newUser = new User{
+            UserId = 1,
+            Email = 1, 
+        };
+
+        User falseUser = new User{
+            UserId = 1,
+            Email = 1, 
+        };
+    
+        // When
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(falseUser)).ThrowsAsync(new InvalidInputException());
+        // Then
+        UserServices service = new UserServices(UserRepo.Object);
+        Assert.ThrowsAsync(() => service.CreateUser(newUser));  
+    }
+
 }
