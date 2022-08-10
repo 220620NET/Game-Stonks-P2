@@ -12,9 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 //     options.SerializerOptions.PropertyNamingPolicy = null;
 // });
 
+//this line below is necessary
+builder.Services.AddDbContext<StonksDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StonkDB")));
 
-// builder.Services.AddDbContext<StonksDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StonkDB")));
-//added the line below for testing
+//added the optional line below for testing
 builder.Services.AddSingleton<ConnectionFactory>(ctx => ConnectionFactory.GetInstance(builder.Configuration.GetConnectionString("StonkDB")));
 
 //--------- Data Access------------
