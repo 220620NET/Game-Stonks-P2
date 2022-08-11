@@ -9,20 +9,20 @@ namespace Tests;
 
 /*
     TESTS REQUIRED
-        - GetAllUsers       = Pass
-        - GetUserById       = Pass
-        - GetUserByEmail    = Pass
-        - UpdateUser        = Pass
-        - GetAllUsers       = ResourceNotFoundException
-        - GetUserById       = RecordNotFoundException
-        - GetUserByEmail    = Pass
-        - UpdateUser        = InvalidInputException        
+        - GetAllUsers       (✔) = Pass
+        - GetUserById       (✔) = Pass
+        - GetUserByEmail    (✔) = Pass
+        - UpdateUser        (✔) = Pass
+        - GetUserById       (✔) = RecordNotFoundException
+        - GetUserByEmail    (✔) = 500 Internal Server Error
+        - UpdateUser        (✔) = InvalidInputException        
 */
 
 /*
     USERS HAVE (from User Model)
         - UserId
         - Email
+        - Password
 */
 
 public class UserTesting
@@ -38,19 +38,7 @@ public class UserTesting
         mockedRepo.Setup( repo =>  repo.GetAllUsers()).Throws(new ResourceNotFoundException());
         UserServices service = new UserServices(mockedRepo.Object);
         Assert.ThrowsAsync(async () => await service.GetAllUsers());
-    }
-
-    // GetAllUsers = Fail
-
-    [Fact]
-    public void NoUserToGet()
-    {
-        // WHERE does it get the mock information from? What tells the test 
-        var mockedRepo = new Mock<IUserDAO>();
-        mockedRepo.Setup( repo =>  repo.GetAllUsers()).Throws(new ResourceNotFoundException());
-        UserServices service = new UserServices(mockedRepo.Object);
-        Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.GetAllUsers());
-    }    
+    }  
 
     // GetUserById = Pass
     
