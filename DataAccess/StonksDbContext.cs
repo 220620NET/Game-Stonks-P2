@@ -8,11 +8,11 @@ public class StonksDbContext : DbContext
     public StonksDbContext() : base() { }
     public StonksDbContext(DbContextOptions options) : base(options) { }
 
-    public DbSet<User> Users {get;set;}
-    public DbSet<Currency> Currencies {get;set;}
-    public DbSet<Transaction> Transactions {get;set;}
-    public DbSet<Profile> Profiles {get;set;}
-    public DbSet<Wallet> Wallets {get;set;}
+    public DbSet<User> Users { get; set; } = null!;
+    public DbSet<Currency> Currencies { get; set; } = null!;
+    public DbSet<Transaction> Transactions { get; set; } = null!;
+    public DbSet<Profile> Profiles { get; set; } = null!;
+    public DbSet<Wallet> Wallets { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

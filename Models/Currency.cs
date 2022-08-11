@@ -8,7 +8,7 @@ namespace Models;
 public class Currency
 {
     [Key] public int CurrencyId { get; set; }
-    [Required] public string CurrencySymbol { get; set; } = null!;
+    [Required] public string CurrencySymbol { get; set; }  = string.Empty;
     [Required] public decimal CurrencyCurrentPrice { get; set; }
     [Required] public DateTime CurrencyTime { get; set; }
 

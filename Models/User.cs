@@ -8,13 +8,16 @@ namespace Models;
 public class User
 {
     [Key] public int UserId { get; set; }
-    [Required] public string Email { get; set; } = null!;
-    [Required] public string Password { get; set; } = null!;
+    [Required] public string Email { get; set; } = string.Empty;
+    [Required] public string Password { get; set; } = string.Empty;
 
     /// <summary>
     /// Empty User constructor.
     /// </summary>
-    public User() { }
+    public User()
+    {
+
+    }
 
     /// <summary>
     /// User constructor.
