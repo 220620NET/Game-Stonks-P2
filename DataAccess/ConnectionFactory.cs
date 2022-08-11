@@ -14,7 +14,6 @@ public class ConnectionFactory
          _connectionString = connectionstring;
     }
 
-    
     //getter for one and only instance of ConnectionFactory
     public static ConnectionFactory GetInstance(string connectionstring)
     {
