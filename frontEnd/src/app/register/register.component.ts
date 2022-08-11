@@ -30,7 +30,17 @@ export class RegisterComponent implements OnInit {
       this.session.set('currentUser', res);
   });
   }
-
+  loginHandler: Function = () => {
+    //login people!!!
+    console.log(this.password.value, this.email.value)
+    this.http.post('https://gamestonks.azurewebsites.net/login',{
+      'password': this.password.value,
+      'email': this.email.value
+    }).subscribe((res: any) => {
+      console.log('successful login!', res)
+      this.session.set('currentUser', res);
+  });
+  }
   switchMode(mode: string) : void {
     this.mode = mode;
   }
