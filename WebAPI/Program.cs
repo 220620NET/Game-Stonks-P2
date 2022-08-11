@@ -60,29 +60,27 @@ app.MapPost("/register", async (User user, AuthController controller) => await c
 
 app.MapPost("/login", async (User user, AuthController controller) => await controller.Login(user));
 
-//------------Wallet---------------
-app.MapGet("/wallet", async (WalletController controller) => await controller.GetAllWallets());
+//------------User-------------
+app.MapGet("/user", async (UserController controller) => await controller.GetAllUsers());
 
-app.MapGet("/wallet/user/{ID}", async (int user_id, WalletController controller) => await controller.GetAllWalletsByUserId((int) user_id));
+app.MapGet("/user/id/{id}", async (int id, UserController controller) => await controller.GetUserById(id));
 
-app.MapPost("/submit/wallet", async ([FromBody] Wallet wallet, WalletController controller) => await controller.CreateWallet(wallet));
+app.MapGet("/user/email/{email}", async (string email, UserController controller) => await controller.GetUserByEmail(email));
 
-app.MapPut("/update/wallet", async ([FromBody] Wallet wallet,WalletController controller) => await controller.UpdateWallet(wallet));
+app.MapPost("/create/User", async (User user, UserController controller) => await controller.CreateUser(user));
 
-//-----------Transaction-----------
-app.MapGet("/transaction", async (TransactionController controller) => await controller.GetAllTransactions());
+app.MapPut("/update/User", async (User user, UserController controller) => await controller.UpdateUser(user));
 
-app.MapPost("/submit/transaction", (Transaction newTransaction, TransactionController controller) => controller.CreateTransaction(newTransaction));
+//------------profile-----------
+app.MapGet("/profile", async (ProfileController controller) => await controller.GetAllProfiles());
 
-app.MapPut("/update/transaction", (Transaction newTransaction, TransactionController controller) => controller.UpdateTransaction(newTransaction));
+app.MapGet("/profile/{id}", async (int id, ProfileController controller) => await controller.GetProfileById(id));
 
-app.MapGet("/transaction/{ID}", (int ID, TransactionController controller) => controller.GetTransactionById(ID));
+app.MapGet("/profile/user/{id}", async (int user_id, ProfileController controller) => await controller.GetProfileByUserId(user_id));
 
-app.MapGet("/transaction/wallet/{ID}", (int ID, TransactionController controller) => controller.GetAllTransactionsByWalletId(ID));
+app.MapPost("/create/profile", async (Profile profile, ProfileController controller) => await controller.CreateProfile(profile));
 
-app.MapGet("/transaction/currency/{ID}", (int ID, TransactionController controller) => controller.GetAllTransactionsByWalletId(ID));
-
-app.MapGet("/transaction/wallet/{wallet_id}/currency{currency_id}", (int wallet_id, int currency_id, TransactionController controller) => controller.GetAllTransactionsByCurrencyIdAndWalletId(currency_id, wallet_id));
+app.MapPut("/update/profile", async (Profile profile, ProfileController controller) => await controller.UpdateProfile(profile));
 
 //-----------currency-----------
 app.MapGet("/Currency", async (CurrencyController controller) => await controller.GetAllCurrencies());
@@ -95,18 +93,32 @@ app.MapPost("/submit/Currency", async (Currency currency, CurrencyController con
 
 app.MapPut("/update/Currrency", async (Currency currency, CurrencyController controller) => await controller.UpdateCurrency(currency));
 
-//------------User-------------
-app.MapGet("/user", async (UserController controller) =>await controller.GetAllUsers());
+//------------Wallet---------------
+app.MapGet("/wallet", async (WalletController controller) => await controller.GetAllWallets());
 
-app.MapGet("/user/id/{id}", async (int id, UserController controller) =>await controller.GetUserById(id));
+app.MapGet("/wallet/user/{ID}", async (int user_id, WalletController controller) => await controller.GetAllWalletsByUserId((int) user_id));
 
-app.MapGet("/user/email/{email}", async (string email, UserController controller) =>await controller.GetUserByEmail(email));
+app.MapPost("/submit/wallet", async ([FromBody] Wallet wallet, WalletController controller) => await controller.CreateWallet(wallet));
 
-app.MapPost("/create/User", async (User user, UserController controller) => await controller.CreateUser(user));
+app.MapPut("/update/wallet", async ([FromBody] Wallet wallet,WalletController controller) => await controller.UpdateWallet(wallet));
 
-app.MapPut("/update/User", async (User user, UserController controller) => await controller.UpdateUser(user));
+//-----------Transaction-----------
+app.MapGet("/transaction", async (TransactionController controller) => await controller.GetAllTransactions());
 
-//------------profile-----------
+app.MapGet("/transaction/{ID}", (int ID, TransactionController controller) => controller.GetTransactionById(ID));
+
+app.MapGet("/transaction/wallet/{ID}", (int ID, TransactionController controller) => controller.GetAllTransactionsByWalletId(ID));
+
+app.MapGet("/transaction/currency/{ID}", (int ID, TransactionController controller) => controller.GetAllTransactionsByWalletId(ID));
+
+app.MapGet("/transaction/wallet/{wallet_id}/currency{currency_id}", (int wallet_id, int currency_id, TransactionController controller) => controller.GetAllTransactionsByCurrencyIdAndWalletId(currency_id, wallet_id));
+
+app.MapPost("/submit/transaction", (Transaction newTransaction, TransactionController controller) => controller.CreateTransaction(newTransaction));
+
+app.MapPut("/update/transaction", (Transaction newTransaction, TransactionController controller) => controller.UpdateTransaction(newTransaction));
+
+
+
 
 
 
