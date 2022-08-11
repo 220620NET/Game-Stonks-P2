@@ -8,12 +8,13 @@ import { FormControl } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  username = new FormControl('');
-  password = new FormControl('');
-  email = new FormControl('');
+  username: FormControl = new FormControl('');
+  password: FormControl = new FormControl('');
+  email: FormControl = new FormControl('');
 
-  registerHandler = function(){
+  registerHandler = () => {
     //register people!!!
+    console.log(this.username.value, this.password.value, this.email.value)
   }
   constructor() { }
 
