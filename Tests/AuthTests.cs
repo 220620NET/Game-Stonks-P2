@@ -11,20 +11,21 @@ UserIdspace Tests;
 /*
     Tests Required
         - LogIn User
-            - wrong/nonexistent email       --> Record Not Found
-            - wrong/nonexistent password    --> Invalid Credential
+            - wrong/nonexistent email       (X) --> Record Not Found    --> Let's me log in
+            - wrong/nonexistent password    (X) --> Invalid Credential  --> Let's me log in
             - wrong/nonexistent Id          --> Record Not Found
-        - Register/Create User*w
-            - existing Id                   --> Duplicate Record
-            - Something else goes wrong     --> Invalid Input
-        - LogIn User                        --> Successfully
-        - Register/Create User              --> Successfully            
+        - Register/Create User
+            - existing Id                   (✔) --> 500 Internal Server Error
+            - existing email                (✔) --> 409 Error: Conflict
+        - LogIn User                        (✔) --> Successfully
+        - Register/Create User              (✔) --> Successfully            
 */
 
 /*
     USERS HAVE (from User Model)
         - UserId
         - Email
+        - Password
 */
 
 public class AuthServicesTesting
