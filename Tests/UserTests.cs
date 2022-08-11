@@ -157,7 +157,7 @@ public class UserTesting
 
         {
             UserId = 2,                 // correct userId
-            Email = autumn@gmail.com,   // email valid
+            Email = "autumn@gmail.com",   // email valid
         };
 
         UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
@@ -177,7 +177,7 @@ public class UserTesting
 
         {
             UserId = 123,              
-            Email = autumn@gmail.wrong,  // "wrong" not valid
+            Email = "autumn@gmail.wrong",  // "wrong" not valid
         };
 
         UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
