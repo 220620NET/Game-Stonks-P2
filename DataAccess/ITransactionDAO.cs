@@ -35,6 +35,14 @@ public interface ITransactionDAO
     Task<List<Transaction>> GetAllTransactionsByCurrencyId(int currency_id);
 
     /// <summary>
+    /// Gets all tranactions with associated currency id and wallet id in the database/
+    /// </summary>
+    /// <param name="currency_id">The currency id to get transactions by.</param>
+    /// <param name="wallet_id">The wallet id to get transactions by.</param>
+    /// <returns>A list of all transactions that have the currency_id and wallet_id.</returns>
+    Task<List<Transaction>> GetAllTransactionsByCurrencyIdAndWalletId(int currency_id, int wallet_id);
+
+    /// <summary>
     /// Creates a transaction in the database.
     /// </summary>
     /// <param name="transaction">The transaction to add to the database.</param>

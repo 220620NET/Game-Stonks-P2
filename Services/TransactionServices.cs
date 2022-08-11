@@ -88,6 +88,27 @@ public class TransactionServices
     }
 
     /// <summary>
+    /// Gets all the transactions with the matching wallet id and currency id from database.
+    /// </summary>
+    /// <param name="currency_id">Currency id to get transactions by.</param>
+    /// <param name="wallet_id">Wallet id to get transactions by.</param>
+    /// <exception cref="RecordNotFoundException">There are no transactions with matching currency id and wallet id in the database.</exception>
+    /// <returns>List of all transactions with said wallet id and currency id.</returns>
+    
+    public async Task<List<Transaction>> GetAllTransactionsByCurrencyIdAndWalletId(int currency_id, int wallet_id)
+    {
+        try
+        {
+            return await _transactionDAO.GetAllTransactionsByCurrencyIdAndWalletId(currency_id, wallet_id);
+        }
+        catch (Exception)
+        {
+            
+            throw new RecordNotFoundException();
+        }
+    }
+
+    /// <summary>
     /// Adds a transaction in the database.
     /// </summary>
     /// <param name="create">The transaction to add to the database</param>

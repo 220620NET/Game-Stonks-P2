@@ -43,6 +43,15 @@ public class TransactionRepository : ITransactionDAO
     }
 
     /// <inheritdoc />
+    public async Task<List<Transaction>> GetAllTransactionsByCurrencyIdAndWalletId(int currency_id, int wallet_id)
+    {
+        return await _context.Transactions.AsNoTracking()
+            .Where(Transaction => Transaction.CurrencyIdFk == currency_id 
+                               && Transaction.WalletIdFk == wallet_id)
+                .ToListAsync();
+    }
+
+    /// <inheritdoc />
     public async Task<bool> CreateTransaction(Transaction transaction)
     {
         _context.Add(transaction);
