@@ -36,7 +36,7 @@ public class AuthServicesTesting
     {
         // Arrange
         var mockedRepo = new Mock<UserRepository>();
-ƒ
+        
         User userToAdd = new User{
             UserId = 123,
             Email = "correct@gmail.com",
