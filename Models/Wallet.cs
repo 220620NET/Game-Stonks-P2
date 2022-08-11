@@ -13,6 +13,7 @@ public class Wallet
     [ForeignKey("Currnecy")] public int CurrencyIdFk { get; set; }
     [Required] public decimal AmountCurrency { get; set; }
 
+
     /// <summary>
     /// Empty Wallet constructor.
     /// </summary>

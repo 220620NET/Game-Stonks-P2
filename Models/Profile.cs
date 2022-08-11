@@ -10,7 +10,7 @@ public class Profile
     [Key] public int ProfileId { get; set; }
     [ForeignKey("User")] public int UserIdFk { get; set; }
     [Required] public string FirstName { get; set; } = null!;
-    [Required] public string? LastName { get; set; } = null!;
+    [Required] public string LastName { get; set; } = null!;
 
     /// <summary>
     /// Empty Profile constructor.
