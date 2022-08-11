@@ -45,7 +45,7 @@ public class Transaction
     /// <param name="CurrencyIdFk">The ID of the Currency associated with this Transaction. Also used for database forgien key.</param>
     /// <param name="TransactionType">The type of transaction ie "Buy" or "Sell".</param>
     /// <param name="TransactionValue">The value of the transaction.</param>
-    /// <param name="TransactionTime">The time when the Transaction was made..</param>
+    /// <param name="TransactionTime">The time when the Transaction was made.</param>
     public Transaction(int TransactionId, int WalletIdFk, int CurrencyIdFk, string TransactionType, decimal TransactionValue, DateTime TransactionTime)
     {
         this.TransactionId = TransactionId;
