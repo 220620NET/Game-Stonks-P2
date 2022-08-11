@@ -60,6 +60,39 @@ app.MapPost("/register", async (User user, AuthController controller) => await c
 
 app.MapPost("/login", async (User user, AuthController controller) => await controller.Login(user));
 
+//------------User-------------
+app.MapGet("/user", async (UserController controller) => await controller.GetAllUsers());
+
+app.MapGet("/user/id/{id}", async (int id, UserController controller) => await controller.GetUserById(id));
+
+app.MapGet("/user/email/{email}", async (string email, UserController controller) => await controller.GetUserByEmail(email));
+
+app.MapPost("/create/User", async (User user, UserController controller) => await controller.CreateUser(user));
+
+app.MapPut("/update/User", async (User user, UserController controller) => await controller.UpdateUser(user));
+
+//------------profile-----------
+app.MapGet("/profile", async (ProfileController controller) => await controller.GetAllProfiles());
+
+app.MapGet("/profile/{id}", async (int id, ProfileController controller) => await controller.GetProfileById(id));
+
+app.MapGet("/profile/user/{id}", async (int user_id, ProfileController controller) => await controller.GetProfileByUserId(user_id));
+
+app.MapPost("/create/profile", async (Profile profile, ProfileController controller) => await controller.CreateProfile(profile));
+
+app.MapPut("/update/profile", async (Profile profile, ProfileController controller) => await controller.UpdateProfile(profile));
+
+//-----------currency-----------
+app.MapGet("/Currency", async (CurrencyController controller) => await controller.GetAllCurrencies());
+
+app.MapGet("/Currency/{ID}", async (int ID, CurrencyController controller) => await controller.GetCurrencyById(ID));
+
+app.MapGet("/Currency/{Symbol}", async (string symbol, CurrencyController controller) => await controller.GetCurrencyBySymbol(symbol));
+
+app.MapPost("/submit/Currency", async (Currency currency, CurrencyController controller) => await controller.CreateCurrency(currency));
+
+app.MapPut("/update/Currrency", async (Currency currency, CurrencyController controller) => await controller.UpdateCurrency(currency));
+
 //------------Wallet---------------
 app.MapGet("/wallet", async (WalletController controller) => await controller.GetAllWallets());
 
@@ -84,29 +117,8 @@ app.MapPost("/submit/transaction", (Transaction newTransaction, TransactionContr
 
 app.MapPut("/update/transaction", (Transaction newTransaction, TransactionController controller) => controller.UpdateTransaction(newTransaction));
 
-//-----------currency-----------
-app.MapGet("/Currency", async (CurrencyController controller) => await controller.GetAllCurrencies());
 
-app.MapGet("/Currency/{ID}", async (int ID, CurrencyController controller) => await controller.GetCurrencyById(ID));
 
-app.MapGet("/Currency/{Symbol}", async (string symbol, CurrencyController controller) => await controller.GetCurrencyBySymbol(symbol));
-
-app.MapPost("/submit/Currency", async (Currency currency, CurrencyController controller) => await controller.CreateCurrency(currency));
-
-app.MapPut("/update/Currrency", async (Currency currency, CurrencyController controller) => await controller.UpdateCurrency(currency));
-
-//------------User-------------
-app.MapGet("/user", async (UserController controller) =>await controller.GetAllUsers());
-
-app.MapGet("/user/id/{id}", async (int id, UserController controller) =>await controller.GetUserById(id));
-
-app.MapGet("/user/email/{email}", async (string email, UserController controller) =>await controller.GetUserByEmail(email));
-
-app.MapPost("/create/User", async (User user, UserController controller) => await controller.CreateUser(user));
-
-app.MapPut("/update/User", async (User user, UserController controller) => await controller.UpdateUser(user));
-
-//------------profile-----------
 
 
 
