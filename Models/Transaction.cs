@@ -10,7 +10,7 @@ public class Transaction
     [Key] public int TransactionId { get; set; }
     [ForeignKey("Wallet")] public int WalletIdFk { get; set; }
     [ForeignKey("Currency")] public int CurrencyIdFk { get; set; }
-    [Required] public string TransactionType { get; set; } = null!;
+    [Required] public string TransactionType { get; set; } = string.Empty;
     [Required] public decimal TransactionValue { get; set; }
     [Required] public DateTime TransactionTime { get; set; }
 
