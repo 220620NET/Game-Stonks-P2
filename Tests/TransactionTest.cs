@@ -34,7 +34,7 @@ public class TransactionTest
             CurrencyIdFk = 1,
             TransactionType = "Buy",
             TransactionValue = 1000,
-            TransactionTime = null
+            TransactionTime = DateTime.Now
         };
 
         mockedRepo.Setup( repo => repo.CreateTransaction(newTransaction)).ReturnsAsync(true);
@@ -42,7 +42,7 @@ public class TransactionTest
 
         TransactionServices service = new TransactionServices(mockedRepo.Object);
 
-        Assert.ThrowsAsync<RecordNotFoundException>(async () => await service.GetTransactionById(3));  
+        await Assert.ThrowsAsync<RecordNotFoundException>(async () => await service.GetTransactionById(3));  
     }
     [Fact]
     public async Task WrongTransactionsByWalletId()
@@ -55,7 +55,7 @@ public class TransactionTest
             CurrencyIdFk = 1,
             TransactionType = "Buy",
             TransactionValue = 1000,
-            TransactionTime = null
+            TransactionTime = DateTime.Now
         };
 
         mockedRepo.Setup( repo => repo.CreateTransaction(newTransaction)).ReturnsAsync(true);
@@ -63,7 +63,7 @@ public class TransactionTest
 
         TransactionServices service = new TransactionServices(mockedRepo.Object);
 
-        Assert.ThrowsAsync<RecordNotFoundException>(async () => await service.GetAllTransactionsByWalletId(2));  
+        await Assert.ThrowsAsync<RecordNotFoundException>(async () => await service.GetAllTransactionsByWalletId(2));  
     }
     [Fact]
     public async Task WrongTransactionsByCurrencyId()
@@ -76,7 +76,7 @@ public class TransactionTest
             CurrencyIdFk = 1,
             TransactionType = "Buy",
             TransactionValue = 1000,
-            TransactionTime = null
+            TransactionTime = DateTime.Now
         };
 
         mockedRepo.Setup( repo => repo.CreateTransaction(newTransaction)).ReturnsAsync(true);
@@ -84,7 +84,7 @@ public class TransactionTest
 
         TransactionServices service = new TransactionServices(mockedRepo.Object);
 
-        Assert.ThrowsAsync<RecordNotFoundException>(async () => await service.GetAllTransactionsByCurrencyId(2));  
+        await Assert.ThrowsAsync<RecordNotFoundException>(async () => await service.GetAllTransactionsByCurrencyId(2));  
     }
     [Fact]
     public async Task InvalidCreateTransaction()
@@ -98,7 +98,7 @@ public class TransactionTest
             CurrencyIdFk = 1,
             TransactionType = "Buy",
             TransactionValue = 1000,
-            TransactionTime = null
+            TransactionTime = DateTime.Now
         };
 
         Transaction badTransaction = new Transaction {
@@ -107,7 +107,7 @@ public class TransactionTest
             CurrencyIdFk = 1,
             TransactionType = "Buy",
             TransactionValue = 100, //different line
-            TransactionTime = null
+            TransactionTime = DateTime.Now
         };
     
         // When
@@ -116,7 +116,7 @@ public class TransactionTest
         // Then
         TransactionServices service = new TransactionServices(mockedRepo.Object);
 
-        Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.CreateTransaction(badTransaction));  
+        await Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.CreateTransaction(badTransaction));  
     }
     [Fact]
     public async Task InvalidUpdateWallet()
@@ -130,7 +130,7 @@ public class TransactionTest
             CurrencyIdFk = 1,
             TransactionType = "Buy",
             TransactionValue = 1000,
-            TransactionTime = null
+            TransactionTime = DateTime.Now
         };
 
         Transaction badTransaction = new Transaction {
@@ -139,7 +139,7 @@ public class TransactionTest
             CurrencyIdFk = 1,
             TransactionType = "Buy",
             TransactionValue = 100, //different line
-            TransactionTime = null
+            TransactionTime = DateTime.Now
         };
     
         // When
@@ -148,6 +148,6 @@ public class TransactionTest
         // Then
         TransactionServices service = new TransactionServices(mockedRepo.Object);
 
-        Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.UpdateTransaction(badTransaction));  
+        await Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.UpdateTransaction(badTransaction));  
     }
 }
