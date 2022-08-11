@@ -30,12 +30,12 @@ public class CurrencyController
     public async Task<IResult> CreateCurrency(Currency currency)
     {
         var createdCurrency = await _service.CreateCurrency(currency);
-        return createdCurrency == true ? Results.Ok(createdCurrency) : Results.BadRequest("Invalid currency input!");
+        return createdCurrency ? Results.Ok(createdCurrency) : Results.BadRequest("Invalid currency input!");
     }
     public async Task<IResult> UpdateCurrency(Currency currency)
     {
         var updatedCurrency = await _service.UpdateCurrency(currency);
-        return updatedCurrency == true ? Results.Ok(updatedCurrency) : Results.BadRequest("Invalid currency update input!");
+        return updatedCurrency ? Results.Ok(updatedCurrency) : Results.BadRequest("Invalid currency update input!");
 
     }
 }

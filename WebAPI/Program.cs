@@ -7,11 +7,6 @@ using WebAPI.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
-// {
-//     options.SerializerOptions.PropertyNamingPolicy = null;
-// });
-
 //this line below is necessary
 builder.Services.AddDbContext<StonksDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StonkDB")));
 
