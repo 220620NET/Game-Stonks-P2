@@ -74,7 +74,9 @@ app.MapGet("/transaction", async (TransactionController controller) => await con
 
 app.MapPost("/submit/transaction", (Transaction newTransaction, TransactionController controller) => controller.CreateTransaction(newTransaction));
 
-app.MapPut("/update/ticket", (Transaction newTransaction, TransactionController controller) => controller.UpdateTransaction(newTransaction));
+app.MapPut("/update/transaction", (Transaction newTransaction, TransactionController controller) => controller.UpdateTransaction(newTransaction));
+
+app.MapGet("/transaction/{ID}", (int ID, TransactionController controller) => controller.GetTransactionById(ID));
 
 app.MapGet("/transaction/wallet/{ID}", (int ID, TransactionController controller) => controller.GetAllTransactionsByWalletId(ID));
 

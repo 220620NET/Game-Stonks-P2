@@ -19,78 +19,43 @@ public class TransactionController
     
     public async Task<IResult> GetAllTransactions()
     {
-        try
-        {
-            List<Transaction> ListTransactions = await _Services.GetAllTransactions();
-            return Results.Accepted("/transaction", ListTransactions);
-        }
-        catch (RecordNotFoundException)
-        {
-            return Results.NotFound("There are no transactions.");
-        }
+        var transactions =  await _Services.GetAllTransactions();
+        return transactions.Count > 0 ? Results.Ok(transactions) : Results.BadRequest("No transactions to get!");   
+    }
+
+    public async Task<IResult> GetTransactionById(int id)
+    {
+        var transaction = await _Services.GetTransactionById(id);
+        return transaction != null ? Results.Ok(transaction) : Results.BadRequest("No transaction under this ID!");
     }
 
     public async Task<IResult> GetAllTransactionsByWalletId(int wallet_id)
     {
-        try
-        {
-            List<Transaction> ListTransactions = await _Services.GetAllTransactionsByWalletId(wallet_id);
-            return Results.Accepted("/transaction/wallet/{ListTransaction}", wallet_id);
-        }
-        catch (RecordNotFoundException)
-        {
-            return Results.BadRequest("There are no transactions in that wallet");
-        }
+        var transactions = await _Services.GetAllTransactionsByWalletId(wallet_id);
+        return transactions.Count > 0 ? Results.Ok(transactions) : Results.BadRequest("No transactions under this wallet ID!");
     }
 
     public async Task<IResult> GetAllTransactionsByCurrencyId(int currency_id)
     {
-        try
-        {
-            List<Transaction> ListTransactions = await _Services.GetAllTransactionsByCurrencyId(currency_id);
-            return Results.Accepted("/transaction/currency/{ListTransaction}", currency_id);
-        }
-        catch (RecordNotFoundException)
-        {
-            return Results.BadRequest("There are no transactions with that currency.");
-        }
+        var transactions = await _Services.GetAllTransactionsByCurrencyId(currency_id);
+        return transactions.Count > 0 ? Results.Ok(transactions) : Results.BadRequest("No transactions under this currency ID!");
     }
 
     public async Task<IResult> GetAllTransactionsByCurrencyIdAndWalletId(int currency_id, int wallet_id)
     {
-        try
-        {
-            List<Transaction> ListTransactions = await _Services.GetAllTransactionsByCurrencyIdAndWalletId(currency_id, wallet_id);
-            return Results.Accepted("transactions/wallet/" + wallet_id + "/currency/" + currency_id);
-        }
-        catch (RecordNotFoundException)
-        {
-
-            return Results.BadRequest("There are no transactions with that currency and wallet.");
-        }
+        var transactions = await _Services.GetAllTransactionsByCurrencyIdAndWalletId(currency_id, wallet_id);
+        return transactions.Count > 0 ? Results.Ok(transactions) : Results.BadRequest("No transactions under this wallet ID and currency ID!");
     }
 
     public async Task<IResult> CreateTransaction(Transaction transaction)
     {
-        try
-        {
-            return Results.Accepted("/submit/transaction", await _Services.CreateTransaction(transaction));
-        }
-        catch (RecordNotFoundException)
-        {
-            return Results.BadRequest("Could not create transaction.");
-        }
+        var createTransaction = await _Services.CreateTransaction(transaction);
+        return createTransaction == true ? Results.Ok(transaction) : Results.BadRequest("Invalid transaction!");
     }
 
     public async Task<IResult> UpdateTransaction(Transaction transaction)
     {
-        try
-        {
-            return Results.Accepted("/update/transaction", await _Services.UpdateTransaction(transaction));
-        }
-        catch (RecordNotFoundException)
-        {
-            return Results.BadRequest("Could not update transaction.");
-        }
+        var updateTransaction = await _Services.UpdateTransaction(transaction);
+        return updateTransaction == true ? Results.Ok(transaction) : Results.BadRequest("Invalid transactions!");
     }
 }
