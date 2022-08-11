@@ -39,7 +39,7 @@ public class TransactionController
         }
         catch (RecordNotFoundException)
         {
-            return Results.BadRequest("That wallet does have any transactions.");
+            return Results.BadRequest("There are no transactions in that wallet");
         }
     }
 
@@ -52,7 +52,21 @@ public class TransactionController
         }
         catch (RecordNotFoundException)
         {
-            return Results.BadRequest("That wallet does have any transactions.");
+            return Results.BadRequest("There are no transactions with that currency.");
+        }
+    }
+
+    public async Task<IResult> GetAllTransactionsByCurrencyIdAndWalletId(int currency_id, int wallet_id)
+    {
+        try
+        {
+            List<Transaction> ListTransactions = await _Services.GetAllTransactionsByCurrencyIdAndWalletId(currency_id, wallet_id);
+            return Results.Accepted("transactions/wallet/" + wallet_id + "/currency/" + currency_id);
+        }
+        catch (RecordNotFoundException)
+        {
+
+            return Results.BadRequest("There are no transactions with that currency and wallet.");
         }
     }
 

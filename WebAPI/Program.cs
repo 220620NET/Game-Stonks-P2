@@ -80,6 +80,8 @@ app.MapGet("/transaction/wallet/{ID}", (int ID, TransactionController controller
 
 app.MapGet("/transaction/currency/{ID}", (int ID, TransactionController controller) => controller.GetAllTransactionsByWalletId(ID));
 
+app.MapGet("/transaction/wallet/{wallet_id}/currency{currency_id}", (int wallet_id, int currency_id, TransactionController controller) => controller.GetAllTransactionsByCurrencyIdAndWalletId(currency_id, wallet_id));
+
 //-----------currency-----------
 app.MapGet("/Currency", async (CurrencyController controller) => await controller.GetAllCurrencies());
 
