@@ -21,3 +21,11 @@ input {
     width: 100%;
     margin-top: 5px;
 }
+.switch-link{
+    color: #0d6efd;
+}
+.switch-link:hover{
+    cursor: pointer;
+    color: #0b5ed7;
+    text-decoration: underline;
+}

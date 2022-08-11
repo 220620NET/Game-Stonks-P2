@@ -13,8 +13,13 @@ export class RegisterComponent implements OnInit {
 
   password: FormControl = new FormControl('');
   email: FormControl = new FormControl('');
+  modes: any = {
+    'login' : 'Log In',
+    'register' : 'Register'
+  }
+  mode : string = 'register';
 
-  registerHandler = () => {
+  registerHandler: Function = () => {
     //register people!!!
     console.log(this.password.value, this.email.value)
     this.http.post('https://gamestonks.azurewebsites.net/register',{
@@ -24,6 +29,10 @@ export class RegisterComponent implements OnInit {
       console.log('successful register!', res)
       this.session.set('currentUser', res);
   });
+  }
+
+  switchMode(mode: string) : void {
+    this.mode = mode;
   }
   constructor(private http: HttpClient, private session: SessionStorageService) { }
 

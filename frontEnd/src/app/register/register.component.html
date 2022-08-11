@@ -1,7 +1,7 @@
 <div class="register-component">
     <div class="register-box">
         <div>Welcome to GameStonks!</div>
-        <div>please Fill in the Form Below to Register</div>
+        <div>Please {{modes[mode]}} to Play!</div>
         <div class="rows form-group">
             <Label for="email">Email</Label>
             <input type="email" name="email" id="email" [formControl] = "email">
@@ -11,7 +11,8 @@
             <input type="password" name="password" id="password" [formControl] = "password">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary login-btn" (click)="registerHandler()">Register</button>
+            <button type="submit" class="btn btn-primary login-btn" (click)="registerHandler()">{{modes[mode]}}</button>
         </div>
+        <p><span *ngIf="mode === 'register'" class="switch-link" (click)="switchMode('login')">Already a player? Log In!</span> <span *ngIf="mode === 'login'" class="switch-link" (click)="switchMode('register')">Not a Player yet? Register!</span></p>
     </div>
 </div>
