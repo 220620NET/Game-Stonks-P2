@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomExceptions", "CustomE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{1F5F07A7-A2B1-4EEF-9418-5677F07CCE28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{CD29C187-7E83-4A67-9C6A-C2C0700612A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{1F5F07A7-A2B1-4EEF-9418-5677F07CCE28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F5F07A7-A2B1-4EEF-9418-5677F07CCE28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F5F07A7-A2B1-4EEF-9418-5677F07CCE28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD29C187-7E83-4A67-9C6A-C2C0700612A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD29C187-7E83-4A67-9C6A-C2C0700612A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD29C187-7E83-4A67-9C6A-C2C0700612A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD29C187-7E83-4A67-9C6A-C2C0700612A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

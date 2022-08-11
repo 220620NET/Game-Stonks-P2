@@ -6,7 +6,7 @@ using Services;
 using System;
 using Xunit;
 
-UserIdspace Tests;
+namespace Tests;
 
 /*
     Tests Required
@@ -99,7 +99,7 @@ public class AuthServicesTesting
 
     // LogIn User Fail -- wrong password
     [Fact]
-    public async Task InvalidCreateUser()
+    public async Task InvalidUserPassword()
     {
         // Given
         var UserRepo = new Mock<IUserDAO>();
@@ -125,7 +125,7 @@ public class AuthServicesTesting
 
     // LogIn User Fail -- username doesn't exist
     [Fact]
-    public async Task InvalidCreateUser()
+    public async Task InvalidUserEmail()
     {
         // Given
         var UserRepo = new Mock<IUserDAO>();
