@@ -1,3 +1,4 @@
+/*
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
@@ -145,3 +146,4 @@ namespace DataAccess.Entities
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
+*/
