@@ -4,6 +4,10 @@ using DataAccess;
 using Models;
 
 namespace WebAPI.Controllers;
+
+/// <summary>
+/// Class for transaction controller.
+/// </summary>
 public class TransactionController
 {
     private readonly TransactionServices _Services;
@@ -12,7 +16,7 @@ public class TransactionController
     {
         _Services = services;
     }
-
+    
     public async Task<IResult> GetAllTransactions()
     {
         try
@@ -20,7 +24,7 @@ public class TransactionController
             List<Transaction> ListTransactions = await _Services.GetAllTransactions();
             return Results.Accepted("/transaction", ListTransactions);
         }
-        catch (ResourceNotFoundException)
+        catch (RecordNotFoundException)
         {
             return Results.NotFound("There are no transactions.");
         }
@@ -33,9 +37,9 @@ public class TransactionController
             List<Transaction> ListTransactions = await _Services.GetAllTransactionsByWalletId(wallet_id);
             return Results.Accepted("/transaction/wallet/{ListTransaction}", wallet_id);
         }
-        catch (ResourceNotFoundException)
+        catch (RecordNotFoundException)
         {
-            return Results.BadRequest("That wallet does have any transactions.");
+            return Results.BadRequest("There are no transactions in that wallet");
         }
     }
 
@@ -46,9 +50,23 @@ public class TransactionController
             List<Transaction> ListTransactions = await _Services.GetAllTransactionsByCurrencyId(currency_id);
             return Results.Accepted("/transaction/currency/{ListTransaction}", currency_id);
         }
-        catch (ResourceNotFoundException)
+        catch (RecordNotFoundException)
         {
-            return Results.BadRequest("That wallet does have any transactions.");
+            return Results.BadRequest("There are no transactions with that currency.");
+        }
+    }
+
+    public async Task<IResult> GetAllTransactionsByCurrencyIdAndWalletId(int currency_id, int wallet_id)
+    {
+        try
+        {
+            List<Transaction> ListTransactions = await _Services.GetAllTransactionsByCurrencyIdAndWalletId(currency_id, wallet_id);
+            return Results.Accepted("transactions/wallet/" + wallet_id + "/currency/" + currency_id);
+        }
+        catch (RecordNotFoundException)
+        {
+
+            return Results.BadRequest("There are no transactions with that currency and wallet.");
         }
     }
 
@@ -58,7 +76,7 @@ public class TransactionController
         {
             return Results.Accepted("/submit/transaction", await _Services.CreateTransaction(transaction));
         }
-        catch (ResourceNotFoundException)
+        catch (RecordNotFoundException)
         {
             return Results.BadRequest("Could not create transaction.");
         }
@@ -70,7 +88,7 @@ public class TransactionController
         {
             return Results.Accepted("/update/transaction", await _Services.UpdateTransaction(transaction));
         }
-        catch (ResourceNotFoundException)
+        catch (RecordNotFoundException)
         {
             return Results.BadRequest("Could not update transaction.");
         }

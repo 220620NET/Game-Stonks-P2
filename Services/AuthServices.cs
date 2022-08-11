@@ -42,7 +42,7 @@ public class AuthServices
         try
         {
             user = await _user.GetUserById(userID);
-            if(user.UserId == null)
+            if(user.Email == null)
             {
                 throw new ResourceNotFoundException();
             }
