@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularWebStorageModule } from 'angular-web-storage'
+import { AngularWebStorageModule } from 'angular-web-storage';
+import { WalletViewComponent } from './wallet-view/wallet-view.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    WalletViewComponent
   ],
   imports: [
     BrowserModule,
