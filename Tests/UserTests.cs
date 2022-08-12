@@ -79,7 +79,7 @@ public class UserTesting
         UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
         UserRepo.Setup( repo => repo.GetUserById(2)).ThrowsAsync(new RecordNotFoundException());
         UserServices service = new UserServices(UserRepo.Object);
-        Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetUserById(2));  
+        await Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetUserById(2));  
     }
 
 
@@ -102,10 +102,11 @@ public class UserTesting
     
         // If
         UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
-        UserRepo.Setup( repo =>  repo.CreateUser(toUpdate)).ThrowsAsync(new InvalidInputException());
+        UserRepo.Setup( repo =>  repo.UpdateUser(toUpdate)).ReturnsAsync(true);
         // Then
         UserServices service = new UserServices(UserRepo.Object);
-        Assert.ThrowsAsync<InvalidInputException>(() => service.CreateUser(newUser));  
+        var result = await service.UpdateUser(toUpdate);
+        Assert.Equal(result, true);  
     }
 
 
@@ -131,7 +132,7 @@ public class UserTesting
         UserRepo.Setup( repo =>  repo.CreateUser(toUpdate)).ThrowsAsync(new InvalidInputException());
         // Then
         UserServices service = new UserServices(UserRepo.Object);
-        Assert.ThrowsAsync<InvalidInputException>(() => service.CreateUser(toUpdate));  
+        await Assert.ThrowsAsync<InvalidInputException>(() => service.CreateUser(toUpdate));  
     }
 
 
@@ -150,8 +151,11 @@ public class UserTesting
 
         UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
         UserRepo.Setup( repo => repo.GetUserByEmail("autumn@gmail.com")).ThrowsAsync(new RecordNotFoundException());
+        
         UserServices service = new UserServices(UserRepo.Object);
+        
         var existingUser = await service.GetUserByEmail("autumn@gmail.com");
+        
         Assert.Equal(newUser.Email,existingUser.Email); 
     }
 
@@ -162,17 +166,18 @@ public class UserTesting
     public async Task WrongOrNoUserEmail()
     {
         var UserRepo = new Mock<IUserDAO>();
-        User newUser = new User
 
-        {
+        User newUser = new User {
             UserId = 123,              
-            Email = "autumn@gmail.wrong",  // "wrong" not valid
+            Email = "autumn@gmail.com",  // "wrong" not valid
         };
 
         UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
-        UserRepo.Setup( repo => repo.GetUserByEmail("autumn@gmail.com")).ThrowsAsync(new RecordNotFoundException());
+        UserRepo.Setup( repo => repo.GetUserByEmail("autumn@gmail.wrong")).ThrowsAsync(new RecordNotFoundException());
+        
         UserServices service = new UserServices(UserRepo.Object);
-        Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetUserByEmail("autumn@gmail.wrong"));  
+        
+        await Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetUserByEmail("autumn@gmail.wrong"));  
     }    
 
 }
