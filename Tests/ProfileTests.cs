@@ -36,11 +36,11 @@ public class ProfileTest
         };
 
         profileRepo.Setup( repo =>  repo.CreateProfile(newProfile)).ReturnsAsync(true);
-        profileRepo.Setup( repo => repo.GetAllProfileByUserId(2)).ThrowsAsync(new RecordNotFoundException());
+        profileRepo.Setup( repo => repo.GetProfileByUserId(2)).ThrowsAsync(new RecordNotFoundException());
 
-        ProfileServices service = new ProfileServices(p.Object);
+        ProfileServices service = new ProfileServices(profileRepo.Object);
 
-        Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetAllProfilesByUserId(2));  
+        await Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetProfileByUserId(2));  
     }
     public async Task WrongProfileByUserId()
     {
@@ -54,11 +54,11 @@ public class ProfileTest
         };
 
         profileRepo.Setup( repo =>  repo.CreateProfile(newProfile)).ReturnsAsync(true);
-        profileRepo.Setup( repo => repo.GetAllProfileByUserId(2)).ThrowsAsync(new RecordNotFoundException());
+        profileRepo.Setup( repo => repo.GetProfileByUserId(2)).ThrowsAsync(new RecordNotFoundException());
 
-        ProfileServices service = new ProfileServices(p.Object);
+        ProfileServices service = new ProfileServices(profileRepo.Object);
 
-        Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetAllProfilesByUserId(2));  
+        await Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetProfileByUserId(2));  
     }
     [Fact]
     public async Task InvalidCreatedProfile()
@@ -81,10 +81,10 @@ public class ProfileTest
         };
     
         // When
-        p.Setup( repo =>  repo.CreateProfile(newProfile)).ReturnsAsync(true);
-        p.Setup( repo =>  repo.CreateProfile(falseProfile)).ThrowsAsync(new InvalidInputException());
+        profileRepo.Setup( repo =>  repo.CreateProfile(newProfile)).ReturnsAsync(true);
+        profileRepo.Setup( repo =>  repo.CreateProfile(falseProfile)).ThrowsAsync(new InvalidInputException());
         // Then
-        ProfileServices service = new ProfileServices(p.Object);
+        ProfileServices service = new ProfileServices(profileRepo.Object);
 
         await Assert.ThrowsAsync<InvalidInputException>(() => service.CreateProfile(falseProfile));  
     }
@@ -92,7 +92,7 @@ public class ProfileTest
     public async Task FailToUpdateProfile()
     {
         // Given
-        var p = new Mock<IProfileDAO>();
+        var profileRepo = new Mock<IProfileDAO>();
 
         Profile newProfile = new Profile{
             ProfileId = 1,
@@ -114,7 +114,7 @@ public class ProfileTest
         // Then
         ProfileServices service = new ProfileServices(profileRepo.Object);
 
-        Assert.ThrowsAsync<InvalidInputException>(() => service.CreateWallet(toUpdate));  
+        await Assert.ThrowsAsync<InvalidInputException>(() => service.CreateProfile(toUpdate));  
         // INF loop somewhere!!!
     }
 }
