@@ -34,12 +34,12 @@ public class ProfileController
     public async Task<IResult> CreateProfile(Profile profile)
     {
         var createdProfile = await _services.CreateProfile(profile);
-        return createdProfile == true ? Results.Ok(profile) : Results.BadRequest("Invalid profile create!");
+        return createdProfile ? Results.Ok(profile) : Results.BadRequest("Invalid profile create!");
     }
 
     public async Task<IResult> UpdateProfile(Profile profile)
     {
         var updatedProfile = await _services.UpdateProfile(profile);
-        return updatedProfile == true ? Results.Ok(profile) : Results.BadRequest("Invalid profile update!");
+        return updatedProfile ? Results.Ok(profile) : Results.BadRequest("Invalid profile update!");
     }
 }

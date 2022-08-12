@@ -100,7 +100,6 @@ public class AuthServicessTesting
     }
     */
 
-    /*
     // LogIn User Fail -- wrong password
     [Fact]
     public async Task InvalidUserPassword()
@@ -119,15 +118,14 @@ public class AuthServicessTesting
         };
     
         // When
-        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
         UserRepo.Setup( repo =>  repo.CreateUser(falseUser)).ThrowsAsync(new InvalidInputException());
         // Then
         UserServices service = new UserServices(UserRepo.Object);
-        Assert.ThrowsAsync<InvalidInputException>(() => service.CreateUser(falseUser));  
+        await Assert.ThrowsAsync<InvalidInputException>(() => service.CreateUser(falseUser));  
     }
-    */
 
-    /*
+
     // LogIn User Fail -- invalid email/username
     [Fact]
     public async Task InvalidUserEmail()
@@ -146,15 +144,13 @@ public class AuthServicessTesting
         };
     
         // When
-        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
         UserRepo.Setup( repo =>  repo.CreateUser(falseUser)).ThrowsAsync(new InvalidInputException());
         // Then
         UserServices service = new UserServices(UserRepo.Object);
         await Assert.ThrowsAsync<InvalidInputException>(() => service.CreateUser(falseUser));  
     }
-    */
 
-    /*
     // LogIn User -- Success
     [Fact]
     public async Task SuccessfulLogInUser()
@@ -173,7 +169,7 @@ public class AuthServicessTesting
         };
     
         // When
-        UserRepo.Setup( repo =>  repo.CreateUser(attemptingUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(attemptingUser)).ReturnsAsync(attemptingUser);
         UserRepo.Setup( repo =>  repo.CreateUser(existingUser)).ThrowsAsync(new InvalidInputException());
         // Then
         UserServices service = new UserServices(UserRepo.Object);
@@ -183,5 +179,5 @@ public class AuthServicessTesting
         Assert.Equal(attemptingUser.UserId, existingUser.UserId);
         Assert.Equal(attemptingUser.UserId, existingUser.UserId);
     }
-    */
+
 }

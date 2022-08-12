@@ -25,12 +25,12 @@ public class WalletController
     public async Task<IResult> CreateWallet(Wallet wallet)
     {
         var createdWallet = await _service.CreateWallet(wallet);
-        return createdWallet == true ? Results.Ok(wallet) : Results.BadRequest("Invalid wallet input!");
+        return createdWallet ? Results.Ok(wallet) : Results.BadRequest("Invalid wallet input!");
     }
     public async Task<IResult> UpdateWallet(Wallet wallet)
     {
         var updatedWallet = await _service.UpdateWallet(wallet);
-        return updatedWallet == true ? Results.Ok(wallet) : Results.BadRequest("Invalid wallet update input!");
+        return updatedWallet ? Results.Ok(wallet) : Results.BadRequest("Invalid wallet update input!");
 
     }
 }

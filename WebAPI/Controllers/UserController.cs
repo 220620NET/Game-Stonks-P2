@@ -35,7 +35,7 @@ public class UserController
     public async Task<IResult> UpdateUser(User user)
     {
         var updatedUser = await _service.UpdateUser(user);
-        return updatedUser == true ? Results.Ok(updatedUser) : Results.BadRequest("Invalid user update input!");
+        return updatedUser ? Results.Ok(updatedUser) : Results.BadRequest("Invalid user update input!");
 
     }
 }

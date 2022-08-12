@@ -50,12 +50,12 @@ public class TransactionController
     public async Task<IResult> CreateTransaction(Transaction transaction)
     {
         var createTransaction = await _Services.CreateTransaction(transaction);
-        return createTransaction == true ? Results.Ok(transaction) : Results.BadRequest("Invalid transaction!");
+        return createTransaction ? Results.Ok(transaction) : Results.BadRequest("Invalid transaction!");
     }
 
     public async Task<IResult> UpdateTransaction(Transaction transaction)
     {
         var updateTransaction = await _Services.UpdateTransaction(transaction);
-        return updateTransaction == true ? Results.Ok(transaction) : Results.BadRequest("Invalid transactions!");
+        return updateTransaction ? Results.Ok(transaction) : Results.BadRequest("Invalid transactions!");
     }
 }
