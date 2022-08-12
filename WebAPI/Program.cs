@@ -91,7 +91,7 @@ app.MapPut("/update/Currrency", async (Currency currency, CurrencyController con
 //------------Wallet---------------
 app.MapGet("/wallet", async (WalletController controller) => await controller.GetAllWallets());
 
-app.MapGet("/wallet/user/{ID}", async (int user_id, WalletController controller) => await controller.GetAllWalletsByUserId((int) user_id));
+app.MapGet("/wallet/user/{ID}", async (int ID, WalletController controller) => await controller.GetAllWalletsByUserId((int) ID));
 
 app.MapPost("/submit/wallet", async ([FromBody] Wallet wallet, WalletController controller) => await controller.CreateWallet(wallet));
 
