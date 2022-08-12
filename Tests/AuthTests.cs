@@ -115,7 +115,7 @@ public class AuthServicessTesting
         };
     
         // When
-        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
         UserRepo.Setup( repo =>  repo.CreateUser(falseUser)).ThrowsAsync(new InvalidInputException());
         // Then
         UserServices service = new UserServices(UserRepo.Object);
@@ -141,7 +141,7 @@ public class AuthServicessTesting
         };
     
         // When
-        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
         UserRepo.Setup( repo =>  repo.CreateUser(falseUser)).ThrowsAsync(new InvalidInputException());
         // Then
         UserServices service = new UserServices(UserRepo.Object);
@@ -166,7 +166,7 @@ public class AuthServicessTesting
         };
     
         // When
-        UserRepo.Setup( repo =>  repo.CreateUser(attemptingUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(attemptingUser)).ReturnsAsync(attemptingUser);
         UserRepo.Setup( repo =>  repo.CreateUser(existingUser)).ThrowsAsync(new InvalidInputException());
         // Then
         UserServices service = new UserServices(UserRepo.Object);

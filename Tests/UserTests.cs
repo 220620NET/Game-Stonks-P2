@@ -53,9 +53,11 @@ public class UserTesting
             Email = "autumn@gmail.com",     // email valid
         };
 
-        UserRepo.Setup( repo => repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo => repo.CreateUser(newUser)).ReturnsAsync(newUser);
         UserRepo.Setup( repo => repo.GetUserById(2)).ThrowsAsync(new RecordNotFoundException());
+
         UserServices service = new UserServices(UserRepo.Object);
+
         await Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetUserById(2));  
     }
 
@@ -73,7 +75,7 @@ public class UserTesting
             Email = "autumn@gmail.com",     
         };
 
-        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
         UserRepo.Setup( repo => repo.GetUserById(2)).ThrowsAsync(new RecordNotFoundException());
         UserServices service = new UserServices(UserRepo.Object);
         Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetUserById(2));  
@@ -98,7 +100,7 @@ public class UserTesting
         };
     
         // If
-        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
         UserRepo.Setup( repo =>  repo.CreateUser(toUpdate)).ThrowsAsync(new InvalidInputException());
         // Then
         UserServices service = new UserServices(UserRepo.Object);
@@ -124,7 +126,7 @@ public class UserTesting
         };
     
         // If
-        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
         UserRepo.Setup( repo =>  repo.CreateUser(toUpdate)).ThrowsAsync(new InvalidInputException());
         // Then
         UserServices service = new UserServices(UserRepo.Object);
@@ -138,19 +140,18 @@ public class UserTesting
     public async Task GetUserByEmail()
     {
         var UserRepo = new Mock<IUserDAO>();
-        User newUser = new User
-
         // I can't tell from Models what should go here
 
-        {
+        User newUser = new User{
             UserId = 2,                 // correct userId
             Email = "autumn@gmail.com",   // email valid
         };
 
-        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
         UserRepo.Setup( repo => repo.GetUserByEmail("autumn@gmail.com")).ThrowsAsync(new RecordNotFoundException());
         UserServices service = new UserServices(UserRepo.Object);
-        Assert.Equal(newUser.GetUserByEmail("autumn@gmail.com"));  
+        var existingUser = await service.GetUserByEmail("autumn@gmail.com");
+        Assert.Equal(newUser.Email,existingUser.Email); 
     }
 
 
@@ -167,7 +168,7 @@ public class UserTesting
             Email = "autumn@gmail.wrong",  // "wrong" not valid
         };
 
-        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(true);
+        UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
         UserRepo.Setup( repo => repo.GetUserByEmail("autumn@gmail.com")).ThrowsAsync(new RecordNotFoundException());
         UserServices service = new UserServices(UserRepo.Object);
         Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetUserByEmail("autumn@gmail.wrong"));  
