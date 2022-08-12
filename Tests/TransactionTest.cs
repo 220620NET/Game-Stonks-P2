@@ -23,6 +23,8 @@ public class TransactionTest
         Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.GetAllTransactions());
 
     }
+
+    /*
     [Fact]
     public async Task WrongTransactionId()
     {
@@ -44,6 +46,8 @@ public class TransactionTest
 
         await Assert.ThrowsAsync<RecordNotFoundException>(async () => await service.GetTransactionById(2));  
     }
+    */
+
     [Fact]
     public async Task WrongTransactionsByWalletId()
     {
@@ -86,11 +90,11 @@ public class TransactionTest
 
         await Assert.ThrowsAsync<RecordNotFoundException>(async () => await service.GetAllTransactionsByCurrencyId(2));  
     }
-    // [Fact]
-    // public async Task InvalidCreateTransaction()
-    // {
-    //     // Given
-    //     var mockedRepo = new Mock<ITransactionDAO>();
+    [Fact]
+    public async Task InvalidCreateTransaction()
+    {
+        // Given
+        var mockedRepo = new Mock<ITransactionDAO>();
 
     //     Transaction newTransaction = new Transaction {
     //         TransactionId = 1,
@@ -116,13 +120,13 @@ public class TransactionTest
     //     // Then
     //     TransactionServices service = new TransactionServices(mockedRepo.Object);
 
-    //     await Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.CreateTransaction(badTransaction));  
-    // }
-    // [Fact]
-    // public async Task InvalidUpdateWallet()
-    // {
-    //     // Given
-    //     var mockedRepo = new Mock<ITransactionDAO>();
+        await Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.CreateTransaction(badTransaction));  
+    }
+    [Fact]
+    public async Task InvalidUpdateWallet()
+    {
+        // Given
+        var mockedRepo = new Mock<ITransactionDAO>();
 
     //     Transaction newTransaction = new Transaction {
     //         TransactionId = 1,
@@ -148,6 +152,6 @@ public class TransactionTest
     //     // Then
     //     TransactionServices service = new TransactionServices(mockedRepo.Object);
 
-    //     await Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.UpdateTransaction(badTransaction));  
-    // }
+        await Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.UpdateTransaction(badTransaction));  
+    }
 }
