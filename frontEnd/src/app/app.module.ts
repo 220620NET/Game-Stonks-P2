@@ -6,19 +6,22 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularWebStorageModule } from 'angular-web-storage'
-
+import { AngularWebStorageModule } from 'angular-web-storage';
+import { LoginComponent } from './login/login.component';
+import { SessionStorageService } from 'angular-web-storage';
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularWebStorageModule
+    AngularWebStorageModule,
+    SessionStorageService
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,21 @@
+<div class="login-component">
+    <div class="login-box">
+        <div>Welcome to GameStonks!</div>
+        <div>Please {{modes[mode]}} to Play!</div>
+        <div class="rows form-group">
+            <Label for="email">Email</Label>
+            <input type="email" name="email" id="email" [formControl] = "email">
+        </div>
+        <div class="rows form-group">
+            <Label for="password">Password</Label>
+            <input type="password" name="password" id="password" [formControl] = "password">
+        </div>
+        <div class="form-group" *ngIf="mode === 'login'">
+            <button type="submit" class="btn btn-primary login-btn" (click)="loginHandler()">Log In!</button>
+        </div>
+        <div class="form-group" *ngIf="mode === 'register'">
+            <button type="submit" class="btn btn-primary rgister-btn" (click)="registerHandler()">Register!</button>
+        </div>
+        <p type><span *ngIf="mode === 'login'" class="switch-link" (click)="switchMode('register')">Already a player? Log In!</span> <span *ngIf="mode === 'login'" class="switch-link" (click)="switchMode('register')">Not a Player yet? Register!</span></p>
+    </div>
+</div>
