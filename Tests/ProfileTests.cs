@@ -86,7 +86,7 @@ public class ProfileTest
         // Then
         ProfileServices service = new ProfileServices(p.Object);
 
-        Assert.ThrowsAsync<InvalidInputException>(() => service.CreateProfile(falseProfile));  
+        await Assert.ThrowsAsync<InvalidInputException>(() => service.CreateProfile(falseProfile));  
     }
         [Fact]
     public async Task FailToUpdateProfile()
