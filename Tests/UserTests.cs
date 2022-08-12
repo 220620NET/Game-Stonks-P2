@@ -42,7 +42,7 @@ public class UserTesting
     }  
 
     // GetUserById = Pass
-    /*
+
     [Fact]
     public async Task GetUserById()
     {
@@ -62,10 +62,10 @@ public class UserTesting
         await Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetUserById(2));  
     }
 
-    */
+
     // GetUserById = Fail
     
-    /*
+
     [Fact]
     public async Task WrongUserId()
     {
@@ -82,9 +82,7 @@ public class UserTesting
         UserServices service = new UserServices(UserRepo.Object);
         await Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetUserById(2));  
     }
-    */
 
-    /*
     // UpdateUser = Pass
     [Fact]
     public async Task SucceedToUpdateUser()
@@ -110,9 +108,7 @@ public class UserTesting
         var result = await service.UpdateUser(toUpdate);
         Assert.Equal(result, true);  
     }
-    */
 
-    /*
     // UpdateUser = Fail
     [Fact]
     public async Task FailToUpdateUser()
@@ -137,9 +133,7 @@ public class UserTesting
         UserServices service = new UserServices(UserRepo.Object);
         await Assert.ThrowsAsync<InvalidInputException>(() => service.CreateUser(toUpdate));  
     }
-    */
 
-    /*
     // GetUserByEmail = Pass
     [Fact]
     public async Task GetUserByEmail()
@@ -161,9 +155,7 @@ public class UserTesting
         
         Assert.Equal(newUser.Email,existingUser.Email); 
     }
-    */
 
-    /*
     // GetUserById = Fail    
     [Fact]
     public async Task WrongOrNoUserEmail()
@@ -182,5 +174,5 @@ public class UserTesting
         
         await Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetUserByEmail("autumn@gmail.wrong"));  
     }    
-    */
+
 }
