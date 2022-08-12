@@ -40,7 +40,7 @@ public class WalletTesting
 
         WalletServices service = new WalletServices(walletRepo.Object);
 
-        Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetAllWalletsByUserId(2));  
+        await Assert.ThrowsAsync<RecordNotFoundException>(() => service.GetAllWalletsByUserId(2));  
     }
     [Fact]
     public async Task InvalidCreateWallet()
@@ -68,7 +68,7 @@ public class WalletTesting
         // Then
         WalletServices service = new WalletServices(walletRepo.Object);
 
-        Assert.ThrowsAsync<InvalidInputException>(() => service.CreateWallet(falseWallet));  
+        await Assert.ThrowsAsync<InvalidInputException>(() => service.CreateWallet(falseWallet));  
     }
         [Fact]
     public async Task FailToUpdateWallet()
@@ -96,7 +96,7 @@ public class WalletTesting
         // Then
         WalletServices service = new WalletServices(walletRepo.Object);
 
-        Assert.ThrowsAsync<InvalidInputException>(() => service.CreateWallet(toUpdate));  
+        await Assert.ThrowsAsync<InvalidInputException>(() => service.CreateWallet(toUpdate));  
         // INF loop somewhere!!!
     }
 }

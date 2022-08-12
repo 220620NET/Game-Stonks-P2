@@ -42,7 +42,7 @@ public class AuthServices
         try
         {
             user = await _user.GetUserById(userID);
-            if(user.UserId == null)
+            if(user.Email == null)
             {
                 throw new ResourceNotFoundException();
             }
@@ -68,9 +68,9 @@ public class AuthServices
     {
         try
         {
-            User attempt = await _user.GetUserById(newUser.UserId);
+            User attempt = await _user.GetUserByEmail(newUser.Email);
             
-            if(attempt.UserId == newUser.UserId)
+            if(attempt.Email == newUser.Email)
             {
                 throw new DuplicateRecordException();
             }

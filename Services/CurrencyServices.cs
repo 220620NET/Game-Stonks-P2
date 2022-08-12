@@ -27,7 +27,7 @@ public class CurrencyServices
     {
         try
         {
-            return await GetCurrencyById(currency_id);   
+            return await _repo.GetCurrencyById(currency_id);   
         }
         catch (RecordNotFoundException)
         {
@@ -38,7 +38,7 @@ public class CurrencyServices
     {
         try
         {
-            return await GetCurrencyBySymbol(symbol);
+            return await _repo.GetCurrencyBySymbol(symbol);
         }
         catch (InvalidInputException)
         {
@@ -49,7 +49,7 @@ public class CurrencyServices
     {
         try
         {
-            return await CreateCurrency(currency);
+            return await _repo.CreateCurrency(currency);
         }
         catch (InvalidInputException)
         {
@@ -60,7 +60,7 @@ public class CurrencyServices
     {
         try
         {
-            return await UpdateCurrency(currency);
+            return await _repo.UpdateCurrency(currency);
         }
         catch (InvalidInputException)
         { 
