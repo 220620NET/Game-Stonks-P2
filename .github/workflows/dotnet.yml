@@ -44,13 +44,15 @@ jobs:
       run: dotnet restore Game-Stonks-P2.sln
     - name: Test 
       run: dotnet test Tests/Tests.csproj --verbosity normal --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-    - name: Build and analyze
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      shell: powershell
-      run: |
-        .\.sonar\scanner\dotnet-sonarscanner begin /k:"220620NET_Game-Stonks-P2" /o:"220620net" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-        dotnet build --no-restore WebAPI\WebAPI.csproj
-        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+    - name: Build
+      run: dotnet build --no-restore WebAPI/WebAPI.csproj
+    # - name: Build and analyze
+    #   env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+    #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #   shell: powershell
+    #   run: |
+    #     .\.sonar\scanner\dotnet-sonarscanner begin /k:"220620NET_Game-Stonks-P2" /o:"220620net" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+    #     dotnet build --no-restore WebAPI\WebAPI.csproj
+    #     .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
     
