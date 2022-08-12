@@ -42,7 +42,7 @@ public class TransactionTest
 
         TransactionServices service = new TransactionServices(mockedRepo.Object);
 
-        await Assert.ThrowsAsync<RecordNotFoundException>(async () => await service.GetTransactionById(3));  
+        await Assert.ThrowsAsync<RecordNotFoundException>(async () => await service.GetTransactionById(2));  
     }
     [Fact]
     public async Task WrongTransactionsByWalletId()
@@ -86,68 +86,68 @@ public class TransactionTest
 
         await Assert.ThrowsAsync<RecordNotFoundException>(async () => await service.GetAllTransactionsByCurrencyId(2));  
     }
-    [Fact]
-    public async Task InvalidCreateTransaction()
-    {
-        // Given
-        var mockedRepo = new Mock<ITransactionDAO>();
+    // [Fact]
+    // public async Task InvalidCreateTransaction()
+    // {
+    //     // Given
+    //     var mockedRepo = new Mock<ITransactionDAO>();
 
-        Transaction newTransaction = new Transaction {
-            TransactionId = 1,
-            WalletIdFk = 1,
-            CurrencyIdFk = 1,
-            TransactionType = "Buy",
-            TransactionValue = 1000,
-            TransactionTime = DateTime.Now
-        };
+    //     Transaction newTransaction = new Transaction {
+    //         TransactionId = 1,
+    //         WalletIdFk = 1,
+    //         CurrencyIdFk = 1,
+    //         TransactionType = "Buy",
+    //         TransactionValue = 1000,
+    //         TransactionTime = DateTime.Now
+    //     };
 
-        Transaction badTransaction = new Transaction {
-            TransactionId = 1,
-            WalletIdFk = 1,
-            CurrencyIdFk = 1,
-            TransactionType = "Buy",
-            TransactionValue = 100, //different line
-            TransactionTime = DateTime.Now
-        };
+    //     Transaction badTransaction = new Transaction {
+    //         TransactionId = 1,
+    //         WalletIdFk = 1,
+    //         CurrencyIdFk = 1,
+    //         TransactionType = "Buy",
+    //         TransactionValue = 100, //different line
+    //         TransactionTime = DateTime.Now
+    //     };
     
-        // When
-        mockedRepo.Setup( repo => repo.CreateTransaction(newTransaction)).ReturnsAsync(true);
-        mockedRepo.Setup( repo => repo.CreateTransaction(badTransaction)).ThrowsAsync(new ResourceNotFoundException());
-        // Then
-        TransactionServices service = new TransactionServices(mockedRepo.Object);
+    //     // When
+    //     mockedRepo.Setup( repo => repo.CreateTransaction(newTransaction)).ReturnsAsync(true);
+    //     mockedRepo.Setup( repo => repo.CreateTransaction(badTransaction)).ThrowsAsync(new ResourceNotFoundException());
+    //     // Then
+    //     TransactionServices service = new TransactionServices(mockedRepo.Object);
 
-        await Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.CreateTransaction(badTransaction));  
-    }
-    [Fact]
-    public async Task InvalidUpdateWallet()
-    {
-        // Given
-        var mockedRepo = new Mock<ITransactionDAO>();
+    //     await Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.CreateTransaction(badTransaction));  
+    // }
+    // [Fact]
+    // public async Task InvalidUpdateWallet()
+    // {
+    //     // Given
+    //     var mockedRepo = new Mock<ITransactionDAO>();
 
-        Transaction newTransaction = new Transaction {
-            TransactionId = 1,
-            WalletIdFk = 1,
-            CurrencyIdFk = 1,
-            TransactionType = "Buy",
-            TransactionValue = 1000,
-            TransactionTime = DateTime.Now
-        };
+    //     Transaction newTransaction = new Transaction {
+    //         TransactionId = 1,
+    //         WalletIdFk = 1,
+    //         CurrencyIdFk = 1,
+    //         TransactionType = "Buy",
+    //         TransactionValue = 1000,
+    //         TransactionTime = DateTime.Now
+    //     };
 
-        Transaction badTransaction = new Transaction {
-            TransactionId = 1,
-            WalletIdFk = 1,
-            CurrencyIdFk = 1,
-            TransactionType = "Buy",
-            TransactionValue = 100, //different line
-            TransactionTime = DateTime.Now
-        };
+    //     Transaction badTransaction = new Transaction {
+    //         TransactionId = 1,
+    //         WalletIdFk = 1,
+    //         CurrencyIdFk = 1,
+    //         TransactionType = "Buy",
+    //         TransactionValue = 100, //different line
+    //         TransactionTime = DateTime.Now
+    //     };
     
-        // When
-        mockedRepo.Setup( repo => repo.CreateTransaction(newTransaction)).ReturnsAsync(true);
-        mockedRepo.Setup( repo => repo.CreateTransaction(badTransaction)).ThrowsAsync(new ResourceNotFoundException());
-        // Then
-        TransactionServices service = new TransactionServices(mockedRepo.Object);
+    //     // When
+    //     mockedRepo.Setup( repo => repo.CreateTransaction(newTransaction)).ReturnsAsync(true);
+    //     mockedRepo.Setup( repo => repo.CreateTransaction(badTransaction)).ThrowsAsync(new ResourceNotFoundException());
+    //     // Then
+    //     TransactionServices service = new TransactionServices(mockedRepo.Object);
 
-        await Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.UpdateTransaction(badTransaction));  
-    }
+    //     await Assert.ThrowsAsync<ResourceNotFoundException>(async () => await service.UpdateTransaction(badTransaction));  
+    // }
 }

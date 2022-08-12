@@ -144,13 +144,13 @@ public class UserTesting
         var UserRepo = new Mock<IUserDAO>();
         // I can't tell from Models what should go here
 
-        User newUser = new User{
+        User newUser = new User {
             UserId = 2,                 // correct userId
             Email = "autumn@gmail.com",   // email valid
         };
 
         UserRepo.Setup( repo =>  repo.CreateUser(newUser)).ReturnsAsync(newUser);
-        UserRepo.Setup( repo => repo.GetUserByEmail("autumn@gmail.com")).ThrowsAsync(new RecordNotFoundException());
+        UserRepo.Setup( repo => repo.GetUserByEmail("autumn@gmail.com")).ReturnsAsync(newUser);
         
         UserServices service = new UserServices(UserRepo.Object);
         

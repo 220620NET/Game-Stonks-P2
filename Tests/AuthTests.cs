@@ -32,70 +32,71 @@ public class AuthServicessTesting
 {
 
     // Registration = Success
-    [Fact]
-    public async Task CreatingNonExistentUser()
-    {
-        // Arrange
-        var mockedRepo = new Mock<IUserDAO>();
+    // [Fact]
+    // public async Task CreatingNonExistentUser()
+    // {
+    //     // Arrange
+    //     var mockedRepo = new Mock<IUserDAO>();
         
-        User userToAdd = new User{
-            UserId = 123,
-            Email = "correct@gmail.com",
-            Password = "itsokay"
-        };
+    //     User userToAdd = new User{
+    //         UserId = 123,
+    //         Email = "correct@gmail.com",
+    //         Password = "itsokay"
+    //     };
 
-        User userToReturn = new User{
-            UserId = 123,
-            Email = "correct@gmail.com",
-            Password = "itsokay"
-        };
+    //     User userToReturn = new User{
+    //         UserId = 123,
+    //         Email = "correct@gmail.com",
+    //         Password = "itsokay"
+    //     };
 
-        mockedRepo.Setup( repo => repo.CreateUser(userToAdd)).ReturnsAsync(userToAdd);
-        mockedRepo.Setup( repo => repo.GetUserById(userToAdd.UserId)).ReturnsAsync(userToReturn);
+    //     mockedRepo.Setup( repo => repo.CreateUser(userToAdd)).ReturnsAsync(userToAdd);
+    //     mockedRepo.Setup( repo => repo.GetUserById(userToReturn.UserId)).ReturnsAsync(userToReturn);
 
-        AuthServices service = new AuthServices(mockedRepo.Object);
+    //     AuthServices service = new AuthServices(mockedRepo.Object);
 
-        //Act
-        User returneduser = await service.Register(userToAdd);
+    //     //Act
+    //     User returneduser = await service.Register(userToAdd);
 
-        //Assert (Verification)
-        // mockedRepo.Verify(repo => repo.CreateUser(userToAdd), Times.Once());
-        // mockedRepo.Verify(repo => repo.GetUserById(userToAdd.UserId), Times.Once());
+    //     // Assert (Verification)
+    //     mockedRepo.Verify(repo => repo.CreateUser(userToAdd), Times.Once());
+    //     mockedRepo.Verify(repo => repo.GetUserById(userToAdd.UserId), Times.Once());
 
-        //Verifying that the returned result is the same as what we've sent as well as what we've had the mock repository to respond with
-        Assert.NotNull(returneduser);
-        Assert.Equal(returneduser.UserId, userToReturn.UserId);
-        Assert.Equal(returneduser.UserId, userToAdd.UserId);
-    }
+    //     // Verifying that the returned result is the same as what we've sent as well as what we've had the mock repository to respond with
+    //     Assert.NotNull(returneduser);
+    //     Assert.Equal(returneduser.UserId, userToReturn.UserId);
+    //     Assert.Equal(returneduser, userToReturn);
+    // }
 
     // Registration = failure
-    [Fact]
-    public void AttemptingToRegisterExistingUser()
-    {
-        // Arrange
-        var mockedRepo = new Mock<IUserDAO>();
-        //fixing a this to a certain date time so our User objects can all use this. 
-        DateTime now = DateTime.Now;
+    // [Fact]
+    // public void AttemptingToRegisterExistingUser()
+    // {
+    //     // Arrange
+    //     var mockedRepo = new Mock<IUserDAO>();
+    //     //fixing a this to a certain date time so our User objects can all use this. 
+    //     DateTime now = DateTime.Now;
 
-        User userToAdd = new User{
-            UserId = 1,
-            Email = "barbara@gordon.com",
-        };
+    //     User userToAdd = new User{
+    //         UserId = 1,
+    //         Email = "barbara@gordon.com",
+    //     };
 
-        User userToReturn = new User{
-            UserId = 1,
-            Email = "barbara@gordon.com",
-        };
+    //     User userToReturn = new User{
+    //         UserId = 1,
+    //         Email = "barbara@gordon.com",
+    //     };
 
-        mockedRepo.Setup(repo => repo.GetUserById(userToAdd.UserId)).ReturnsAsync(userToReturn);
+    //     mockedRepo.Setup( repo => repo.CreateUser(userToAdd)).ReturnsAsync(userToAdd);
+    //     mockedRepo.Setup(repo => repo.GetUserById(1)).ReturnsAsync(userToReturn);
 
-        AuthServices service = new AuthServices(mockedRepo.Object);
+    //     AuthServices service = new AuthServices(mockedRepo.Object);
 
-        //Act + Assert (Verification)
-        Assert.ThrowsAsync<DuplicateRecordException>(() => service.Register(userToAdd));
-        
-        mockedRepo.Verify(repo => repo.GetUserById(userToAdd.UserId), Times.Once());
-    }
+    //     //Act + Assert (Verification)
+    //     mockedRepo.Verify(repo => repo.GetUserById(1), Times.Once());
+
+    //     Assert.ThrowsAsync<DuplicateRecordException>(() => service.Register(userToAdd));
+    // }
 
     // LogIn User Fail -- wrong password
     [Fact]
