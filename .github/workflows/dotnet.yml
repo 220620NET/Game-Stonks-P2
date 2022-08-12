@@ -43,8 +43,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore Game-Stonks-P2.sln
     - name: Test
-      run: dotnet test Tests\Tests.csproj --verbosity normal --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-      #--logger trx 
+      
+      run: dotnet test Tests\Tests.csproj --verbosity normal --logger trx -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+      #--collect:"XPlat Code Coverage"
     - name: Build and analyze
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
