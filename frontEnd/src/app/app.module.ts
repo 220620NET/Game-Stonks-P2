@@ -10,6 +10,7 @@ import { DashBoardComponent } from './dash-board/dash-board.component';
 @NgModule({
   declarations: [
     AppComponent,
+    DashBoardComponent
   ],
   imports: [
     BrowserModule,
