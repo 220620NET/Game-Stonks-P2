@@ -9,7 +9,6 @@ import { SessionStorage, SessionStorageService } from 'angular-web-storage';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private auth:AuthService, private router : Router, private api : PokeApiService) { }
   
   username : FormControl = new FormControl('', [
     Validators.required
@@ -69,10 +68,8 @@ export class LoginComponent implements OnInit {
   
   constructor(private http: HttpClient, session: SessionStorageService) {
 
-}
-
-  ngOnInit(): void {
-
   }
+
+
 
 }

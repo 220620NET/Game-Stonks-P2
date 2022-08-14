@@ -7,13 +7,15 @@ import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularWebStorageModule } from 'angular-web-storage';
-import { LoginComponent } from './login/login.component';
+//import { LoginComponent } from './login/login.component';
 import { SessionStorageService } from 'angular-web-storage';
+import { DashBoardComponent } from './dash-board/dash-board.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    //LoginComponent,
+    DashBoardComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,7 @@ import { SessionStorageService } from 'angular-web-storage';
     ReactiveFormsModule,
     HttpClientModule,
     AngularWebStorageModule,
-    SessionStorageService
+    //SessionStorageService
   ],
   providers: [],
   bootstrap: [AppComponent]

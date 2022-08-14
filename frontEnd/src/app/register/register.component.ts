@@ -9,7 +9,7 @@ import { SessionStorageService } from 'angular-web-storage';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   password: FormControl = new FormControl('');
   email: FormControl = new FormControl('');
@@ -46,7 +46,5 @@ export class RegisterComponent implements OnInit {
   }
   constructor(private http: HttpClient, private session: SessionStorageService) { }
 
-  ngOnInit(): void {
-  }
 
 }

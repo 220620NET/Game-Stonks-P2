@@ -11,7 +11,7 @@
             <input type="password" name="password" id="password" [formControl] = "password">
         </div>
         <div class="form-group" *ngIf="mode === 'register'">
-            <button type="submit" class="btn btn-primary login-btn" (click)="registerHandler()">Register!</button>
+            <button type="submit" class="btn btn-primary register-btn" (click)="registerHandler()">Register!</button>
         </div>
         <div class="form-group" *ngIf="mode === 'login'">
             <button type="submit" class="btn btn-primary login-btn" (click)="loginHandler()">Log In!</button>
