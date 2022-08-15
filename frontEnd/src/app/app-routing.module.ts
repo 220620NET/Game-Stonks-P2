@@ -1,24 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
-  // KEVION
-
-
-  // CHRIS
-
-
-  // AUTUMN
-
-
-  // ELIZBETH
-
-
-  // KISHAN
-
-
-
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
