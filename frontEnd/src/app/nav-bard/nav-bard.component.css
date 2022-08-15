@@ -62,15 +62,18 @@
 .navbar:hover .text {
     display: block;
 }
-.navbar :last-child{
+.navbar ul:last-child{
     margin-top: auto;
+}
+.dm{
+    margin-bottom: 10px;
+    padding-right: 30px;
 }
 .switch {
 position: relative;
 display: inline-block;
 width: 60px;
 height: 34px;
-margin-bottom: 10px;
 }
 
 .switch input { 
