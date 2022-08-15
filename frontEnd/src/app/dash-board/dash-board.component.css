@@ -7,12 +7,13 @@
 }
 html{
     width: fit-content;
+    height: fit-content;
     margin: 0px;
     padding: 0px;
 }
 body {
-    width: 100vw;
-    height: 180vh;
+    width: 98vw;
+    height: fit-content;
     background-color: #edf0f1;
 }
 
@@ -54,9 +55,10 @@ header button:hover{
     justify-content: space-between;
 }
 .center{
+    position:static ;
     height:fit-content;
     margin-top: 3vh;
-    margin-left: 10vw;
+    margin-left: -5vw;
     width: 60vw;
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 15px;
@@ -88,7 +90,7 @@ header button:hover{
     background-color: rgba(255, 255, 255, 0.6);
     margin-top: 3vh;
     margin-right: 1vw;
-    width: 300px;
+    min-width: 300px;
     height: 500px;
     position: -webkit-sticky;
     position: sticky;
@@ -104,4 +106,6 @@ header button:hover{
     position: sticky;
     top: 20px;
     float: left;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }

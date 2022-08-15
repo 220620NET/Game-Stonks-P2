@@ -7,12 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularWebStorageModule } from 'angular-web-storage';
 import { SessionStorageService } from 'angular-web-storage';
 import { DashBoardComponent } from './dash-board/dash-board.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavBardComponent } from './nav-bard/nav-bard.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashBoardComponent,
-    NavBarComponent
+    NavBardComponent
   ],
   imports: [
     BrowserModule,
