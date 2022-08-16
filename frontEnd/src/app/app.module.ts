@@ -11,11 +11,13 @@ import { MatWalletViewComponent } from './mat-wallet-view/mat-wallet-view.compon
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { TransactionComponentComponent } from './transaction-component/transaction-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MatWalletViewComponent
+    MatWalletViewComponent,
+    TransactionComponentComponent
   ],
   imports: [
     BrowserModule,
