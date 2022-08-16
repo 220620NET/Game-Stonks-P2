@@ -9,4 +9,13 @@ export class DashBoardComponent{
 
   constructor() { }
 
+  contents: any = {
+    'CryptoCurrency' : 'CryptoCurrency',
+    'Leaderboard' : 'Leaderboard',
+    'Wallet' : 'Wallet'
+  }
+  content : string = 'CryptoCurrency';
+  switchContent(content: string) : void {
+    this.content = content;
+  }
 }

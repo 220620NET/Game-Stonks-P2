@@ -20,11 +20,14 @@
         </aside>
         <div class="center">
             <nav>
-                <button>CryptoCurrency</button>
-                <button>Leaderboard</button>
-                <button>Wallet</button>
+                <button (click)="switchContent(CryptoCurrency)">CryptoCurrency</button>
+                <button (click)="switchContent(Leaderboard)">Leaderboard</button>
+                <button (click)="switchContent(Wallet)">Wallet</button>
             </nav>
             <div class="imported_content">
+                <div *ngIf="content === 'CryptoCurrency'">placeholder for CryptoCurrency</div>
+                <div *ngIf="content === 'Leaderboard'">placeholder for Leaderboard</div>
+                <div *ngIf="content === 'Wallet'">placeholder for Wallet</div>
             </div>
         </div>
         <aside class="transaction-module">
