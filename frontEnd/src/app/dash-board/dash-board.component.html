@@ -20,9 +20,9 @@
         </aside>
         <div class="center">
             <nav>
-                <button (click)="switchContent(CryptoCurrency)">CryptoCurrency</button>
-                <button (click)="switchContent(Leaderboard)">Leaderboard</button>
-                <button (click)="switchContent(Wallet)">Wallet</button>
+                <button (click)="switchContent('CryptoCurrency')">CryptoCurrency</button>
+                <button (click)="switchContent('Leaderboard')">Leaderboard</button>
+                <button (click)="switchContent('Wallet')">Wallet</button>
             </nav>
             <div class="imported_content">
                 <div *ngIf="content === 'CryptoCurrency'">placeholder for CryptoCurrency</div>

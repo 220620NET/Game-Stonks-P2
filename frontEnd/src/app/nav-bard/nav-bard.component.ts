@@ -1,4 +1,5 @@
 import { Component} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bard',
@@ -7,6 +8,6 @@ import { Component} from '@angular/core';
 })
 export class NavBardComponent {
 
-  constructor() { }
+  constructor(public router: Router) { }
 
 }
