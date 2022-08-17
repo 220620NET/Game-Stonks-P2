@@ -22,7 +22,10 @@ export class ProfileComponent implements OnInit {
   // email: string = this.currentUser.Email;
   imageId: number = 1;
   images: string[] =["../../assets/person-outline.svg","../../assets/sid.png",];
-
+  setImage(imgId:number) {
+    this.session.set('imgId', imgId);
+    this.imageId = imgId;
+  }
   // get() {
   //   this.currentUser = this.session.get(this.currentUser)
   // }
