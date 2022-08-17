@@ -12,53 +12,26 @@ public class AuthServices
     {
         _user = userDao;
     }
-    // public async Task<User> Register(User findUser)
-    // {
-    //     try
-    //     {
-    //         await _userdao.GetUserByEmail(findUser.Email);
-    //         throw new DuplicateRecordException();
-    //     }
-    //     catch
-    //     {
-    //         return _userdao.CreateUser(findUser);
-    //     }
-    // }
+    
     public async Task<User> LogIn(User loginUser)
     {
         try
         {
             User foundUser = await _user.GetUserByEmail(loginUser.Email);
-            return foundUser;
-        }
-        catch(RecordNotFoundException)
-        {
-            throw new InvalidCredentialException();
-        }
-    }
-    public async Task<User> Login(int userID, string Password)
-    {
-        User user;
-        try
-        {
-            user = await _user.GetUserById(userID);
-            if(user.Email == null)
+
+            if(loginUser.Email == null)
             {
                 throw new ResourceNotFoundException();
             }
-            if(user.Password == Password)
+            if(loginUser.Password == foundUser.Password)
             {
-                return user;
+                return loginUser;
             }
             else{
                 throw new InvalidCredentialException();
             }
         }
         catch(RecordNotFoundException)
-        {
-            throw new RecordNotFoundException();
-        }
-        catch(InvalidCredentialException)
         {
             throw new InvalidCredentialException();
         }
