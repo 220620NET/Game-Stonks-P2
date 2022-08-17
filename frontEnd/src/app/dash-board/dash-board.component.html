@@ -27,7 +27,9 @@
             <div class="imported_content">
                 <div *ngIf="content === 'CryptoCurrency'">placeholder for CryptoCurrency</div>
                 <div *ngIf="content === 'Leaderboard'">placeholder for Leaderboard</div>
-                <div *ngIf="content === 'Wallet'">placeholder for Wallet</div>
+                <div *ngIf="content === 'Wallet'">
+                    <app-wallets></app-wallets>
+                </div>
             </div>
         </div>
         <aside class="transaction-module">
