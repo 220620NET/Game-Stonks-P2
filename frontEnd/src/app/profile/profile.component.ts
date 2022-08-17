@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService, SessionStorageService, LocalStorage, SessionStorage } from 'angular-web-storage';
 import { Profile, ProfileService } from '../profile.service';
+import { DashBoardComponent } from '../dash-board/dash-board.component';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -16,16 +18,21 @@ export class ProfileComponent implements OnInit {
     FirstName: '',
     LastName: ''
   };
+
   // fname: string = this.currentProfile.FirstName;
   // lname: string = this.currentProfile.LastName;
   // currentUser: any = null;
   // email: string = this.currentUser.Email;
+
   imageId: number = 1;
   images: string[] =["../../assets/person-outline.svg","../../assets/sid.png",];
-  setImage(imgId:number) {
-    this.session.set('imgId', imgId);
-    this.imageId = imgId;
+  
+  changeImage() {
+    let id: number = Number((<HTMLSelectElement>document.getElementById('imgId')).value);
+    this.session.set('imgId', id);
+    this.imageId = id;
   }
+
   // getUser() {
   //   this.currentUser = this.session.get(this.currentUser)
   // }
