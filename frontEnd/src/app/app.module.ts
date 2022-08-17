@@ -16,6 +16,7 @@ import { WalletsComponent } from './wallets/wallets.component';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import { NavBardComponent } from './nav-bard/nav-bard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { TransactionTableComponent } from './transaction-table/transaction-table.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ProfileComponent } from './profile/profile.component';
     DashBoardComponent,
     NavBardComponent,
     ProfileComponent,
+    TransactionTableComponent,
   ],
   imports: [
     BrowserModule,

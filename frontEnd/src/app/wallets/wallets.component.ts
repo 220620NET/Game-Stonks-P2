@@ -18,7 +18,7 @@ export class WalletsComponent implements OnInit {
 
   wallets: wallet[] = [];
 
-  columnsToDisplay = ['walletId', 'userIdFk', 'currencyIdFk', 'amountCurrency'];
+  columnsToDisplay: string[] = ['walletId', 'userIdFk', 'currencyIdFk', 'amountCurrency'];
 
   expandedWallet!: wallet;
 
