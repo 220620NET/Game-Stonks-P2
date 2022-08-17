@@ -1,6 +1,6 @@
 <table mat-table
        [dataSource]="wallets" multiTemplateDataRows
-       class="mat-elevation-z8">
+       class="mat-elevation-z0">
   <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
     <th mat-header-cell *matHeaderCellDef> {{column}} </th>
     <td mat-cell *matCellDef="let wallet"> {{wallet[column]}} </td>
