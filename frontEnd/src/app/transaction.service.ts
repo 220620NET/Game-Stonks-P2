@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { wallet } from './wallet.service';
 
 export interface transaction {
   transactionId: number;
@@ -16,11 +17,21 @@ export interface transaction {
 })
 export class TransactionService {
 
-  apiUrl = 'https://gamestonks.azurewebsites.net/transaction'
+  apiUrl = 'https://gamestonks.azurewebsites.net/'
 
   constructor(private http: HttpClient) { }
 
   GetTransaction(): Observable<transaction[]> {
-    return this.http.get<transaction[]>(this.apiUrl);
+    return this.http.get<transaction[]>(this.apiUrl + "transactions");
+  }
+
+  GetTransactionbyId( id:number): Observable<transaction>
+  {
+    return this.http.get<transaction>(this.apiUrl + "transactions/" + id) as Observable<transaction>;
+  }
+
+  CreateTransaction( trans:transaction): Observable<transaction>
+  {
+    return this.http.post<transaction>(this.apiUrl + "submit/transactions" , trans) as Observable<transaction>;
   }
 }
