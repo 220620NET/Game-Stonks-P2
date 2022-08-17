@@ -1,0 +1,64 @@
+*{
+    position: relative;
+    z-index: 1 !important;
+}
+.icon-btn{
+    float: right;
+    width: 30px;
+    margin:10px 50px 0px 10px;
+    padding: 0;
+    height:30px;
+    align-items: center;
+}
+.icon-btn img{
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+}
+.card {
+    position:absolute;
+    float: right;
+    display: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 200px;
+    z-index: 1;
+    text-align: center;
+    font-family: arial;
+    background-color: #fff;
+    margin-top: -15px;
+  }
+  
+  .img-container {
+    background-color: lightgrey;
+  }
+.img-container img{
+    margin: 15px;
+}
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+  .icon-btn:hover ~ .card{
+    display: block;
+  }
+  .card:hover{
+    display: block;
+  }
