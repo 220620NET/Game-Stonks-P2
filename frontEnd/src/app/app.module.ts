@@ -4,20 +4,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularWebStorageModule } from 'angular-web-storage';
-import { SessionStorageService } from 'angular-web-storage';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatWalletViewComponent } from './mat-wallet-view/mat-wallet-view.component';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+
 import { TransactionComponentComponent } from './transaction-component/transaction-component.component';
+import { WalletsComponent } from './wallets/wallets.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MatWalletViewComponent,
-    TransactionComponentComponent
+    TransactionComponentComponent,
+    WalletsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,8 +25,6 @@ import { TransactionComponentComponent } from './transaction-component/transacti
     AngularWebStorageModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
     
   ],
   providers: [],
