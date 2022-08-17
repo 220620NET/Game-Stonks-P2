@@ -17,6 +17,7 @@ import { DashBoardComponent } from './dash-board/dash-board.component';
 import { NavBardComponent } from './nav-bard/nav-bard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TransactionTableComponent } from './transaction-table/transaction-table.component';
+import { MarketComponent } from './market/market.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TransactionTableComponent } from './transaction-table/transaction-table
     NavBardComponent,
     ProfileComponent,
     TransactionTableComponent,
+    MarketComponent,
   ],
   imports: [
     BrowserModule,

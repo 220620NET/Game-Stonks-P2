@@ -22,16 +22,16 @@ export class TransactionService {
   constructor(private http: HttpClient) { }
 
   GetTransaction(): Observable<transaction[]> {
-    return this.http.get<transaction[]>(this.apiUrl + "transactions");
+    return this.http.get<transaction[]>(this.apiUrl + "transaction");
   }
 
   GetTransactionbyId( id:number): Observable<transaction>
   {
-    return this.http.get<transaction>(this.apiUrl + "transactions/" + id) as Observable<transaction>;
+    return this.http.get<transaction>(this.apiUrl + "transaction/" + id) as Observable<transaction>;
   }
 
   CreateTransaction( trans:transaction): Observable<transaction>
   {
-    return this.http.post<transaction>(this.apiUrl + "submit/transactions" , trans) as Observable<transaction>;
+    return this.http.post<transaction>(this.apiUrl + "submit/transaction" , trans) as Observable<transaction>;
   }
 }
