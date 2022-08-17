@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
     this.session.set('imgId', imgId);
     this.imageId = imgId;
   }
-  // get() {
+  // getUser() {
   //   this.currentUser = this.session.get(this.currentUser)
   // }
   // GetProfile() : void {
@@ -37,6 +37,8 @@ export class ProfileComponent implements OnInit {
   //   }
   // }
   ngOnInit(): void {
+    // this.getUser();
+    // this.GetProfile();
   }
 
 }
