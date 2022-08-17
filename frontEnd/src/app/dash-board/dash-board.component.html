@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>app-dash-board</title>
+</head>
+<body>
+    <header>
+        <p>Game Stonks</p>
+        <div>
+            <button>Settings</button>
+            <app-profile></app-profile>
+        </div>
+    </header>
+    <div class="content">
+        <aside class="navbar">
+            <app-nav-bard class="navbar"></app-nav-bard>
+        </aside>
+        <div class="center">
+            <nav>
+                <button (click)="switchContent('CryptoCurrency')">CryptoCurrency</button>
+                <button (click)="switchContent('Leaderboard')">Leaderboard</button>
+                <button (click)="switchContent('Wallet')">Wallet</button>
+            </nav>
+            <div class="imported_content">
+                <div *ngIf="content === 'CryptoCurrency'">placeholder for CryptoCurrency</div>
+                <div *ngIf="content === 'Leaderboard'">placeholder for Leaderboard</div>
+                <div *ngIf="content === 'Wallet'">placeholder for Wallet</div>
+            </div>
+        </div>
+        <aside class="transaction-module">
+        </aside>
+    </div>
+
+</body>
+</html>

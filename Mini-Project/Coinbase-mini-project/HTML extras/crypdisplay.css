@@ -24,14 +24,14 @@ nav{
     cursor: pointer;
     margin-left: 10px;
 }
-nav ul{
+nav div{
     flex: 1;
 }
-nav ul li{
+nav div li{
     display: inline-block;
     margin: 5px 20px;
 }
-nav ul li a{
+nav div li a{
     color: #fff;
     text-decoration: none;
 }

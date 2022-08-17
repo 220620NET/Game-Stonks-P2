@@ -14,7 +14,7 @@ export interface wallet {
 })
 export class WalletService {
 
-  apiUrl = 'https://gamestonks.azurewebsites.net/wallet'
+  apiUrl = 'https://gamestonks.azurewebsites.net/profile'
 
   constructor(private http: HttpClient) { }
 
