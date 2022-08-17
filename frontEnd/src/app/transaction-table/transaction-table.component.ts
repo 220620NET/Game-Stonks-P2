@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { transaction, TransactionService } from '../transaction.service';
 
-
 @Component({
   selector: 'app-transaction-table',
   templateUrl: './transaction-table.component.html',
