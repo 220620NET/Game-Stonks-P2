@@ -1,7 +1,7 @@
 <div class="icon-btn">
     <img src={{images[imageId]}} alt="">
 </div>
-<div class="container">
+<div class="container" *ngIf="this.vis===true">
     <div class="img-holder">
         <p>ID: 1</p>
         <img src="../../assets/person-outline.svg">
@@ -28,16 +28,16 @@
         <form action="">
             <label for="imgId">Image ID:</label>
             <select name="imgId" id="imgId" class="form-control">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
+                <option value="0">1</option>
+                <option value="1">2</option>
+                <option value="2">3</option>
+                <option value="3">4</option>
+                <option value="4">5</option>
+                <option value="5">6</option>
+                <option value="6">7</option>
+                <option value="7">8</option>
+                <option value="8">9</option>
+                <option value="9">10</option>
             </select>
         </form>
         <button (click)="changeImage()" class="button">Select</button>
@@ -52,5 +52,5 @@
     <p>Worth?</p>
     <div style="margin: 24px 0;">
     </div>
-    <p><button class="xchng">Change Picture</button></p>
+    <p><button (click)="show()">Change Picture</button></p>
 </div>
