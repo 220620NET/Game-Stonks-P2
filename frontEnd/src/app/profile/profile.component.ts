@@ -38,6 +38,7 @@ export class ProfileComponent implements OnInit {
   getUser() {
     this.currentUser = this.auth.getCurrentUser();
     this.email =this.currentUser.email
+    console.log(this.currentUser)
   }
   ngOnInit(): void {
     this.getUser();

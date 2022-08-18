@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { User, UserService } from '../service/user.service'; 
+import { User } from '../service/user.service'; 
 import { Router } from '@angular/router';
 import { UserApiServiceService } from '../service/user-api-service.service';
 import { AuthService } from '../service/auth.service';
@@ -12,7 +12,7 @@ import { AuthService } from '../service/auth.service';
 })
 export class LoginComponent implements OnInit {
   
-  constructor(private auth: AuthService, private router : Router, private api : UserApiServiceService,private userv: UserService) { }
+  constructor(private auth: AuthService, private router : Router, private api : UserApiServiceService) { }
  
   email : FormControl = new FormControl('');
   password : FormControl = new FormControl('');
@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
       email: this.email.value,
       password: this.password.value,
     };
-    let fakeid: number = userv.getUserByUserId
     if(this.mode == 'login') {
       this.api.login(User).subscribe((res) => {
         if(!res) {

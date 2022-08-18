@@ -26,7 +26,6 @@ export class UserApiServiceService {
     return this.http.get(this.url + `user/id/${userId}`) as Observable<User[]>;
   }
 
-
   
 }
 
