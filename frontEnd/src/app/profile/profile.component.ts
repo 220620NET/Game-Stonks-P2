@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   
 
   currentUser: any = null;
-  email: string = '';
+  email: string = "";
 
   imageId: number = 1;
   images: string[] =["../../assets/person-outline.svg","../../assets/sid.png",];

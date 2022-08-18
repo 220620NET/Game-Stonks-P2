@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { wallet } from './wallet.service';
+import { SessionStorage } from 'angular-web-storage';
+
 
 export interface transaction {
   transactionId: number;
@@ -28,6 +30,11 @@ export class TransactionService {
   GetTransactionbyId( id:number): Observable<transaction>
   {
     return this.http.get<transaction>(this.apiUrl + "transaction/" + id) as Observable<transaction>;
+  }
+
+  GetTransactionbyWalletId( walletId:number): Observable<transaction[]>
+  {
+    return this.http.get<transaction[]>(this.apiUrl + "transaction/wallet/" + walletId) as Observable<transaction[]>;
   }
 
   CreateTransaction( trans:transaction): Observable<transaction>
