@@ -52,9 +52,9 @@ public class UserServices
         {
             return await _userRepo.CreateUser(user);
         }
-        catch(RecordNotFoundException)
+        catch(Exception)
         {
-            throw new RecordNotFoundException();
+            throw;
         }
     }
     public async Task<bool> UpdateUser(User user)
