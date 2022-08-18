@@ -10,7 +10,6 @@
     <header>
         <p>Game Stonks</p>
         <div>
-            <button>Settings</button>
             <app-profile></app-profile>
         </div>
     </header>
@@ -20,14 +19,15 @@
         </aside>
         <div class="center">
             <nav>
-                <button (click)="switchContent('CryptoCurrency')">CryptoCurrency</button>
-                <button (click)="switchContent('Leaderboard')">Leaderboard</button>
-                <button (click)="switchContent('Wallet')">Wallet</button>
+
             </nav>
             <div class="imported_content">
-                <div *ngIf="content === 'CryptoCurrency'"><app-market></app-market></div>
-                <div *ngIf="content === 'Leaderboard'">placeholder for Leaderboard</div>
-                <div *ngIf="content === 'Wallet'">
+                <h1 id="market">Cryptocurrency Market</h1>
+                <div><app-market></app-market></div>
+                <h1 id="leaderboard">Leaderboard</h1>
+                <div>placeholder for Leaderboard</div>
+                <div>
+                    <h1 id="wallet">My Wallet</h1>
                     <app-wallets></app-wallets>
                 </div>
             </div>

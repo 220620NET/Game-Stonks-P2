@@ -83,9 +83,12 @@ header button:hover{
 .imported_content{
     width:60vw;
     height:120vh;
-    background-color: rgba(0, 81, 255, 0.4);
+    background-color: rgba(0, 81, 255, 0);
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
+}
+.imported_content div{
+    margin-bottom: 100px;
 }
 .transaction-module{
     background-color: rgba(255, 255, 255, 0.6);
@@ -110,6 +113,6 @@ header button:hover{
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
-.visable{
-    display: block;
+h1{
+    margin-bottom: 0;
 }
