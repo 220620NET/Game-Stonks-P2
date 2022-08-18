@@ -26,13 +26,16 @@ export class ProfileComponent implements OnInit {
 
   imageId: number = 1;
   images: string[] =["../../assets/person-outline.svg","../../assets/sid.png",];
-  
+  vis: boolean = false;
   changeImage() {
     let id: number = Number((<HTMLSelectElement>document.getElementById('imgId')).value);
     this.session.set('imgId', id);
     this.imageId = id;
+    this.vis = false;
   }
-
+  show() {
+    this.vis = true;
+  }
   // getUser() {
   //   this.currentUser = this.session.get(this.currentUser)
   // }
