@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalStorageService, SessionStorageService, LocalStorage, SessionStorage } from 'angular-web-storage';
+import { AuthService } from '../service/auth.service';
 import { Profile, ProfileService } from '../profile.service';
 import { DashBoardComponent } from '../dash-board/dash-board.component';
+import { FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { ApplicationConfig } from '@angular/platform-browser';
+import { LocalStorageService } from 'angular-web-storage';
+
 
 @Component({
   selector: 'app-profile',
@@ -10,26 +15,20 @@ import { DashBoardComponent } from '../dash-board/dash-board.component';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private local: LocalStorageService, private session: SessionStorageService,private api:ProfileService) { }
+  constructor(private local: LocalStorageService,  private auth: AuthService,private api:ProfileService) {
+   }
   
-  currentProfile : Profile = {
-    ProfileId: NaN,
-    UserIdFk: NaN,
-    FirstName: '',
-    LastName: ''
-  };
 
-  fname: string = this.currentProfile.FirstName;
-  lname: string = this.currentProfile.LastName;
   currentUser: any = null;
-  email: string = this.currentUser.Email;
+  email: string = '';
 
   imageId: number = 1;
   images: string[] =["../../assets/person-outline.svg","../../assets/sid.png",];
   vis: boolean = false;
+
   changeImage() {
     let id: number = Number((<HTMLSelectElement>document.getElementById('imgId')).value);
-    this.session.set('imgId', id);
+    this.local.set('imgId', id);
     this.imageId = id;
     this.vis = false;
   }
@@ -37,18 +36,12 @@ export class ProfileComponent implements OnInit {
     this.vis = true;
   }
   getUser() {
-    this.currentUser = this.session.get(this.currentUser)
-  }
-  GetProfile() : void {
-    if (this.currentUser.UserId){
-      this.api.GetProfileByUserId(this.currentUser.UserId).subscribe((res) => {
-        this.currentProfile = res;
-      })
-    }
+    this.currentUser = this.auth.getCurrentUser();
+    this.email =this.currentUser.email
+    console.log(this.currentUser)
   }
   ngOnInit(): void {
-    // this.getUser();
-    // this.GetProfile();
+    this.getUser();
   }
 
 }

@@ -30,7 +30,7 @@ export class ProfileService {
   CreateProfile(profile : Profile): Observable<Profile> {
     return this.http.post<Profile>(this.apiUrl+'/create/profile', profile) as Observable<Profile>;
   }
-  // UpdateProfile(profile : Profile): Observable<Profile> {
-  //   return this.http.put.<Profile>(this.apiUrl+'/update/profile',profile) as Observable<Profile>;
-  // }
+  UpdateProfile(profile : Profile): Observable<Profile> {
+    return this.http.put<Profile>(this.apiUrl+'/update/profile',profile) as Observable<Profile>;
+  }
 }
