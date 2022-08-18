@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { LocalStorageService } from 'angular-web-storage';
 
   export interface wallet {
     walletId: number;
@@ -26,8 +27,12 @@ export class WalletService {
     return this.http.get<wallet>(this.apiUrl + "wallet/" + id);
   }
 
+  GetWalletsByUserId(userId: number): Observable<wallet[]> {
+    return this.http.get<wallet[]>(this.apiUrl + "wallet/user/" + userId);
+  }
+
   WalletCreate(wallet: wallet): Observable<wallet> {
-    return this.http.post<wallet>(this.apiUrl + "create/wallet", wallet)
+    return this.http.post<wallet>(this.apiUrl + "create/wallet/", wallet)
   }
 
   UpdateWalletBalance(walletId: number, balance: number): void {

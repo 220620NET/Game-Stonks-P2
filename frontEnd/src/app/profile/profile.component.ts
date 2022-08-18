@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   fname: string = this.currentProfile.FirstName;
   lname: string = this.currentProfile.LastName;
   currentUser: any = null;
-  email: string = this.currentUser.Email;
+  email: string = "";
 
   imageId: number = 1;
   images: string[] =["../../assets/person-outline.svg","../../assets/sid.png",];

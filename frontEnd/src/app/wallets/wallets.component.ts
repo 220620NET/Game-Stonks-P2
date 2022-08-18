@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { wallet, WalletService } from '../wallet.service';
+import { User, UserService } from '../service/user.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-wallets',
@@ -22,9 +24,10 @@ export class WalletsComponent implements OnInit {
 
   expandedWallet!: wallet;
 
-  constructor(private walletService: WalletService) { 
-    this.walletService.GetWallets()
-      .subscribe(wallet => this.wallets = wallet);
+  constructor(private walletService: WalletService,private auth: AuthService) { 
+    this.walletService.GetWalletsByUserId(2 ) //HERE!
+      .subscribe(wallets => this.wallets = wallets);
+    
   }
 
   ngOnInit(): void {
