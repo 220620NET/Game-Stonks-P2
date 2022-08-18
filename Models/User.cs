@@ -31,5 +31,16 @@ public class User
         this.Email = Email;
         this.Password = Password;
     }
+
+    /// <summary>
+    /// User constructor.
+    /// </summary>
+    /// <param name="Email">The email for the user acting as username.</param>
+    /// <param name="Password">The password for the user.</param>
+    public User(string Email, string Password)
+    {
+        this.Email = Email;
+        this.Password = Password;
+    }
 }
 
