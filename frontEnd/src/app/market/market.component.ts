@@ -26,15 +26,20 @@ export class MarketComponent implements OnInit {
 
   constructor(private marketDataService: MarketService) { 
   }
-  
-  ngOnInit(): void {
+  priceFetcher(): void{
     this.marketDataService.GetMarketData()
       .subscribe((marketData: marketData[]) => 
       {
-        console.log(marketData)
         this.marketDatas = marketData
       }
       );
+  }
+  timedCount() {
+    setInterval(() => this.priceFetcher(), 30000);
+  }
+  ngOnInit(): void {
+    this.timedCount();
+    this.priceFetcher();
   }
 
 }
