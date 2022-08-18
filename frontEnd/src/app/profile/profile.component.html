@@ -41,13 +41,24 @@
             </select>
         </form>
         <button (click)="changeImage()" class="button">Select</button>
+        <form (ngSubmit)="submitProfile()" formControlName="profilename">
+            <div class="FirstName">
+                <label for="FirstName">First Name</label>
+                <input type="text" id="FirstName" formControlName="FirstName">
+            </div>
+            <div class="LastName">
+                <label for="LastName">Last Name</label>
+                <input type="text" id="LastName" formControlName="LastName">
+            </div>
+            <button type="submit">Update!</button>
+        </form>
     </div>
 </div>  
 <div class="card">
     <div class="img-container">
         <img src={{images[imageId]}} alt="John" style="width:30%">
     </div>
-    <h1>fname lname</h1>
+    <h1>{{fname}} {{lname}}</h1>
     <p class="title">email</p>
     <p>Worth?</p>
     <div style="margin: 24px 0;">
