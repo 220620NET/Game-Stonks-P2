@@ -15,7 +15,7 @@
                 <div><p>Use this form to trade your Cryptocurreny!</p></div>
                 <form>
                     <label class="label2" for="crypto">Select your Cryptocurrency:</label>
-                    <select name="Cryptocurrency" id="crypto" class="form-control">
+                    <select #crypto (change)="selectedCurrency(crypto.value)" name="Cryptocurrency" class="form-control">
                         <option value="BTC">Bitcoin</option>
                         <option value="ETH">Ethereum</option>
                         <option value="USDT">Tether</option>
@@ -37,6 +37,7 @@
                 <div class="row">
                     <br>
                     <section class = "result-container" *ngIf="currencyData">
+                        <h4 id="chosen_currency"> You have chosen {{selectedCrypto}} to transact.</h4>
                         <h4 id="result">Result of Transaction</h4>
                         <h5 id="header1">Cryptocurrency: <span id="result-crypt">{{currencyData.data.base}}</span></h5>
                         

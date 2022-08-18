@@ -28,9 +28,35 @@ export class TransactionComponentComponent implements OnInit {
   walletId:number = 1;
   type:string = "";
   amount:number = 0;
+
+  selectedCrypto = "";
+
+  selectedCurrency(value:string): void{
+    this.selectedCrypto = value;
+  }
+
+  cryptoConverttoId(value:string): number{
+    switch(value)
+    {
+      
+      case 'ETH': {return 2};
+      case 'USDT': {return 3};
+      case 'USDC': {return 4};
+      case 'ETH2': {return 5};
+      case 'DOGE': {return 6};
+      case 'BUSD': {return 7};
+      case 'ADA': {return 8};
+      case 'SOL': {return 9};
+      case 'DOT': {return 10};
+      default:{break;}
+    }
+    return 1;
+  }
   
   buyCrypto(buy:string)
   {
+    this.newTrans.transactionType = "buy";
+    this.newTrans.currencyIdFk = this.cryptoConverttoId(this.selectedCrypto);
     if(this.currentUser.UserId)
     {
       this.api.CreateTransaction(this.newTrans);
@@ -39,6 +65,8 @@ export class TransactionComponentComponent implements OnInit {
 
   sellCrypto(sell:string)
   {
+    this.newTrans.transactionType = "sell";
+    this.newTrans.currencyIdFk = this.cryptoConverttoId(this.selectedCrypto);
     if(this.currentUser.UserId)
     {
       this.api.CreateTransaction(this.newTrans);
@@ -55,7 +83,7 @@ export class TransactionComponentComponent implements OnInit {
     // let cryptotInput = cryptoelem.value;
     if(document)
     {
-      fetch('https://api.coinbase.com/v2/prices/BTC-USD/spot')
+      fetch('https://api.coinbase.com/v2/prices/' + this.selectedCrypto + '-USD/spot')
     .then((response) => response.json()).then((resBody) => {
       console.log(resBody)
         this.currencyData = resBody;
