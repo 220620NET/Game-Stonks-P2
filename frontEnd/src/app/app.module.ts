@@ -18,6 +18,7 @@ import { NavBardComponent } from './nav-bard/nav-bard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TransactionTableComponent } from './transaction-table/transaction-table.component';
 import { MarketComponent } from './market/market.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MarketComponent } from './market/market.component';
     ProfileComponent,
     TransactionTableComponent,
     MarketComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
