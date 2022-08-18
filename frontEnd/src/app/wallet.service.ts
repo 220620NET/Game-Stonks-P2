@@ -14,12 +14,30 @@ export interface wallet {
 })
 export class WalletService {
 
-  apiUrl = 'https://gamestonks.azurewebsites.net/profile'
+  apiUrl = 'https://gamestonks.azurewebsites.net/'
 
   constructor(private http: HttpClient) { }
 
   GetWallets(): Observable<wallet[]> {
-    return this.http.get<wallet[]>(this.apiUrl);
+    return this.http.get<wallet[]>(this.apiUrl + "wallet");
+  }
+
+  GetWalletById(id: number): Observable<wallet> {
+    return this.http.get<wallet>(this.apiUrl + "wallet/" + id);
+  }
+
+  WalletCreate(wallet: wallet): Observable<wallet> {
+    return this.http.post<wallet>(this.apiUrl + "create/wallet", wallet)
+  }
+
+  UpdateWalletBalance(walletId: number, balance: number): void {
+    let getWallet!: wallet;
+
+    this.GetWalletById(walletId).subscribe(wallet => getWallet = wallet);
+
+    getWallet.amountCurrency = getWallet.amountCurrency - balance;
+    
+    this.http.post<wallet>(this.apiUrl + "create/wallet/", getWallet);
   }
 
 }
