@@ -22,14 +22,22 @@ export class WalletService {
     return this.http.get<wallet[]>(this.apiUrl + "wallet");
   }
 
-  GetWalletsById(id: number): Observable<wallet[]> {
-    return this.http.get<wallet[]>(this.apiUrl + "wallet/" + id) as Observable<wallet[]>;
-
+  GetWalletById(id: number): Observable<wallet> {
+    return this.http.get<wallet>(this.apiUrl + "wallet/" + id);
   }
 
-  UpdateWalletBalance(amount: number): boolean {
+  WalletCreate(wallet: wallet): Observable<wallet> {
+    return this.http.post<wallet>(this.apiUrl + "create/wallet", wallet)
+  }
+
+  UpdateWalletBalance(walletId: number, balance: number): void {
+    let getWallet!: wallet;
+
+    this.GetWalletById(walletId).subscribe(wallet => getWallet = wallet);
+
+    getWallet.amountCurrency = getWallet.amountCurrency - balance;
     
-    return false;
+    this.http.post<wallet>(this.apiUrl + "create/wallet/", getWallet);
   }
 
 }
