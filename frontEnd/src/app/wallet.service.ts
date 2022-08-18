@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-  export interface wallet {
-    walletId: number;
-    userIdFk: number;
-    currencyIdFk: number;
-    amountCurrency: number;
-  }
+export interface wallet {
+  walletId: number;
+  userIdFk: number;
+  currencyIdFk: number;
+  amountCurrency: number;
+}
 
 @Injectable({
   providedIn: 'root'
