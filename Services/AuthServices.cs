@@ -45,18 +45,19 @@ public class AuthServices
             
             if(attempt.Email == newUser.Email)
             {
-                throw new DuplicateRecordException();
+                throw new DuplicateRecordException("already exists email");
             }
             else    
             {
+                newUser.UserId = 0;
                 return await _user.CreateUser(newUser);
             }
         }
         catch(DuplicateRecordException)
         {
-            throw new DuplicateRecordException();                
+            throw;
         }
-        catch(ResourceNotFoundException)
+        catch(Exception)
         {
             return await _user.CreateUser(newUser);
         }  

@@ -27,7 +27,7 @@ public class TransactionRepository : ITransactionDAO
     {
         Transaction? foundTransaction = await _context.Transactions.FirstOrDefaultAsync(transaction => transaction.TransactionId == id);
         if(foundTransaction != null) return foundTransaction;
-        throw new RecordNotFoundException();
+        throw new RecordNotFoundException("help");
     }
 
     /// <inheritdoc />

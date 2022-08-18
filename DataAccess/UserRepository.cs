@@ -28,7 +28,7 @@ public class UserRepository : IUserDAO
     {
         User? foundUser = await _context.Users.FirstOrDefaultAsync(user => user.Email == email);
         if(foundUser != null) return foundUser;
-        throw new RecordNotFoundException("could not find the user with such email");
+        throw new RecordNotFoundException("could not find the user with such id");
     }
     public async Task<User> CreateUser(User user)
     {
