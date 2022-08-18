@@ -19,10 +19,10 @@ export class ProfileComponent implements OnInit {
     LastName: ''
   };
 
-  // fname: string = this.currentProfile.FirstName;
-  // lname: string = this.currentProfile.LastName;
-  // currentUser: any = null;
-  // email: string = this.currentUser.Email;
+  fname: string = this.currentProfile.FirstName;
+  lname: string = this.currentProfile.LastName;
+  currentUser: any = null;
+  email: string = this.currentUser.Email;
 
   imageId: number = 1;
   images: string[] =["../../assets/person-outline.svg","../../assets/sid.png",];
@@ -36,16 +36,16 @@ export class ProfileComponent implements OnInit {
   show() {
     this.vis = true;
   }
-  // getUser() {
-  //   this.currentUser = this.session.get(this.currentUser)
-  // }
-  // GetProfile() : void {
-  //   if (this.currentUser.UserId){
-  //     this.api.GetProfileByUserId(this.currentUser.UserId).subscribe((res) => {
-  //       this.currentProfile = res;
-  //     })
-  //   }
-  // }
+  getUser() {
+    this.currentUser = this.session.get(this.currentUser)
+  }
+  GetProfile() : void {
+    if (this.currentUser.UserId){
+      this.api.GetProfileByUserId(this.currentUser.UserId).subscribe((res) => {
+        this.currentProfile = res;
+      })
+    }
+  }
   ngOnInit(): void {
     // this.getUser();
     // this.GetProfile();
