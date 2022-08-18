@@ -15,19 +15,12 @@ import { LocalStorageService } from 'angular-web-storage';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private local: LocalStorageService,  private auth: AuthService,private api:ProfileService) { }
+  constructor(private local: LocalStorageService,  private auth: AuthService,private api:ProfileService) {
+   }
   
-  currentProfile : Profile = {
-    ProfileId: NaN,
-    UserIdFk: NaN,
-    FirstName: '',
-    LastName: ''
-  };
 
-  fname: string = this.currentProfile.FirstName;
-  lname: string = this.currentProfile.LastName;
   currentUser: any = null;
-  email: string = this.currentUser.Email;
+  email: string = '';
 
   imageId: number = 1;
   images: string[] =["../../assets/person-outline.svg","../../assets/sid.png",];
@@ -43,14 +36,8 @@ export class ProfileComponent implements OnInit {
     this.vis = true;
   }
   getUser() {
-    this.currentUser = this.session.get(this.currentUser)
-  }
-  GetProfile() : void {
-    if (this.currentUser.UserId){
-      this.api.GetProfileByUserId(this.currentUser.UserId).subscribe((res) => {
-        this.currentProfile = res;
-      })
-    }
+    this.currentUser = this.auth.getCurrentUser();
+    this.email =this.currentUser.email
   }
   ngOnInit(): void {
     this.getUser();
