@@ -25,7 +25,7 @@ public class AuthServices
             }
             if(loginUser.Password == foundUser.Password)
             {
-                return loginUser;
+                return foundUser;
             }
             else{
                 throw new InvalidCredentialException();
