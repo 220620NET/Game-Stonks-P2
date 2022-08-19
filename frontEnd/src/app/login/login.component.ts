@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { User } from '../service/user.service'; 
+import { User, UserService } from '../service/user.service'; 
 import { Router } from '@angular/router';
 import { UserApiServiceService } from '../service/user-api-service.service';
 import { AuthService } from '../service/auth.service';
@@ -12,10 +12,15 @@ import { AuthService } from '../service/auth.service';
 })
 export class LoginComponent implements OnInit {
   
-  constructor(private auth: AuthService, private router : Router, private api : UserApiServiceService) { }
+  newUserId: number = 13;
+
+  constructor(private auth: AuthService, private router: Router, private api: UserApiServiceService, private userService: UserService) {
+    this.userService.getUserEmail(this.email.value) //HERE!
+      .subscribe(user => this.newUserId = user.userId);
+  }
  
   email : FormControl = new FormControl('');
-  password : FormControl = new FormControl('');
+  password: FormControl = new FormControl('');
 
   
   mode : string = 'login';
@@ -33,7 +38,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     let User : User = {
-      userId: 0,
+      userId: this.newUserId,
       email: this.email.value,
       password: this.password.value,
     };
@@ -43,6 +48,7 @@ export class LoginComponent implements OnInit {
           this.loginFailed = true;
         }
         this.auth.setCurrentUser(res as User);
+        console.log(res.userId);
         this.router.navigateByUrl('/main');
       })
     }

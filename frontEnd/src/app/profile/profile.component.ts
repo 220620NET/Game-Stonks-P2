@@ -15,9 +15,7 @@ import { LocalStorageService } from 'angular-web-storage';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private local: LocalStorageService,  private auth: AuthService,private api:ProfileService) {
-   }
-  
+  constructor(private local: LocalStorageService,  private auth: AuthService,private api:ProfileService) { }
 
   currentUser: any = null;
   email: string = "";

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface User {
   userId: number;
@@ -19,7 +20,9 @@ export class UserService {
   apiUrl = 'https://gamestonks.azurewebsites.net/'
 
   constructor(private http: HttpClient) { }
-
-  newUser!: User;
+  
+  getUserEmail(email: string): Observable<User> {
+    return this.http.get<User>(this.apiUrl + "user/email/" + email);
+  }
 
 }

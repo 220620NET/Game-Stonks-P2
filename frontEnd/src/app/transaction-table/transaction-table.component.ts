@@ -14,13 +14,12 @@ export class TransactionTableComponent implements OnInit {
 
   transactions: transaction[] = [];
 
-  user: User = this.auth.getCurrentUser();
-
+  fdsf: number = 1;
   columnsToDisplay: string[] = ['transactionId', 'walletIdFk', 'currencyIdFk', 'transactionType', 'transactionValue', 'transactionTime'];
 
   constructor(private transactionService: TransactionService, private auth: AuthService, private api: UserApiServiceService) { 
-    this.transactionService.GetTransactionbyWalletId(2) //HERE!
-      .subscribe(transaction => this.transactions = transaction)
+    this.transactionService.GetTransactionbyWalletId(this.fdsf) //HERE!
+      .subscribe(transaction => this.transactions = transaction);
   }
 
   ngOnInit(): void {

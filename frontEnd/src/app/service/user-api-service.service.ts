@@ -26,13 +26,13 @@ export class UserApiServiceService {
     return this.http.get(this.url + `user/id/${userId}`) as Observable<User[]>;
   }
 
-  newUser!: User;
+  // newUser!: User;
 
-  getUserIdByEmail(email: string): number {
-    let user: Observable<User> = this.http.get<User>(this.url + "user/email/" + email);
-    user.subscribe(user => this.newUser = user)
-    return this.newUser.userId;
-  }
+  // getUserIdByEmail(email: string): number {
+  //   let user: Observable<User> = this.http.get<User>(this.url + "user/email/" + email);
+  //   user.subscribe(user => this.newUser = user)
+  //   return this.newUser.userId;
+  // }
 
 
   

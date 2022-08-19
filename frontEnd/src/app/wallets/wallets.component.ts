@@ -25,7 +25,7 @@ export class WalletsComponent implements OnInit {
   expandedWallet!: wallet;
 
   constructor(private walletService: WalletService,private auth: AuthService) { 
-    this.walletService.GetWalletsByUserId(2 ) //HERE!
+    this.walletService.GetWalletsByUserId(this.auth.getCurrentUser().userId) //HERE!
       .subscribe(wallets => this.wallets = wallets);
     
   }
