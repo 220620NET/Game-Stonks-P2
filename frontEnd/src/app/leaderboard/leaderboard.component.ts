@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-leaderboard',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeaderboardComponent implements OnInit {
 
-  constructor() { }
-  email = 'hello'
+  constructor(private auth: AuthService) { }
+  currentUser : any = null;
+  email : string = '';
+  getUser() {
+    this.currentUser = this.auth.getCurrentUser();
+    this.email =this.currentUser.email
+  }
+
   ngOnInit(): void {
+    this.getUser
   }
 
 }
