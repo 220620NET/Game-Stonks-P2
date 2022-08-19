@@ -29,8 +29,10 @@
                     </select>
                 </form>
                 <div>
-                    <button type="button" class="btn btn-secondary" id="buybttn" (click)="buyCrypto('buy')" class="button">Buy</button>
-                    <button type="button" class="btn btn-secondary" id="sellbttn" (click)="sellCrypto('sell')" class="button">Sell</button>
+                    <!-- <button type="button" class="btn btn-secondary" id="buybttn" (click)="buyCrypto('buy')" class="button">Buy</button> -->
+                    <button type="button" class="btn btn-secondary" id="buybttn" (click)="apicall()" class="button">Buy</button>
+                    <!-- <button type="button" class="btn btn-secondary" id="sellbttn" (click)="sellCrypto('sell')" class="button">Sell</button> -->
+                    <button type="button" class="btn btn-secondary" id="sellbttn" (click)="apicall()" class="button">Sell</button>
                     <button type="button" class="btn btn-secondary" id="sell3bttn" (click)="apicall()" class="button">Test API call</button>
     <!-- document.getElementById('crypto').value -->
                 </div>

@@ -17,8 +17,8 @@ import { marketData, MarketService } from '../market.service';
 export class MarketComponent implements OnInit {
 
   marketDatas: marketData[] = [];
-
   columnsToDisplay: string[] = ['base', 'currency', 'amount'];
+  columnsToDisplayi: string[] = ['CryptoCurrency', 'Fiat Currency', 'amount'];
 
   expandedData!: marketData;
 

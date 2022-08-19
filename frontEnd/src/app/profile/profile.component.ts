@@ -22,8 +22,8 @@ export class ProfileComponent implements OnInit {
   currentUser: any = null;
   email: string = '';
 
-  imageId: number = 1;
-  images: string[] =["../../assets/person-outline.svg","../../assets/sid.png",];
+  imageId: number = 2;
+  images: string[] =["../../assets/person-outline.svg","../../assets/sid.png","../../assets/krisholl.png","../../assets/bunny.png","../../assets/bin.png","../../assets/cat.png","../../assets/doge.png","../../assets/hamster.png","../../assets/tigger.png","../../assets/turtle.png"];
   vis: boolean = false;
 
   changeImage() {
