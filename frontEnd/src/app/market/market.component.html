@@ -1,9 +1,16 @@
-<table mat-table [dataSource]="marketDatas">
-  <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-    <td mat-cell *matCellDef="let marketData"> {{marketData.data[column]}}</td>
+<table mat-table class="lessons-table mat-elevatoin-z8" [dataSource]="marketDatas">
+  <ng-container matColumnDef="base">
+    <th mat-header-cell *matHeaderCellDef>CryptoCurrency</th>
+    <td mat-cell *matCellDef="let marketData"> {{marketData.data.base}}</td>
   </ng-container>
-
+  <ng-container matColumnDef="currency">
+    <th mat-header-cell *matHeaderCellDef>Fiat Currency</th>
+    <td mat-cell *matCellDef="let marketData"> {{marketData.data.currency}}</td>
+  </ng-container>
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef>Amount</th>
+    <td mat-cell *matCellDef="let marketData"> {{marketData.data.amount}}</td>
+  </ng-container>
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+  <tr mat-row *matRowDef="let marketData; columns: columnsToDisplay;"></tr>
 </table>
