@@ -29,13 +29,14 @@ export class TransactionComponentComponent implements OnInit {
   type:string = "";
   amount:number = 0;
 
-  selectedCrypto = "";
+  selectedCrypto = "BTC";
 
   selectedCurrency(value:string): void{
     this.selectedCrypto = value;
   }
 
   cryptoConverttoId(value:string): number{
+    console.log(value);
     switch(value)
     {
       

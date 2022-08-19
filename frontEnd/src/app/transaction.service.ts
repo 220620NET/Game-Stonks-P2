@@ -32,6 +32,6 @@ export class TransactionService {
 
   CreateTransaction( trans:transaction): Observable<transaction>
   {
-    return this.http.post<transaction>(this.apiUrl + "submit/transaction" , trans) as Observable<transaction>;
+    return this.http.post<transaction>(this.apiUrl + "submit/transaction" , trans);
   }
 } 
